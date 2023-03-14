@@ -242,12 +242,9 @@ As this is an educational aid, we have made certain assumptions about the use of
     Post-condition: The question object will receive a character value (A - E) that corresponds to the letter choice that represents the declared correct answer. The instructor is then given the choice to reveal the correct answer to their class.
 
     Main scenario:
-    1. Instructor is prompted to choose the correct answer once a question poll has closed.
+    1. Instructor is prompted to choose the correct answer (Drop-down menu with choices A - E) once a question poll has closed.
     2. Instructor selects answer.
-    3. Answer is displayed to the students.
-
-    Extensions:
-    3.1 Instructor can choose not to display the answer. 
+    3. Answer is displayed to the students (Use Case 10).
 
 **Use Case 10. Display Results**
 
@@ -257,18 +254,13 @@ As this is an educational aid, we have made certain assumptions about the use of
     Post-condition: If the instructor chooses to, a visual representation of the student responses will print to all user clients currently in  the session. Alongside the data will be the correct answer expressed as a character (A through E).
 
     Main scenario:
-    1. Instructor starts a class session and asks a question.
-    2. Students provide their responses during the polling window on their own devices.
-    3. Instructor ends the polling window when enough responses are in.
-    4. Instructor is prompted to declare the correct answer. (Drop-down menu with choices A - E)
-    5. The instructor can choose to display the results to the question on all student devices.
-    6. Results disappear when the next polling window is opened.
+    1. Display option is shown after instructor has closed a poll and chosen an answer.
+    2. The instructor chooses to display the selected answer.
+    3. Instructors answer is displayed to the students
+    4. Results disappear when the next polling window is opened.
 
-    Main scenario:
-    1. Instructor starts a class session and asks a question.
-    2. Students provide their responses during the polling window on their own devices.
-    3. Instructor ends the polling window when enough responses are in.
-    4. Instructor is prompted to declare the correct answer. (Drop-down menu with choices A - E)
+    Extensions:
+    2.1 Instructor can choose not to display the answer. 
 
 **Use Case 11. Answer a Question**
 
@@ -311,7 +303,7 @@ As this is an educational aid, we have made certain assumptions about the use of
     3. History is displayed.
 
 ## **Use Case Diagram**
-![](Use_Case_Diagram.png) 
+![](Use_Case_Diagram.png)  
 
 ## **Journey Line Diagram**
 ![](Journey_Line.png) 
