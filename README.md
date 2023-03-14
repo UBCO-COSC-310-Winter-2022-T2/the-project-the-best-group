@@ -241,6 +241,14 @@ As this is an educational aid, we have made certain assumptions about the use of
     Pre-condition: A user with instructor priveleges must be logged in, and a polling window for a question must have started and ended.
     Post-condition: The question object will receive a character value (A - E) that corresponds to the letter choice that represents the declared correct answer. The instructor is then given the choice to reveal the correct answer to their class.
 
+    Main scenario:
+    1. Instructor is prompted to choose the correct answer once a question poll has closed.
+    2. Instructor selects answer.
+    3. Answer is displayed to the students.
+
+    Extensions:
+    3.1 Instructor can choose not to display the answer. 
+
 **Use Case 10. Display Results**
 
     Primary actor: Instructor
