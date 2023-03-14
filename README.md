@@ -11,7 +11,7 @@ The software we are describing is called InstaQuiz, or IQ for short. InstaQuiz i
 
 1.3 Definitions, acronyms, and abbreviations  
 
-![](Definitions.png)
+![](Definitions.png) 
 
 \
 1.4 References
@@ -290,8 +290,20 @@ As this is an educational aid, we have made certain assumptions about the use of
     2. Goes to Grades tab in webpage.
     3. All student grades are presented and can be exported.
 
+**Use Case 13. View History**
+
+    Primary actor: Student, Instructor
+    Description: User is able to view all the past questions and answers for a selected course.
+    Pre-condition: Logged in and enrolled in course.
+    Post-condition: Questions and answers from previous sessions are displayed.
+
+    Main scenario:
+    1. Navigates to course page.
+    2. Goes to history tab in webpage.
+    3. History is displayed.
+
 ## **Use Case Diagram**
 ![](Use_Case_Diagram.png)
 
 ## **Journey Line Diagram**
-![](Journey_Line.png)
+![](Journey_Line.png) 
