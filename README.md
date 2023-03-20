@@ -304,36 +304,36 @@ As this is an educational aid, we have made certain assumptions about the use of
 
 ___________
 ## **Use Case Diagram**
-![](Use_Case_Diagram.png)  
+![](./img/Use_Case_Diagram.png)  
 
 _______________
 ## **Journey Line Diagram**
-![](Journey_Line.png) 
+![](./img/Journey_Line.png) 
 
 ____________
 
 ## **UML Class Diagram**
-![](InstaQuiz_UML_Class_Diagram.png)
+![](./img/InstaQuiz_UML_Class_Diagram.png)
 ____________
 ## **Sequence Diagrams**
 
 ### For Registration and Login
-![](Sequence_Diagram_Login-Register.png)
+![](./img/Sequence_Diagram_Login-Register.png)
 
 ### For Enrolling in a Course (Student Specific)
-![](Sequence_Diagram_Enroll_and_Create_Course.png)
+![](./img/Sequence_Diagram_Enroll_and_Create_Course.png)
 
 ### For Initializing and Running Through a Quiz
-![](Sequence_Diagram_Complete_Quiz.png)
+![](./img/Sequence_Diagram_Complete_Quiz.png)
 
 ____________
 ## **Data Flow Diagrams (Level 0 and 1)**
 ### Level 0 Data Flow Diagram
-![](InstaQuiz-DFD_Level_0.png)
+![](./img/InstaQuiz-DFD_Level_0.png)
 
 ### Level 1 Data Flow Diagram
-![](InstaQuiz-DFD_Level_1.png)
+![](./img/InstaQuiz-DFD_Level_1.png)
 
 _______________
 ## Architecture Diagram
-![](Architecture_Diagram.png)
+![](./img/Architecture_Diagram.png)
