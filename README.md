@@ -311,6 +311,10 @@ _______________
 ![](Journey_Line.png) 
 
 ____________
+
+## **UML Class Diagram**
+![](InstaQuiz_UML_Class_Diagram.png)
+____________
 ## **Sequence Diagrams**
 
 ### For Registration and Login
