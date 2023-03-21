@@ -98,15 +98,15 @@ As this is an educational aid, we have made certain assumptions about the use of
 3.3 Functional 
 
       3.3.1 InstaQuiz will keep record of all the courses that have been created by instructors and store data about them such as their title, name of instructor, and course code made up of the faculty abbreviations and course number (ex COSC 310)
-      3.3.2 Students and instructors can create an account using an email and password which they will use to login to the system.
-      3.3.3 Students can search for courses by course title and enroll in the courses they search for and select. They will also be able to see a menu of the courses they have enrolled in and edit the courses they are currently enrolled in.
-      3.3.4 Instructors can start a live InstaQuiz session. Students who have enrolled in a course can join the session provided their instructor has started an InsatQuiz session (i.e. class is live).
-      3.3.5 Instructors can create questions with multiple choice answers and poll the class with the questions they have created.
-      3.3.6 Students will be able to answer  multiple choice questions during an InstaQuiz session, they can change their answers as many times as they want while the poll is live. While the poll is open instructors and students will see how many students have submitted an answer
-      3.3.7 Instructors will be able to end the poll at any time and select a correct multiple choice option which will be displayed on screen to the entire class. Students will then be able to see whether they answered correctly or not
-      3.3.8 Instructors can see how their students answered the questions and the specific distribution of answers. Students and instructions will also see this distribution of answers selected once a poll has been closed
-      3.3.9 Students can see how many questions they have answered right for a particular course. The total questions asked for the course will also be shown so the student will see a comprehensive score, something like 16/21. 
-      3.3.10 Students and instructors can view the InstaQuiz history for a course which will show all past polls and questions with the corresponding correct answers.
+      3.3.2 InstaQuiz will allow the creation of student and instructor accounts using email/password combinations.
+      3.3.3 InstaQuiz will allow students accounts to search for courses by course title and enroll in the courses they search for and select. The system will also display a menu of the courses that a student has enrolled in and offer the ability to edit the courses they are currently enrolled in.
+      3.3.4 InstaQuiz will allow the creation of a new live session to all instructors. Students who have enrolled in a course can join the session provided their instructor has started an InsatQuiz session (i.e. class is live).
+      3.3.5 For instructor accounts, InstaQuiz will support the creation of custom questions with multiple choice answers and the ability to poll the class with the questions that were created.
+      3.3.6 While the poll is live, the system will allow students to choose and change their answer an unlimited amount of times. IQ will also diplay the number of students that have submitted an answer. 
+      3.3.7 The system will allow instructors to end the poll at any time and select a correct multiple choice option which will be displayed on screen to the entire class. The system will then display to the students whether they answered correctly or not.
+      3.3.8 The system will allow instructors to view the history on how students have answered their questions and the specific distribution of answers. The distribution of answers for a question will also be displayed at the end of each poll for all users to see.
+      3.3.9 The system will also store and allow students to access the number of questions they have answered right for a particular course. The total questions asked for the course will also be shown so the student will see a comprehensive score, something like 16/21. 
+      3.3.10 InstaQuiz will store a comprehensive history for a course which will show all past polls and questions with the corresponding correct answers.
 
 3.4 Non-Functional
 
@@ -336,4 +336,4 @@ ____________
 
 _______________
 ## Architecture Diagram
-![](./img/Architecture_Diagram.png)
+![](./img/Architecture_Diagram.png) 
