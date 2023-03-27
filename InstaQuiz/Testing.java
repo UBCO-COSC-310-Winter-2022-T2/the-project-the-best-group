@@ -81,6 +81,15 @@ public class Testing {
         assertTrue(Account.logout(email, password));
     }
     //end of 1.3 Tests
+
+    //1.4 Test
+    @Test
+    public void testInstructorCanCreateCourse() {
+        Instructor instructor = new Instructor("prof", "lastname", "mail@mail.com", "pw");
+        instructor.createCourse("course");
+        assertEquals(Course.searchTitle(courseName), instructor.getCourse(course));
+    }
+
     
     // 1.5 test
     @Test
@@ -208,6 +217,33 @@ public class Testing {
     }
     // End of 1.11 Unit Tests
 
+// 1.12 test
+    @Test
+    public void testQuestionBank() {
+   // Create a new question bank
+   bank1 Question = new Question();
+ 
+
+   // Create a sample question
+   String prompt = "What is the capital of Canada?";
+   ArrayList<String> answerOptions = new ArrayList<String>();
+   answerOptions.add("Ottawa");
+   answerOptions.add("Kelowna");
+   answerOptions.add("Edmonton");
+   answerOptions.add("Toronto");
+   answerOptions.add("Quebec City");
+   Question question = new Question(prompt, answerOptions);
+
+
+   bank1.addQuestion(question);
+   Question retrievedQuestion = questionBank.getQuestion(0);
+
+
+   assertEquals(question.getPrompt(), retrievedQuestion.getPrompt());
+   assertEquals(question.getAnswerOptions(),   retrievedQuestion.getAnswerOptions());
+}
+
+
     // 1.13 test (will add methods needed in other classes)
     @Test 
     public void testStartPoll () {
@@ -321,6 +357,7 @@ public class Testing {
         assertEquals(1, gradeInt);
     }
     // end of 1.17
+    
 
     // Tests for Functional Requirement 1.19: 
     //For each course they have created, instructors will have access to their student’s grades, attendance records, and response history.
