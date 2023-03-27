@@ -10,7 +10,9 @@ import org.junit.Test;
 
 public class Testing {
     
-    // Tests for functional requirement 1.1
+    // Unit Test(s) for functional requirement 1.1:
+    // Users can create an InstaQuiz account with instructor, or student privileges using their email address and a custom password.
+
 	/*
 	The createAccount method will attempt to add a row to the accounts table in our database.
     	If it succeeds it will return true, otherwise the method defaults to false as no account has been created.
@@ -39,9 +41,11 @@ public class Testing {
 
         assertTrue(createAccountResult);
     }
-    // end of 1.1
+    // End of 1.1 Unit Tests
 
-    // Tests for functional requirement 1.2:
+    // Unit Test(s) for functional requirement 1.2:
+    // Users can login to their InstaQuiz accounts using their email address and password.
+
     // Test for student login, provided String values for an email and password, the Account.login function should query the database and return true if the email and password match a student account
     @Test
     public void studentLogin()
@@ -62,7 +66,8 @@ public class Testing {
     }
     // End of 1.2 Unit Tests
 
-    // Tests for functional requirement 1.3
+    // Unit Test(s) for functional requirement 1.3:
+    // Users can logout by clicking a constantly displayed button in the top right of the web-page.
     @Test
     public void testStudentLogout()
     {
@@ -80,18 +85,22 @@ public class Testing {
 
         assertTrue(Account.logout(email, password));
     }
-    //end of 1.3 Tests
+    // End of 1.3 Unit Tests
 
-    //1.4 Test
+    // Unit Test(s) for functional requirement 1.4:
+    // Instructors can create a new course module, this automatically enrolls them in the course, as the instructor.
     @Test
-    public void testInstructorCanCreateCourse() {
+    public void testInstructorCanCreateCourse() 
+    {
         Instructor instructor = new Instructor("prof", "lastname", "mail@mail.com", "pw");
         instructor.createCourse("course");
+
         assertEquals(Course.searchTitle(courseName), instructor.getCourse(course));
     }
+    // End of 1.4 Unit Tests
 
-    
-    // 1.5 test
+    // Unit Test(s) for functional requirement 1.5:
+    // Instructors can delete any course module they have personally created.
     @Test
     public void testInstructorCanDeleteCourse() {
         
@@ -103,9 +112,10 @@ public class Testing {
         //check if the course they tried to delete still exists. It shouldn't exist therefore getCourse should return null 
         assertEquals(null, instructor.getCourse(course));
     }
-    // end of 1.5 test
+    // End of 1.5 Unit Tests
     
-    // Tests for Functional Requirement 1.6: Users can search for a course module by title or instructor
+    // Unit Test(s) for functional requirement 1.6:
+    // Users can search for a course module by title or instructor
     @Test
     public void searchCourseByTitle()
     {
@@ -123,7 +133,8 @@ public class Testing {
     }
     // End of 1.6 Unit Tests
 	
-    // 1.7 Unit Test
+    // Unit Test(s) for Functional Requirement 1.7:
+    // Students can enroll in any course module that they are not currently enrolled in.
     public void joinCourseStudent()
     {
         Student st = new Student("John", "Doe", "jd@mail.com", "pw");
@@ -146,7 +157,8 @@ public class Testing {
     }
     // End of 1.7 Unit Tests
 
-    // 1.8 test 
+    // Unit Test(s) for Functional Requirement 1.8:
+    // Students can unenroll from a course they are currently enrolled in.
     @Test
     public void testUnenrollFromCourse() {
     	
@@ -160,9 +172,10 @@ public class Testing {
         assertFalse(course.isEnrolled(student));
     }
     
-    // end of 1.8
+    // End of 1.8 Unit Tests
 
-    // Tests for Functional Requirement 1.9: Instructors can start a live course session in any courses they have created.
+    // Unit Test(s) for Functional Requirement 1.9:
+    // Instructors can start a live course session in any courses they have created.
     @Test
     public void instructorStartLiveSession()
     {
@@ -180,7 +193,8 @@ public class Testing {
     }
     // End of 1.9 Unit Tests
 	
-    // 1.10 test (will add methods needed in other classes)
+    // Unit Test(s) for Functional Requirement 1.10:
+    // If an instructor has any ongoing live sessions, they can end them whenever, as long as no polling windows are active.
     @Test 
     public void testEndLiveSession() {
     	
@@ -199,7 +213,7 @@ public class Testing {
         // sessions will have a isActive boolean method
         assertFalse(course1.isActive());
     }
-    // end of 1.10
+    // End of 1.10 Unit Tests
 
     // Tests for Functional Requirement 1.11: Users can join a live course session, provided that the instructor has started it already.
     @Test
@@ -358,7 +372,7 @@ public class Testing {
     }
     // end of 1.17
     
-    // Tests for Functional Requirement 1.19: 
+    // Tests for Functional Requirement 1.18: 
     //For each course they have created, instructors will have access to their student’s grades, attendance records, and response history.
     @Test
     public void testStudentViewHistory()
