@@ -1,5 +1,9 @@
 package InstaQuiz;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Test;
 
 public class Testing {
@@ -74,4 +78,22 @@ public class Testing {
         assertTrue(Account.logout(email,password));
     }
     //end of 1.3 Tests
+    
+    // 1.5 test
+    
+    @Test
+    public void testInstructorCanDeleteCourse() {
+        
+        Instructor instructor = new Instructor("prof", "lastname", "mail@mail.com", "pw");
+        Course course = new Course("Java Programming", instructor);
+        
+        instructor.deleteCourse(course);
+
+        //check if the course they tried to delete still exists. It shouldn't exist therefore getCourse should return null 
+        assertEquals(null, instructor.getCourse(course));
+    }
+    
+    // end of 1.5 test
+    
+    
 }
