@@ -247,6 +247,29 @@ public class Testing {
         assertTrue(pollEnded);
     }
     // end of 1.14 test
+	
+    // 1.15 
+    @Test
+    public void testChangeAnswer() {
+    	
+    	Instructor instructor1 = new Instructor("profname", "lastname", "mail@mail.com", "pw");
+    	Course course1 = new Course("211", instructor1);
+    	Student s1 = new Student("fname", "lastname", "mail@mail.com", "pw");
+    	
+    	Session ses1 = new Session(course1);
+    	Poll p1 = new Poll (course1);
+
+        Question question1 = new Question("2+2?", p1);
+        Response A = new Response("5", p1, question1);
+        Response B = new Response("4", p1, question1);
+        
+        s1.selectAnswer(A, p1, question1);
+        s1.selectAnswer(B, p1, question1);
+        
+        assertEquals("4",s1.getAnswer(p1, question1));
+        
+    }
+    // end of 1.15
 
     // Tests for Functional Requirement 1.16: 
     // Instructors can choose to display a summary of the question, (correct answer, how many votes each answer got, how many total responses, etc.) or to keep it hidden from the class. 
