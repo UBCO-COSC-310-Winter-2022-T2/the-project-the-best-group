@@ -128,4 +128,22 @@ public class Testing {
     }
     
     // end of 1.8
+
+    // Tests for Functional Requirement 1.9: Instructors can start a live course session in any courses they have created.
+    @Test
+    public void instructorStartLiveSession()
+    {
+        Instructor in1 = new Instructor("John", "Doe", "jdoe@mail.com", "pw1");
+        Instructor in2 = new Instructor("Jane", "Doe", "jdoe@mail.com", "pw2");
+
+        Course course1 = new Course("Introduction to Software Engineering", in1);
+        Course course2 = new Course("Introduction to Engineering Software", in2);
+
+        assertTrue(course1.startLiveSession(in1)); //Don't want to pass in objects, this method will be allowed/restricted based on who is logged in, and trying to call it. (should be void, with no parameters)
+        assertTrue(course2.startLiveSession(in2));
+
+        assertFalse(course1.startLiveSession(in2));
+        assertFalse(course2.startLiveSession(in1));
+    }
+    // End of 1.9 Unit Tests
 }
