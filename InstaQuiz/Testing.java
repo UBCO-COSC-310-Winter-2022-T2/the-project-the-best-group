@@ -178,7 +178,7 @@ public class Testing {
     	
         course1.startLiveSession();
         
-        boolean activePoll = Poll.isActive();
+        boolean activePoll = course1.activePoll();
         
         if (!activePoll) {
         	course1.endLiveSession();
