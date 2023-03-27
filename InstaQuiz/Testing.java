@@ -4,7 +4,12 @@ import org.junit.Test;
 
 public class Testing {
     
-	// Tests for functional requirement 1.1
+    // Tests for functional requirement 1.1
+	/*
+	The createAccount method will attempt to add a row to the accounts table in our database.
+    	If it succeeds it will return true, otherwise the method defaults to false as no account has been created.
+   	Method will also call Student() or Instructor() depending on the userType parameter passed to it when call
+	*/
     @Test
     public void testCreateStudentAccount() {
     	
@@ -14,7 +19,7 @@ public class Testing {
 
         boolean createAccountResult = Account.createAccount(email, password, userType);
         
-        assert(createAccountResult);
+        assertTrue(createAccountResult);
     }
     
     @Test
@@ -26,7 +31,7 @@ public class Testing {
     
         boolean createAccountResult = Account.createAccount(email, password, userType);
 
-        assert(createAccountResult);
+        assertTrue(createAccountResult);
     }
     // end of 1.1
 
