@@ -161,11 +161,11 @@ public class Testing {
         Course course1 = new Course("Introduction to Software Engineering", in1);
         Course course2 = new Course("Introduction to Engineering Software", in2);
 
-        assertTrue(course1.startLiveSession(in1)); //Don't want to pass in objects, this method will be allowed/restricted based on who is logged in, and trying to call it. (should be void, with no parameters)
-        assertTrue(course2.startLiveSession(in2));
+        assertTrue(course1.startLiveSession()); //Don't want to pass in objects, this method will be allowed/restricted based on who is logged in, and trying to call it. (should be void, with no parameters)
+        assertTrue(course2.startLiveSession());
 
-        assertFalse(course1.startLiveSession(in2));
-        assertFalse(course2.startLiveSession(in1));
+        assertFalse(course1.startLiveSession());
+        assertFalse(course2.startLiveSession());
     }
     // End of 1.9 Unit Tests
 	
@@ -189,7 +189,23 @@ public class Testing {
         assertFalse(course1.isActive());
     }
     // end of 1.10
-	
+
+    // Tests for Functional Requirement 1.11: Users can join a live course session, provided that the instructor has started it already.
+    @Test
+    public void testJoinLiveSession()
+    {
+        Instructor in = new Instructor("John", "Doe", "jdoe@mail.com", "pw");
+        Course c = new Course("Introduction to Software Engineering", i);
+
+        Student s = new Student("James", "Doe", "jdoe@mail.com", "pw");
+        s.joinCourse(c);
+        
+        c.startLiveSession();
+        assertTrue(s.joinLiveSession(c));
+        c.endLiveSession();
+    }
+    // End of 1.11 Unit Tests
+
     // 1.13 test (will add methods needed in other classes)
     @Test 
     public void testStartPoll () {
