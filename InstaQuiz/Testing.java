@@ -49,4 +49,24 @@ public class Testing {
         assertTrue(Account.login(email, password));
     }
     // End of 1.2 Tests
+
+    // Tests for functional requirement 1.3
+    @Test
+    public void testStudentLogout()
+    {
+        String email = "student@mail.com";
+        String password = "password";
+
+        assertTrue(Account.logout(email,password));
+    }
+
+    @Test
+    public void testInstructorLogout()
+    {
+        String email = "instructor@mail.com";
+        String password = "password";
+
+        assertTrue(Account.logout(email,password));
+    }
+    //end of 1.3 Tests
 }
