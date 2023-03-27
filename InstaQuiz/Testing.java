@@ -215,7 +215,8 @@ public class Testing {
     }
     // End of 1.10 Unit Tests
 
-    // Tests for Functional Requirement 1.11: Users can join a live course session, provided that the instructor has started it already.
+    // Unit Test(s) for Functional Requirement 1.11:
+    // Users can join a live course session, provided that the instructor has started it already
     @Test
     public void testJoinLiveSession()
     {
@@ -230,58 +231,62 @@ public class Testing {
         c.endLiveSession();
     }
     // End of 1.11 Unit Tests
-
-// 1.12 test
+    
+    // Unit Test(s) for Functional Requirement 1.12: 
+    // Instructors can create a storage bank of custom questions with corresponding multiple choice answer sets
     @Test
     public void testQuestionBank() {
-   // Create a new question bank
-   bank1 Question = new Question();
+    // Create a new question bank
+    bank1 Question = new Question();
  
 
-   // Create a sample question
-   String prompt = "What is the capital of Canada?";
-   ArrayList<String> answerOptions = new ArrayList<String>();
-   answerOptions.add("Ottawa");
-   answerOptions.add("Kelowna");
-   answerOptions.add("Edmonton");
-   answerOptions.add("Toronto");
-   answerOptions.add("Quebec City");
-   Question question = new Question(prompt, answerOptions);
+    // Create a sample question
+    String prompt = "What is the capital of Canada?";
+    ArrayList<String> answerOptions = new ArrayList<String>();
+    answerOptions.add("Ottawa");
+    answerOptions.add("Kelowna");
+    answerOptions.add("Edmonton");
+    answerOptions.add("Toronto");
+    answerOptions.add("Quebec City");
+    Question question = new Question(prompt, answerOptions);
 
 
-   bank1.addQuestion(question);
-   Question retrievedQuestion = questionBank.getQuestion(0);
+    bank1.addQuestion(question);
+    Question retrievedQuestion = questionBank.getQuestion(0);
 
 
    assertEquals(question.getPrompt(), retrievedQuestion.getPrompt());
    assertEquals(question.getAnswerOptions(),   retrievedQuestion.getAnswerOptions());
-}
+   
+   }
+   // End of 1.12 Unit Tests
 
-
-    // 1.13 test (will add methods needed in other classes)
-    @Test 
-    public void testStartPoll () {
+   // Unit Test(s) for Functional Requirement 1.13: 
+   // Instructors can start a polling window during a live session as long as no other polls are already in progress
+   @Test 
+   public void testStartPoll () {
     	
-    	Instructor instructor1 = new Instructor("profname", "lastname", "mail@mail.com", "pw");
-    	Course course1 = new Course("211", instructor1);
+	   Instructor instructor1 = new Instructor("profname", "lastname", "mail@mail.com", "pw");
+	   Course course1 = new Course("211", instructor1);
     	
-        course1.startLiveSession();
+	   course1.startLiveSession();
 
-        // variable for whether we successful started a new poll
-        boolean newPollStarted = false;
+       // variable for whether we successful started a new poll
+       boolean newPollStarted = false;
         
-        if (!course1.activePoll()) {
+       if (!course1.activePoll()) {
         	course1.startPoll();
         	newPollStarted = true;
-        } else {
-        	System.out.println("A poll is already active");
-        }
+       } else {
+    	   System.out.println("A poll is already active");
+       }
 
-        assertTrue(newPollStarted);
-    }
-    // end of 1.13
+       assertTrue(newPollStarted);
+   	}
+    // End of 1.13 Unit Tests
 
-    // 1.14 test
+    // Unit Test(s) for Functional Requirement 1.14: 
+    // Instructors can end their live polling window and declare the correct answer to the question.
     @Test
     public void testEndPoll()
     {
@@ -298,9 +303,11 @@ public class Testing {
         assertTrue(pollStarted);
         assertTrue(pollEnded);
     }
-    // end of 1.14 test
-	
-    // 1.15 
+    // End of 1.14 Unit Tests
+
+    // Unit Test(s) for Functional Requirement 1.15: 
+    // Users can answer a question by clicking on the corresponding answer listed beneath the question text. A
+    // user can change their answer during the polling window.
     @Test
     public void testChangeAnswer() {
     	
@@ -321,11 +328,12 @@ public class Testing {
         assertEquals("4",s1.getAnswer(p1, question1));
         
     }
-    // end of 1.15
+    // End of 1.15 Unit Tests
 
-    // Tests for Functional Requirement 1.16: 
-    // Instructors can choose to display a summary of the question, (correct answer, how many votes each answer got, how many total responses, etc.) or to keep it hidden from the class. 
-    // Instructors will be able to see this summary regardless after they end a polling window.
+    // Unit Test(s) for Functional Requirement 1.16: 
+    // Instructors can choose to display a summary of the question, (correct answer, how many votes each answer
+    // got, how many total responses, etc.) or to keep it hidden from the class. Instructors will be able to see this
+    // summary regardless after they end a polling window
     @Test
     public void testPollSummary()
     {
@@ -340,7 +348,9 @@ public class Testing {
     }
     // End of 1.16 Unit Tests
 
-    //1.17 Unit Test
+    // Unit Test(s) for Functional Requirement 1.17: 
+    // Students can see how many questions they have answered right for a particular course. The total questions
+    //asked for the course will also be shown so the student will see a comprehensive score, something like 16/21.
     @Test
     public void testCheckCourseScore() 
     {
@@ -370,10 +380,11 @@ public class Testing {
 
         assertEquals(1, gradeInt);
     }
-    // end of 1.17
-    
-    // Tests for Functional Requirement 1.18: 
-    //For each course they have created, instructors will have access to their student’s grades, attendance records, and response history.
+    // End of 1.17 Unit Tests
+
+    // Unit Test(s) for Functional Requirement 1.18:
+    // For each course they are enrolled in, students will be able to see their current score, attendance record, and
+    // response history throughout previously attended live sessions
     @Test
     public void testStudentViewHistory()
     {
@@ -403,16 +414,17 @@ public class Testing {
 
         course1.endLiveSession();
     }
+    // End of 1.18 Unit Tests
 
-    // Tests for Functional Requirement 1.19: 
-    //For each course they have created, instructors will have access to their student’s grades, attendance records, and response history.
+    // Unit Test(s) for Functional Requirement 1.19: 
+    // For each course they have created, instructors will have access to their students grades, attendance records, and response history.
     @Test
     public void testInstructorViewGrades()
     {
         Instructor instructor1 = new Instructor("iName", "lname", "instructor1@mail.com", "pw");
         Course course1 = new Course("Introduction to Software Engineering", i);
         Student student1 = new Student("sName", "Doe", "student1@mail.com", "pw");
-        Student student2 = new Student("sName", "Joe", "student2@mail.com", "pw");
+        Student student2 = new Student("sName", "Doe", "student1@mail.com", "pw");
 
         student1.joinCourse(course1);
         student2.joinCourse(course1);
@@ -441,4 +453,8 @@ public class Testing {
         course1.endLiveSession();
     }
     // End of 1.19 Unit Tests
+    
+    //*************************************
+    // JUST NEED 1.20 TEST
+    //*************************************
 }
