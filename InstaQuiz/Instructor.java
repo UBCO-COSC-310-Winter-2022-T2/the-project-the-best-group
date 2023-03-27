@@ -2,20 +2,25 @@ package InstaQuiz;
 
 public class Instructor extends Account
 {
+    Instructor(String email, String password)
+    {
+        this.email = email;
+        this.password = password;
+    }
 
-	public Instructor(String string, String string2, String string3, String string4) {
-		
-	}
+    @Override
+    public void login() {
+        // yet to implement
+    }
 
-	public String getCourse(Course course) {
-		// get course from database by name
-		// return course name if exists, return null if it doesn't
-		return null;
-	}
+    @Override
+    public void logout() {
+        // yet to implement
+    }
 
-	public void deleteCourse(Course course) {
-		// deletes course from database
-		
-	}
-    
+    @Override
+    public boolean getLoggedIn()
+    {
+        return loggedIn;
+    }
 }

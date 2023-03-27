@@ -1,20 +1,12 @@
 package InstaQuiz;
 
-public class Account {
-
-	public static boolean createAccount(String email, String password, String userType) {
-		
-		
-		return false;
-	}
+public abstract class Account {
+	String email, password;
+	boolean loggedIn;
     
-	public static boolean login(String email, String password) 
-	{
-		return false;
-	}
+	public abstract void login();
 
-	public static boolean logout(String email, String password)
-	{
-		return false;
-	}
+	public abstract void logout();
+
+	public abstract boolean getLoggedIn();
 }
