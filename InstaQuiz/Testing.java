@@ -1,5 +1,7 @@
 package InstaQuiz;
 
+import java.lang.Math;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -287,4 +289,35 @@ public class Testing {
         assertTrue(c.displayPollSummary()); //displays summary to the entire class
     }
     // End of 1.16 Unit Tests
+
+    //1.17 Unit Test
+    @Test
+    public void testCheckCourseScore() {
+    	
+    	Instructor in = new Instructor("John", "Doe", "jdoe@mail.com", "pw");
+    	Course co = new Course("courseName", in);
+    	Student st = new Student("John", "Doe", "jdoe@mail.com", "pw");
+    	
+        co.startLiveSession();
+
+        Response A = new Response("5", p1, question1);
+        Response B = new Response("4", p1, question1);
+        Question question1 = new Question("2+2?", B);
+
+        question1.addResponses(new Response[]{A, B});
+        co.addQuestion(question1);
+
+        co.startPoll();
+        
+        st.selectAnswer(B);
+
+        co.endPoll();
+
+        double grade = st.getGrade(co);
+        
+        int gradeInt = (int)Math.floor(grade);
+
+        assertEquals(1, gradeInt);
+    }
+    // end of 1.17
 }
