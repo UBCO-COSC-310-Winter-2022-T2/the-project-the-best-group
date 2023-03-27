@@ -189,4 +189,31 @@ public class Testing {
         assertFalse(course1.isActive());
     }
     // end of 1.10
+	
+    // 1.13 test (will add methods needed in other classes)
+    @Test 
+    public void testStartPoll () {
+    	
+    	Instructor instructor1 = new Instructor("profname", "lastname", "mail@mail.com", "pw");
+    	Course course1 = new Course("211", instructor1);
+    	
+        course1.startLiveSession();
+        
+        //check if there is a poll active already
+        boolean activePoll = course1.activePoll();
+        
+        // variable for whether we successful started a new poll
+        boolean newPollStarted = false;
+      
+        
+        if (!activePoll) {
+        	course1.startPoll();
+        	newPollStarted = true;
+        } else {
+        	System.out.println("A poll is already active");
+        }
+
+        assertTrue(newPollStarted);
+    }
+    // end of 1.13
 }
