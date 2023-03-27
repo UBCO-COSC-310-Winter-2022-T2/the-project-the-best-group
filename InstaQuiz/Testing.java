@@ -229,6 +229,25 @@ public class Testing {
     }
     // end of 1.13
 
+    // 1.14 test
+    @Test
+    public void testEndPoll()
+    {
+        Instructor in = new Instructor("John", "Doe", "jdoe@mail.com", "pw");
+        Course co = new Course("CourseName", in);
+
+        co.startLiveSession();
+        co.startPoll();
+        boolean pollStarted = co.activePoll();
+        co.endPoll();
+        boolean pollEnded = co.activePoll();
+
+        //tests if poll started successfully before testing if it ended successfully
+        assertTrue(pollStarted);
+        assertTrue(pollEnded);
+    }
+    // end of 1.14 test
+
     // Tests for Functional Requirement 1.16: 
     // Instructors can choose to display a summary of the question, (correct answer, how many votes each answer got, how many total responses, etc.) or to keep it hidden from the class. 
     // Instructors will be able to see this summary regardless after they end a polling window.
