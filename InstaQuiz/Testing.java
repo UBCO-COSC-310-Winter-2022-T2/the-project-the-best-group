@@ -493,4 +493,8 @@ public class Testing {
         assertEquals(B,summary[0].answer);
     }
     // End of 1.20 Unit Tests
+
+    // Responses shouldnt have poll as parameter
+    // Course should be only object instantiated
+    // students should join course before answering polls
 }
