@@ -454,7 +454,43 @@ public class Testing {
     }
     // End of 1.19 Unit Tests
     
-    //*************************************
-    // JUST NEED 1.20 TEST
-    //*************************************
+    //Tests for Functional Requirement 1.20: 
+    //Students and instructors can view the InstaQuiz history for a course which will show all past
+    //questions with the corresponding correct answers.
+    @Test
+    public void viewingHistoryOfCourse() 
+    {
+     
+        Instructor in = new Instructor("John", "Doe", "jdoe@mail.com", "pw");
+        Course co = new Course("courseName", in);
+        Student st = new Student("John", "Doe", "jdoe@mail.com", "pw");
+        
+        co.addStudent(st);
+
+        co.startLiveSession();
+
+        Response A = new Response("5", p1, question1);
+        Response B = new Response("4", p1, question1);
+        Question question1 = new Question("2+2?", B);
+
+        question1.addResponses(new Response[]{A, B});
+        co.addQuestion(question1);
+
+        co.startPoll();
+     
+        st.selectAnswer(B);
+
+        co.endPoll();
+
+        co.endLiveSession();
+
+        //stores all previous questions with their answers as an attribute of the Question object
+        Question[] summary = co.getQuestions();
+
+        //checks that answers and questions are the same as the poll that was just running
+        assertEquals(1, summary.length);
+        assertEquals(question1, summary[0]);
+        assertEquals(B,summary[0].answer);
+    }
+    // End of 1.20 Unit Tests
 }
