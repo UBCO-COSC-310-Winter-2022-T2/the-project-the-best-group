@@ -8,4 +8,13 @@ public class Account {
 		return false;
 	}
     
+	public static boolean login(String email, String password) 
+	{
+		return false;
+	}
+
+	public static boolean logout(String email, String password)
+	{
+		return false;
+	}
 }
