@@ -228,4 +228,21 @@ public class Testing {
         assertTrue(newPollStarted);
     }
     // end of 1.13
+
+    // Tests for Functional Requirement 1.16: 
+    // Instructors can choose to display a summary of the question, (correct answer, how many votes each answer got, how many total responses, etc.) or to keep it hidden from the class. 
+    // Instructors will be able to see this summary regardless after they end a polling window.
+    @Test
+    public void testPollSummary()
+    {
+        Instructor in = new Instructor("John", "Doe", "jdoe@mail.com", "pw");
+        Course c = new Course("Introduction to Software Engineering", i);
+
+        c.startLiveSession();
+        c.startPoll();
+        c.endPoll(); //calls c.pollSummary() to show the instructor
+
+        assertTrue(c.displayPollSummary()); //displays summary to the entire class
+    }
+    // End of 1.16 Unit Tests
 }
