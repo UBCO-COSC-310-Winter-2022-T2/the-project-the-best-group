@@ -146,4 +146,25 @@ public class Testing {
         assertFalse(course2.startLiveSession(in1));
     }
     // End of 1.9 Unit Tests
+	
+    // 1.10 test (will add methods needed in other classes)
+    @Test 
+    public void testEndLiveSession() {
+    	
+    	Instructor instructor1 = new Instructor("profname", "lastname", "mail@mail.com", "pw");
+    	Course course1 = new Course("211", instructor1);
+    	
+        course1.startLiveSession();
+        
+        boolean activePoll = Poll.isActive();
+        
+        if (!activePoll) {
+        	course1.endLiveSession();
+        } else {
+        	System.out.println("Cannot end a session while a poll is active");
+        }
+        // sessions will have a isActive boolean method
+        assertFalse(course1.isActive());
+    }
+    // end of 1.10
 }
