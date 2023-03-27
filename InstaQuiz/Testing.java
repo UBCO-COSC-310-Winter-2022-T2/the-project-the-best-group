@@ -358,6 +358,37 @@ public class Testing {
     }
     // end of 1.17
     
+    // Tests for Functional Requirement 1.19: 
+    //For each course they have created, instructors will have access to their student’s grades, attendance records, and response history.
+    @Test
+    public void testStudentViewHistory()
+    {
+        Course course1 = new Course("Introduction to Software Engineering", i);
+        Student student1 = new Student("sName", "Doe", "student1@mail.com", "pw");
+
+        student1.joinCourse(course1);
+
+        Session session1 = new Session(course1);
+    	Poll poll1 = new Poll (course1);
+
+        Question question1 = new Question("2+2?", poll1);
+        Response A = new Response("5", p1, question1);
+        Response B = new Response("4", p1, question1);
+
+        course1.startLiveSession(); //creates a session object: Session session1 = new Session(course1);???
+        student1.joinLiveSession(session1);
+
+        session1.startPoll(question1); //creates a poll object: Poll poll1 = new Poll(session1);???
+
+        //Adds two student objects to session1.presentStudents ArrayList
+        student1.selectAnswer(A);
+
+        session1.endPoll(poll1);
+
+        assertTrue(student.getSummary(course1)); //this might get called, but this test does not check for the visual interface summary.
+
+        course1.endLiveSession();
+    }
 
     // Tests for Functional Requirement 1.19: 
     //For each course they have created, instructors will have access to their student’s grades, attendance records, and response history.
@@ -367,7 +398,7 @@ public class Testing {
         Instructor instructor1 = new Instructor("iName", "lname", "instructor1@mail.com", "pw");
         Course course1 = new Course("Introduction to Software Engineering", i);
         Student student1 = new Student("sName", "Doe", "student1@mail.com", "pw");
-        Student student2 = new Student("sName", "Doe", "student1@mail.com", "pw");
+        Student student2 = new Student("sName", "Joe", "student2@mail.com", "pw");
 
         student1.joinCourse(course1);
         student2.joinCourse(course1);
