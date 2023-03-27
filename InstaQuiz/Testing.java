@@ -111,4 +111,21 @@ public class Testing {
         assertTrue(Course.searchInstructor(in.getFirstName() + " " + in.getLastName()));
     }
     // End of 1.6 Unit Tests
+	
+
+    // 1.8 test 
+    @Test
+    public void testUnenrollFromCourse() {
+    	
+        Student student = new Student("student_name", "lastname", "mail@mail.com", "pw");
+        Course course = new Course("211", null);
+        course.enroll(student);
+  
+        course.unenroll(student);
+  
+        // check to make sure student is not enrolled in course hence the assertFalse
+        assertFalse(course.isEnrolled(student));
+    }
+    
+    // end of 1.8
 }
