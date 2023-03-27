@@ -4,7 +4,6 @@ import org.junit.Test;
 
 public class Testing {
     
-	
 	// Tests for functional requirement 1.1
     @Test
     public void testCreateStudentAccount() {
@@ -30,4 +29,24 @@ public class Testing {
         assert(createAccountResult);
     }
     // end of 1.1
+
+    // Tests for functional requirement 1.2
+    @Test
+    public void studentLogin()
+    {
+        String email = "student@mail.com";
+        String password = "pw";
+
+        assertTrue(login(student@mail.com, pw));
+    }
+
+    @Test
+    public void instructorLogin()
+    {
+        String email = "instructor@mail.com";
+        String password = "pw";
+
+        assertTrue(login(instructor@mail.com, pw));
+    }
+    // End of 1.2 Tests
 }
