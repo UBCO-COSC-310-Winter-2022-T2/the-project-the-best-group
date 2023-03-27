@@ -112,6 +112,28 @@ public class Testing {
     }
     // End of 1.6 Unit Tests
 	
+    // 1.7 Unit Test
+    public void joinCourseStudent()
+    {
+        Student st = new Student("John", "Doe", "jd@mail.com", "pw");
+        Instructor in = new Instructor("John", "Doe", "jdoe@mail.com", "pw");
+        Course co = new Course("Course Name", in);
+        
+        co.addStudent(st);
+        
+        Student[] students = co.getStudents();
+        boolean isInClass = false;
+        for(Student stud : students){
+            if (st == stud)
+            {
+                isInClass = true;
+                break;
+            }
+        }
+        
+        assertTrue(isInClass);
+    }
+    // End of 1.7 Unit Tests
 
     // 1.8 test 
     @Test
