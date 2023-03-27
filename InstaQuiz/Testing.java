@@ -37,7 +37,7 @@ public class Testing {
         String email = "student@mail.com";
         String password = "pw";
 
-        assertTrue(Account.login(student@mail.com, pw));
+        assertTrue(Account.login(email, password));
     }
 
     @Test
@@ -46,7 +46,7 @@ public class Testing {
         String email = "instructor@mail.com";
         String password = "pw";
 
-        assertTrue(Account.login(instructor@mail.com, pw));
+        assertTrue(Account.login(email, password));
     }
     // End of 1.2 Tests
 }
