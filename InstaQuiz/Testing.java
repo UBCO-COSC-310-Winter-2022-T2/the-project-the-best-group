@@ -1,10 +1,19 @@
 package InstaQuiz;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Test;
 
 public class Testing {
     
-	// Tests for functional requirement 1.1
+    // Tests for functional requirement 1.1
+	/*
+	The createAccount method will attempt to add a row to the accounts table in our database.
+    	If it succeeds it will return true, otherwise the method defaults to false as no account has been created.
+   	Method will also call Student() or Instructor() depending on the userType parameter passed to it when call
+	*/
     @Test
     public void testCreateStudentAccount() {
     	
@@ -14,7 +23,7 @@ public class Testing {
 
         boolean createAccountResult = Account.createAccount(email, password, userType);
         
-        assert(createAccountResult);
+        assertTrue(createAccountResult);
     }
     
     @Test
@@ -26,7 +35,7 @@ public class Testing {
     
         boolean createAccountResult = Account.createAccount(email, password, userType);
 
-        assert(createAccountResult);
+        assertTrue(createAccountResult);
     }
     // end of 1.1
 
@@ -70,7 +79,21 @@ public class Testing {
         assertTrue(Account.logout(email, password));
     }
     //end of 1.3 Tests
+    
+    // 1.5 test
+    @Test
+    public void testInstructorCanDeleteCourse() {
+        
+        Instructor instructor = new Instructor("prof", "lastname", "mail@mail.com", "pw");
+        Course course = new Course("Java Programming", instructor);
+        
+        instructor.deleteCourse(course);
 
+        //check if the course they tried to delete still exists. It shouldn't exist therefore getCourse should return null 
+        assertEquals(null, instructor.getCourse(course));
+    }
+    // end of 1.5 test
+    
     // Tests for Functional Requirement 1.6: Users can search for a course module by title or instructor
     @Test
     public void searchCourseByTitle()
