@@ -214,15 +214,11 @@ public class Testing {
     	Course course1 = new Course("211", instructor1);
     	
         course1.startLiveSession();
-        
-        //check if there is a poll active already
-        boolean activePoll = course1.activePoll();
-        
+
         // variable for whether we successful started a new poll
         boolean newPollStarted = false;
-      
         
-        if (!activePoll) {
+        if (!course1.activePoll()) {
         	course1.startPoll();
         	newPollStarted = true;
         } else {
