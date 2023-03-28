@@ -27,7 +27,27 @@ jobs:
           distribution: 'temurin'
       - name: Locate project
         run: cd InstaQuiz/
-      - name: Compiling all files
-        run: javac *.java
-      - name: run Testing.java
-        run: java Testing.java
+      - name: Compiling Account.java
+        run: javac Account.java
+      - name: Compiling Course.java
+        run: javac Course.java
+      - name: Compiling InstaQuiz.java
+        run: javac InstaQuiz.java
+      - name: Compiling Instructor.java
+        run: javac Instructor.java
+      - name: run Poll.java
+        run: java Poll.java
+      - name: Compiling PollSummary.java
+        run: javac PollSummary.java
+      - name: Compiling Question.java
+        run: javac Question.java
+      - name: Compiling Response.java
+        run: javac Response.java
+      - name: Compiling Session.java
+        run: javac Session.java
+      - name: Compiling Student.java
+        run: javac Student.java
+      - name: Compiling Testing.java
+        run: javac Testing.java
+      - name: Running Testing.java
+        run: javac Testing.java
