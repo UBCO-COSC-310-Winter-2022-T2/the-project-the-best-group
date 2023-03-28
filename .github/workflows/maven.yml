@@ -27,11 +27,14 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
         cache: maven
-    - name: Build
-      run: mvn --batch-mode -DskipTests package
-
-    - name: Test
-      run: mvn --batch-mode -Dmaven.test.failure.ignore=true test
+    - name: Cache Maven packages
+      uses: actions/cache@v2
+      with:
+        path: ~/.m2
+        key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+        restore-keys: ${{ runner.os }}-m2
+    - name: Run tests with Maven
+      run: mvn -B test --file pom.xml
     
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
