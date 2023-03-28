@@ -1,7 +1,9 @@
 package InstaQuiz;
 
 import java.lang.Math;
+import java.util.ArrayList;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -12,34 +14,30 @@ public class Testing {
     
     // Unit Test(s) for functional requirement 1.1:
     // Users can create an InstaQuiz account with instructor, or student privileges using their email address and a custom password.
-
-	/*
-	The createAccount method will attempt to add a row to the accounts table in our database.
-    	If it succeeds it will return true, otherwise the method defaults to false as no account has been created.
-   	Method will also call Student() or Instructor() depending on the userType parameter passed to it when call
-	*/
     @Test
     public void testCreateStudentAccount() {
     	
+    	String fullname = "first last";
         String email = "student@mail.com";
         String password = "pw";
-        String userType = "student";
+        char userType = 'S'; // must be 'S' or 'I'
 
-        boolean createAccountResult = Account.createAccount(email, password, userType);
+        Account.createAccount(fullname, email, password, userType);
         
-        assertTrue(createAccountResult);
+        assertTrue(Account.exists(email, password, userType));
     }
     
     @Test
     public void testCreateInstructorAccount() {
     	
+    	String fullname = "first last";
         String email = "instructor@mail.com";
         String password = "pw";
-        String userType = "instructor";
+        char userType = 'I'; // must be 'S' or 'I'
     
-        boolean createAccountResult = Account.createAccount(email, password, userType);
+        Account.createAccount(fullname, email, password, userType);
 
-        assertTrue(createAccountResult);
+        assertTrue(Account.exists(email, password, userType));
     }
     // End of 1.1 Unit Tests
 
@@ -52,8 +50,9 @@ public class Testing {
     {
         String email = "student@mail.com";
         String password = "pw";
+        char userType = 'S';
 
-        assertTrue(Account.login(email, password));
+        assertTrue(Account.login(email, password, userType));
     }
 
     @Test
@@ -61,8 +60,9 @@ public class Testing {
     {
         String email = "instructor@mail.com";
         String password = "pw";
+        char userType = 'I';
 
-        assertTrue(Account.login(email, password));
+        assertTrue(Account.login(email, password, userType));
     }
     // End of 1.2 Unit Tests
 
@@ -73,8 +73,11 @@ public class Testing {
     {
         String email = "student@mail.com";
         String password = "password";
+        char userType = 'S';
+        
+        Account.login(email, password, userType);
 
-        assertTrue(Account.logout(email, password));
+        assertTrue(Account.logout());
     }
 
     @Test
@@ -82,8 +85,11 @@ public class Testing {
     {
         String email = "instructor@mail.com";
         String password = "password";
+        char userType = 'I';
 
-        assertTrue(Account.logout(email, password));
+        Account.login(email, password, userType);
+        
+        assertTrue(Account.logout());
     }
     // End of 1.3 Unit Tests
 
@@ -92,10 +98,11 @@ public class Testing {
     @Test
     public void testInstructorCanCreateCourse() 
     {
-        Instructor instructor = new Instructor("prof", "lastname", "mail@mail.com", "pw");
-        instructor.createCourse("course");
+        Instructor instructor1 = new Instructor("fullname", "mail@mail.com", "pw");
+        instructor1.createCourse("course1", instructor1); // instructor must provide their name when they create a course
 
-        assertEquals(Course.searchTitle(courseName), instructor.getCourse(course));
+        // check if the course is in the database and ensure it is under the creating instructors name (i.e. they are enrolled as the instructor)
+        assertTrue(Course.searchCourse("course1", "fullname")!=null);
     }
     // End of 1.4 Unit Tests
 
@@ -104,13 +111,14 @@ public class Testing {
     @Test
     public void testInstructorCanDeleteCourse() {
         
-        Instructor instructor = new Instructor("prof", "lastname", "mail@mail.com", "pw");
-        Course course = new Course("Java Programming", instructor);
+        Instructor instructor1 = new Instructor("fullname", "mail@mail.com", "pw");
+        Course c1 = new Course("course title", instructor1, null, 123);
         
-        instructor.deleteCourse(course);
+        // instructor must provide their name when they call deleteCourse (to ensure they are deleting their own course)
+        instructor1.deleteCourse(c1, instructor1.getName());
 
         //check if the course they tried to delete still exists. It shouldn't exist therefore getCourse should return null 
-        assertEquals(null, instructor.getCourse(course));
+        assertTrue(instructor1.getCourse("Java Programming", "fullname") == null);
     }
     // End of 1.5 Unit Tests
     
@@ -119,17 +127,22 @@ public class Testing {
     @Test
     public void searchCourseByTitle()
     {
-        String courseName = "Introduction to Software Engineering";
+    	Instructor in = new Instructor("John Doe", "jdoe@mail.com", "pw");
+        in.createCourse("courseName", in);
 
-        assertTrue(Course.searchTitle(courseName));
+        // checks to make sure searching by title doesn't return null
+        assertTrue(Course.searchTitle("courseName") != null);
     }
 
+    // 1.6 continued - test for searching by instructor:
     @Test
     public void searchCourseByInstructor()
     {
-        Instructor in = new Instructor("John", "Doe", "jdoe@mail.com", "pw");
+        Instructor in = new Instructor("John Doe", "jdoe@mail.com", "pw");
+        in.createCourse("courseName", in);
 
-        assertTrue(Course.searchInstructor(in.getFirstName() + " " + in.getLastName()));
+     // checks to make sure searching by instructor name doesn't return null
+        assertTrue(Course.searchInstructor("John Doe") != null);
     }
     // End of 1.6 Unit Tests
 	
@@ -137,15 +150,14 @@ public class Testing {
     // Students can enroll in any course module that they are not currently enrolled in.
     public void joinCourseStudent()
     {
-        Student st = new Student("John", "Doe", "jd@mail.com", "pw");
-        Instructor in = new Instructor("John", "Doe", "jdoe@mail.com", "pw");
-        Course co = new Course("Course Name", in);
+    	 Instructor in1 = new Instructor("John Doe", "jdoe@mail.com", "pw1");
+    	Course course1 = new Course("intro to intros", in1, null, 123);
+        Student st = new Student("sName", "st@mail.com", "pw");
+  
+        course1.enroll(st);
         
-        co.addStudent(st);
-        
-        Student[] students = co.getStudents();
         boolean isInClass = false;
-        for(Student stud : students){
+        for(Student stud : course1.getStudents()){
             if (st == stud)
             {
                 isInClass = true;
@@ -162,14 +174,23 @@ public class Testing {
     @Test
     public void testUnenrollFromCourse() {
     	
-        Student student = new Student("student_name", "lastname", "mail@mail.com", "pw");
-        Course course = new Course("211", null);
-        course.enroll(student);
+    	Instructor in1 = new Instructor("John Doe", "jdoe@mail.com", "pw1");
+    	Course course1 = new Course("intro to intros", in1, null, 123);
+        Student st = new Student("sName", "st@mail.com", "pw");
   
-        course.unenroll(student);
-  
-        // check to make sure student is not enrolled in course hence the assertFalse
-        assertFalse(course.isEnrolled(student));
+        course1.enroll(st);
+        course1.unenroll(st);
+        
+        boolean isNotInClass = true;
+        for(Student stud : course1.getStudents()){
+            if (st == stud)
+            {
+                isNotInClass = false;
+                break;
+            }
+        }
+        
+        assertTrue(isNotInClass);
     }
     
     // End of 1.8 Unit Tests
@@ -179,17 +200,15 @@ public class Testing {
     @Test
     public void instructorStartLiveSession()
     {
-        Instructor in1 = new Instructor("John", "Doe", "jdoe@mail.com", "pw1");
-        Instructor in2 = new Instructor("Jane", "Doe", "jdoe@mail.com", "pw2");
+        Instructor in1 = new Instructor("John Doe", "jdoe@mail.com", "pw1");
+        Instructor in2 = new Instructor("Jane Doe", "janedoe@mail.com", "pw2");
+        Course course1 = new Course("Introduction to Software Engineering", in1, null, 111);
+        Course course2 = new Course("Introduction to Calculus", in2, null, 333);
 
-        Course course1 = new Course("Introduction to Software Engineering", in1);
-        Course course2 = new Course("Introduction to Engineering Software", in2);
 
-        assertTrue(course1.startLiveSession()); //Don't want to pass in objects, this method will be allowed/restricted based on who is logged in, and trying to call it. (should be void, with no parameters)
-        assertTrue(course2.startLiveSession());
-
-        assertFalse(course1.startLiveSession());
-        assertFalse(course2.startLiveSession());
+        // instructors must provide their name when they start a live session, this will be checked against the course's actual instructor 
+        assertTrue(course1.startLiveSession("John Doe")); 
+        assertFalse(course2.startLiveSession("John Doe"));
     }
     // End of 1.9 Unit Tests
 	
@@ -198,10 +217,10 @@ public class Testing {
     @Test 
     public void testEndLiveSession() {
     	
-    	Instructor instructor1 = new Instructor("profname", "lastname", "mail@mail.com", "pw");
-    	Course course1 = new Course("211", instructor1);
+    	Instructor instructor1 = new Instructor("profname", "mail@mail.com", "pw");
+    	Course course1 = new Course("course title", instructor1, null, 234);
     	
-        course1.startLiveSession();
+        course1.startLiveSession("profname");
         
         boolean activePoll = course1.activePoll();
         
@@ -220,24 +239,27 @@ public class Testing {
     @Test
     public void testJoinLiveSession()
     {
-        Instructor in = new Instructor("John", "Doe", "jdoe@mail.com", "pw");
-        Course c = new Course("Introduction to Software Engineering", i);
+        Instructor in = new Instructor("John Doe", "jdoe@mail.com", "pw");
+        Course c = new Course("Introduction to Software Engineering", in, null, 246);
 
-        Student s = new Student("James", "Doe", "jdoe@mail.com", "pw");
-        s.joinCourse(c);
+        Student s = new Student("James Doe", "jdoe@mail.com", "pw");
+        c.enroll(s);
         
-        c.startLiveSession();
-        assertTrue(s.joinLiveSession(c));
+        c.startLiveSession(in.getName());
+        
+        assertTrue(c.joinLiveSession(s));
         c.endLiveSession();
     }
     // End of 1.11 Unit Tests
     
+    
+    //**********NEED FIX
     // Unit Test(s) for Functional Requirement 1.12: 
     // Instructors can create a storage bank of custom questions with corresponding multiple choice answer sets
     @Test
     public void testQuestionBank() {
     // Create a new question bank
-    bank1 Question = new Question();
+    Question bank1 = new Question(null, null);
  
 
     // Create a sample question
@@ -248,15 +270,15 @@ public class Testing {
     answerOptions.add("Edmonton");
     answerOptions.add("Toronto");
     answerOptions.add("Quebec City");
-    Question question = new Question(prompt, answerOptions);
+    //Question question = new Question(prompt, answerOptions);
 
 
-    bank1.addQuestion(question);
-    Question retrievedQuestion = questionBank.getQuestion(0);
+    // bank1.addQuestion(question);
+    //Question retrievedQuestion = bank1.addQuestion("2+2");
 
 
-   assertEquals(question.getPrompt(), retrievedQuestion.getPrompt());
-   assertEquals(question.getAnswerOptions(),   retrievedQuestion.getAnswerOptions());
+   //assertEquals(question.getPrompt(), retrievedQuestion.getPrompt());
+   //assertEquals(question.getAnswerOptions(),   retrievedQuestion.getAnswerOptions());
    
    }
    // End of 1.12 Unit Tests
@@ -266,14 +288,13 @@ public class Testing {
    @Test 
    public void testStartPoll () {
     	
-	   Instructor instructor1 = new Instructor("profname", "lastname", "mail@mail.com", "pw");
-	   Course course1 = new Course("211", instructor1);
+	   Instructor instructor1 = new Instructor("profname lastname", "mail@mail.com", "pw");
+	   Course course1 = new Course("211", instructor1, null, 404);
     	
-	   course1.startLiveSession();
+	   course1.startLiveSession(instructor1.getName());
 
-       // variable for whether we successful started a new poll
+       course1.startPoll();
        boolean newPollStarted = false;
-        
        if (!course1.activePoll()) {
         	course1.startPoll();
         	newPollStarted = true;
@@ -290,10 +311,10 @@ public class Testing {
     @Test
     public void testEndPoll()
     {
-        Instructor in = new Instructor("John", "Doe", "jdoe@mail.com", "pw");
-        Course co = new Course("CourseName", in);
+        Instructor in = new Instructor("John Doe", "jdoe@mail.com", "pw");
+        Course co = new Course("CourseName", in, null, 444);
 
-        co.startLiveSession();
+        co.startLiveSession(in.getName());
         co.startPoll();
         boolean pollStarted = co.activePoll();
         co.endPoll();
@@ -311,16 +332,16 @@ public class Testing {
     @Test
     public void testChangeAnswer() {
     	
-    	Instructor instructor1 = new Instructor("profname", "lastname", "mail@mail.com", "pw");
-    	Course course1 = new Course("211", instructor1);
-    	Student s1 = new Student("fname", "lastname", "mail@mail.com", "pw");
+    	Instructor instructor1 = new Instructor("profname lastname", "mail@mail.com", "pw");
+    	Course course1 = new Course("211", instructor1, null, 121);
+    	Student s1 = new Student("fname lastname", "mail@mail.com", "pw");
     	
     	Session ses1 = new Session(course1);
     	Poll p1 = new Poll (course1);
 
-        Question question1 = new Question("2+2?", p1);
-        Response A = new Response("5", p1, question1);
-        Response B = new Response("4", p1, question1);
+        Question question1 = new Question("2+2?", null);
+        Response A = new Response("5", p1, null);
+        Response B = new Response("4", p1, null);
         
         s1.selectAnswer(A, p1, question1);
         s1.selectAnswer(B, p1, question1);
@@ -337,10 +358,10 @@ public class Testing {
     @Test
     public void testPollSummary()
     {
-        Instructor in = new Instructor("John", "Doe", "jdoe@mail.com", "pw");
-        Course c = new Course("Introduction to Software Engineering", i);
+        Instructor in = new Instructor("John Doe", "jdoe@mail.com", "pw");
+        Course c = new Course("Introduction to Software Engineering", in, null, 212);
 
-        c.startLiveSession();
+        c.startLiveSession(in.getName());
         c.startPoll();
         c.endPoll(); //calls c.pollSummary() to show the instructor
 
@@ -355,22 +376,24 @@ public class Testing {
     public void testCheckCourseScore() 
     {
      
-        Instructor in = new Instructor("John", "Doe", "jdoe@mail.com", "pw");
-        Course co = new Course("courseName", in);
-        Student st = new Student("John", "Doe", "jdoe@mail.com", "pw");
+        Instructor in = new Instructor("John Doe", "jdoe@mail.com", "pw");
+        Course co = new Course("courseName", in, null, 321);
+        Student st = new Student("John Doe", "jdoe@mail.com", "pw");
      
-        co.startLiveSession();
+        co.startLiveSession(in.getName());
 
-        Response A = new Response("5", p1, question1);
-        Response B = new Response("4", p1, question1);
-        Question question1 = new Question("2+2?", B);
+        String prompt1 = null;
+		Poll p1 = null;
+		Response A = new Response("5", p1, prompt1);
+        Response B = new Response("4", p1, prompt1);
+        Question question1 = new Question("2+2?", B.toString());
 
         question1.addResponses(new Response[]{A, B});
-        co.addQuestion(question1);
+        p1.addQuestion(question1);
 
         co.startPoll();
      
-        st.selectAnswer(B);
+        st.selectAnswer(B, p1, question1);
 
         co.endPoll();
 
@@ -388,29 +411,31 @@ public class Testing {
     @Test
     public void testStudentViewHistory()
     {
-        Course course1 = new Course("Introduction to Software Engineering", i);
-        Student student1 = new Student("sName", "Doe", "student1@mail.com", "pw");
+    	Instructor in = new Instructor("John Doe", "jdoe@mail.com", "pw");
+        Course course1 = new Course("Introduction to Software Engineering", in, null, 222 );
+        Student student1 = new Student("sName Doe", "student1@mail.com", "pw");
 
-        student1.joinCourse(course1);
+        course1.enroll(student1);
 
         Session session1 = new Session(course1);
-    	Poll poll1 = new Poll (course1);
+    	String ask = null;
 
-        Question question1 = new Question("2+2?", poll1);
-        Response A = new Response("5", p1, question1);
-        Response B = new Response("4", p1, question1);
+        Question question1 = new Question("2+2?", ask);
+        Poll p1 = null;
+		Response A = new Response("5", p1 , ask);
+        Response B = new Response("4", p1, ask);
 
-        course1.startLiveSession(); //creates a session object: Session session1 = new Session(course1);???
-        student1.joinLiveSession(session1);
+        course1.startLiveSession(in.getName()); //creates a session object: Session session1 = new Session(course1);???
+        course1.joinLiveSession(student1);
 
         session1.startPoll(question1); //creates a poll object: Poll poll1 = new Poll(session1);???
 
         //Adds two student objects to session1.presentStudents ArrayList
-        student1.selectAnswer(A);
+        student1.selectAnswer(A, p1, question1);
 
-        session1.endPoll(poll1);
+        session1.endPoll(p1);
 
-        assertTrue(student.getSummary(course1)); //this might get called, but this test does not check for the visual interface summary.
+        assertTrue(student1.getSummary(course1)); //this might get called, but this test does not check for the visual interface summary.
 
         course1.endLiveSession();
     }
@@ -421,32 +446,32 @@ public class Testing {
     @Test
     public void testInstructorViewGrades()
     {
-        Instructor instructor1 = new Instructor("iName", "lname", "instructor1@mail.com", "pw");
-        Course course1 = new Course("Introduction to Software Engineering", i);
-        Student student1 = new Student("sName", "Doe", "student1@mail.com", "pw");
-        Student student2 = new Student("sName", "Doe", "student1@mail.com", "pw");
+        Instructor i1 = new Instructor("iName lname", "instructor1@mail.com", "pw");
+        Course course1 = new Course("Introduction to Software Engineering", i1, null, 111);
+        Student student1 = new Student("sName Doe", "student1@mail.com", "pw1");
+        Student student2 = new Student("sName Smith", "student2@mail.com", "pw2");
 
-        student1.joinCourse(course1);
-        student2.joinCourse(course1);
+        course1.enroll(student1);
+        course1.enroll(student2);
 
         Session session1 = new Session(course1);
-    	Poll poll1 = new Poll (course1);
+    	Poll p1 = new Poll (course1);
 
-        Question question1 = new Question("2+2?", poll1);
-        Response A = new Response("5", p1, question1);
-        Response B = new Response("4", p1, question1);
+        Question question1 = new Question("2+2?", "4");
+        Response A = new Response("5", p1, null);
+        Response B = new Response("4", p1, null);
 
-        course1.startLiveSession(); //creates a session object: Session session1 = new Session(course1);???
-        student1.joinLiveSession(session1);
-        student2.joinLiveSession(session1);
+        course1.startLiveSession(i1.getName()); //creates a session object: Session session1 = new Session(course1);???
+        course1.joinLiveSession(student1);
+        course1.joinLiveSession(student2);
 
-        session1.startPoll(question1); //creates a poll object: Poll poll1 = new Poll(session1);???
+        course1.startPoll(); //creates a poll object: Poll poll1 = new Poll(session1);???
 
         //Adds two student objects to session1.presentStudents ArrayList
-        student1.selectAnswer(A);
-        student2.selectAnswer(B);
+        student1.selectAnswer(A, p1, question1);
+        student2.selectAnswer(B, p1, question1);
 
-        session1.endPoll(poll1);
+        session1.endPoll(p1);
 
         assertTrue(course1.studentSummary()); //this might get called, but this test does not check for the visual interface summary.
 
@@ -454,38 +479,39 @@ public class Testing {
     }
     // End of 1.19 Unit Tests
     
-    //Tests for Functional Requirement 1.20: 
-    //Students and instructors can view the InstaQuiz history for a course which will show all past
-    //questions with the corresponding correct answers.
+    // Unit Test(s) for Functional Requirement 1.20: 
+    // Students and instructors can view the InstaQuiz history for a course which will show all past
+    // questions with the corresponding correct answers.
     @Test
     public void viewingHistoryOfCourse() 
     {
      
-        Instructor in = new Instructor("John", "Doe", "jdoe@mail.com", "pw");
-        Course co = new Course("courseName", in);
-        Student st = new Student("John", "Doe", "jdoe@mail.com", "pw");
+        Instructor in = new Instructor("John Doe", "jdoe@mail.com", "pw");
+        Course co = new Course("courseName", in, null, 122);
+        Student st = new Student("John Doe", "jdoe@mail.com", "pw");
         
-        co.addStudent(st);
+        co.enroll(st);
 
-        co.startLiveSession();
+        co.startLiveSession(in.getName());
 
-        Response A = new Response("5", p1, question1);
-        Response B = new Response("4", p1, question1);
-        Question question1 = new Question("2+2?", B);
+        Poll p1 = null;
+		Response A = new Response("5", p1, null);
+        Response B = new Response("4", p1, null);
+        Question question1 = new Question("2+2?", null);
 
         question1.addResponses(new Response[]{A, B});
-        co.addQuestion(question1);
+        p1.addQuestion(question1);
 
         co.startPoll();
      
-        st.selectAnswer(B);
+        st.selectAnswer(B, p1, question1);
 
         co.endPoll();
 
         co.endLiveSession();
 
         //stores all previous questions with their answers as an attribute of the Question object
-        Question[] summary = co.getQuestions();
+        Question[] summary = p1.getQuestions();
 
         //checks that answers and questions are the same as the poll that was just running
         assertEquals(1, summary.length);
@@ -494,7 +520,19 @@ public class Testing {
     }
     // End of 1.20 Unit Tests
 
-    // Responses shouldnt have poll as parameter
-    // Course should be only object instantiated
-    // students should join course before answering polls
+    
+    // TODO SESSION class 
+    // TODO POLL class 
+    // TODO QUESTION class
+    // TODO RESPONSE class 
+    // TODO POLL SUMMARY class
+    
+    // TODO INSTAQUIZ CLASS (needed?)
+    
+    // *************************************
+    // Possibly eliminate some of the above class and replace with data structures.
+    // Can't easily delete objects so maybe better on memory to not have classes/objects for everything
+    // Question bank test/system is messed, need to fix
+    
+   
 }
