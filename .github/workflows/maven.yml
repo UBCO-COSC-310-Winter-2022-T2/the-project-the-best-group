@@ -27,14 +27,12 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
         cache: maven
-    - name: Cache Maven packages
-      uses: actions/cache@v2
-      with:
-        path: ~/.m2
-        key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
-        restore-keys: ${{ runner.os }}-m2
-    - name: Run tests with Maven
-      run: mvn -B test --file pom.xml
+    - name: Clean and Install
+      run: mvn clean install
+    - name: Locate Test
+      run: cd InstaQuiz
+    - name: Run test
+      run: mvn test
     
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
