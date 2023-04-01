@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>InstaQuiz Header</title>
+        <title>InstaQuiz</title>
         <style>
             body 
             {
                 color: #CCCCCC;
-                background-color: #313357;
-                font-family: "monospace";
+                background-color: #05386B;
+                font-family: "cambria", serif;
+                text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.6);
             }
             /* Header Bar */
             header 
@@ -21,6 +22,7 @@
                 font-weight: bold;
                 color: white;
                 border-radius: 10px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             }
             /* Buttons */
             header a 
@@ -41,7 +43,7 @@
             /* Buttons : Hover State */
             header a:hover 
             {
-                background-color: #313357;
+                background-color: #F64C72;
                 color: #CCCCCC;
             }
             /* InstaQuiz Logo */
@@ -63,7 +65,7 @@
             /* InstaQuiz Logo : Hover State */
             .logo:hover 
             {
-                background-color: #313357;
+                background-color: #F64C72;
                 color: #CCCCCC;
             }
         </style>

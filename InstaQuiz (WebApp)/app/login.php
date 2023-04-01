@@ -36,7 +36,6 @@
 
         mysqli_close($conn);
     }
-    
     include_once 'header.php';
 ?>
         
@@ -48,9 +47,10 @@
             body 
             {
                 color: #CCCCCC;
-                background-color: #313357;
-                font-family: "monospace";
+                background-color: #05386B;
+                font-family: "cambria", serif;
                 text-align: center;
+                text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.6);
             }
             #login-form
             {
@@ -67,8 +67,8 @@
                 padding: 12px 20px;
                 margin: 8px 0;
                 display: inline-block;
-                border: 1px solid #ccc;
-                border-radius: 4px;
+                border: none;
+                border-radius: 5px;
                 box-sizing: border-box;
             }
             button 
@@ -88,7 +88,7 @@
             }
             button:hover 
             {
-                background-color: #313357;
+                background-color: #F64C72;
                 color: #CCCCCC;
             }
             .error-message

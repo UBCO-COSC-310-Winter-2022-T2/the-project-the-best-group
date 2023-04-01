@@ -1,3 +1,4 @@
+<?php include_once 'header.php'; ?>
 <?php
     require_once 'config.php';
 
@@ -27,8 +28,6 @@
 
         mysqli_close($conn);
     }
-
-    include_once 'header.php';
 ?>
 
 <!DOCTYPE html>
@@ -39,9 +38,10 @@
             body 
             {
                 color: #CCCCCC;
-                background-color: #313357;
-                font-family: "monospace";
+                background-color: #05386B;
+                font-family: "cambria", serif;
                 text-align: center;
+                text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.6);
             }
             #register-form
             {
@@ -58,8 +58,8 @@
                 padding: 12px 20px;
                 margin: 8px 0;
                 display: inline-block;
-                border: 1px solid #ccc;
-                border-radius: 4px;
+                border: none;
+                border-radius: 5px;
                 box-sizing: border-box;
             }
             button 
@@ -79,7 +79,7 @@
             }
             button:hover 
             {
-                background-color: #313357;
+                background-color: #F64C72;
                 color: #CCCCCC;
             }
             .error-message
@@ -103,22 +103,22 @@
 
                 <label for="permission"><b>Permissions</b></label>
                 <select name="permission">
-                    <option value="" selected disabled>Select Permission</option>
-                    <option value="0">Student</option>
-                    <option value="1">Instructor</option>
+                    <option value="" selected disabled>Select Permission Level (Student or Instructor)</option>
+                    <option value="0">Student (Can enroll in classes and provide responses to questions.)</option>
+                    <option value="1">Instructor (Can create/manage classes and provide questions to their students.)</option>
                 </select>
 
                 <label for="fname"><b>First Name</b></label>
                 <input type="text" placeholder="Enter First Name (Max 255 Characters)" name="fname" required>
 
                 <label for="lname"><b>Last Name</b></label>
-                <input type="text" placeholder="Enter Last Name" name="lname" required>
+                <input type="text" placeholder="Enter Last Name (Max 255 Characters)" name="lname" required>
 
                 <label for="email"><b>Email</b></label>
-                <input type="text" placeholder="Enter Email" name="email" required>
+                <input type="text" placeholder="Enter Email (Max 255 Characters)" name="email" required>
 
                 <label for="password"><b>Password</b></label>
-                <input type="password" placeholder="Enter Password" name="password" required>
+                <input type="password" placeholder="Enter Password (Max 255 Characters)" name="password" required>
 
                 <button type="submit">Register</button>
                 <button onclick="window.location.href = 'index.php';">Home</button>
