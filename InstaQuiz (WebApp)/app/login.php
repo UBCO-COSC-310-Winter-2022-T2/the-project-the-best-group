@@ -16,6 +16,6 @@
         DEFINE('DOC_ROOT', dirname("app\index.php")); 
         include_once( DOC_ROOT.'/header.php');
         ?>
-        <p>This is a homepage.</p>
+        <p>This is a login page.</p>
     </body>
 </html>
