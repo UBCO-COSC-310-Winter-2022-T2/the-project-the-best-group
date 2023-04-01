@@ -25,24 +25,30 @@
             /* Buttons */
             header a 
             {
+                background-color: transparent;
+                text-decoration: none;
+                border: none;
+                border-radius: 5px;
+                outline: none;
+                cursor: pointer;
+                padding: 10px;
+                margin: 0;
                 font-size: 18px;
                 font-weight: bold;
-                color: white;
-                text-decoration: none;
-                padding: 10px;
-                border-radius: 5px;
+                color: #CCCCCC;
                 transition: background-color 0.3s ease;
             }
             /* Buttons : Hover State */
             header a:hover 
             {
-                background-color: #fff;
-                color: #07223E;
+                background-color: #313357;
+                color: #CCCCCC;
             }
             /* InstaQuiz Logo */
             .logo 
             {
                 background-color: transparent;
+                text-decoration: none;
                 border: none;
                 border-radius: 5px;
                 outline: none;
@@ -51,14 +57,14 @@
                 margin: 0;
                 font-size: 24px;
                 font-weight: bold;
-                color: white;
+                color: #CCCCCC;
                 transition: background-color 0.3s ease;
             }
             /* InstaQuiz Logo : Hover State */
             .logo:hover 
             {
-                background-color: #fff;
-                color: #07223E;
+                background-color: #313357;
+                color: #CCCCCC;
             }
         </style>
     </head>

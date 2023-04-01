@@ -13,6 +13,6 @@
     </head>
     <body>
         <?php include_once 'header.php'; ?>
-        <p>This is a homepage.</p>
+        <p>This is a student page.</p>
     </body>
 </html>

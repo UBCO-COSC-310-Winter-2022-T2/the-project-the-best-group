@@ -12,25 +12,12 @@
         </style>
     </head>
     <body>
-        <?php 
-            DEFINE('DOC_ROOT', dirname("app\index.php")); 
-            include_once( DOC_ROOT.'/header.php');
-        ?>
+        <?php include_once 'header.php'; ?>
         <?php
-            $host = 'db';
-            $user = 'admin';
-            $password = '310adminpw';
-            $database = 'instaquiz';
-
-            $conn = new mysqli($host, $user, $password, $database);
-
-            if ($conn->connect_error) 
-            {
-                die("Connection failed: " . $conn->connect_error);
-            }
+            require_once 'config.php';
 
             $sql = "SELECT * FROM account";
-            $result = $conn->query($sql);
+            $result = mysqli_query($conn, $sql);
 
             if ($result->num_rows > 0) 
             {
