@@ -1,0 +1,37 @@
+version: "3.9"
+services:
+  app:
+    container_name: instaquiz-application
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    volumes:
+      - './app:/app'
+  webserver:
+    image: php:7.4-apache
+    container_name: instaquiz-webserver
+    volumes:
+      - './app:/var/www/html'
+    ports:
+      - 80:80
+      - 443:443 # for future ssl traffic
+  db:
+    image: mysql:latest
+    container_name: instaquiz-database
+    restart: always
+    environment:
+      - MYSQL_DATABASE=instaquiz
+      - MYSQL_USER=admin
+      - MYSQL_PASSWORD=310adminpw 
+      - MYSQL_ROOT_PASSWORD=310adminpw 
+    volumes:
+      - './db:/docker-entrypoint-initdb.d' # this is how we persist a sql db even when container stops
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: instaquiz_phpmyadmin
+    #restart: always
+    ports:
+      - 8080:80
+    environment:
+      - PMA_HOST=db
+      - PMA_PORT=3306
