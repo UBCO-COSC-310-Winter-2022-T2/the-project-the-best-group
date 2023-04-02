@@ -40,7 +40,7 @@ VALUES (0, 'Henry', 'Smith', 'hsmith@mail.com', 'henrypw');
 CREATE TABLE courses (
     cid INT AUTO_INCREMENT PRIMARY KEY,
     cname VARCHAR(255) NOT NULL,
-    Iid int NOT NULL, -- id of instructor
+    Iid int NOT NULL -- id of instructor
 );
 
 -- to check if a student is in a class write query returning students string for that course and then see if it contains the sid
