@@ -1,43 +1,46 @@
 <?php
     session_start();
-    $pageTitle = "Login";
+<<<<<<< HEAD:InstaQuiz (WebApp)/app/register.php
+    $pageTitle = "Register";
+    include_once 'header.php';
     require_once 'config.php';
+=======
+    include_once __DIR__ . '/../scripts/header.php';
+    require_once __DIR__ . '/../scripts/config.php';
+>>>>>>> e7c0cf58cb454d041fc475df91444c07c27148a8:InstaQuiz (WebApp)/app/pages/register.php
 
     if($_SERVER["REQUEST_METHOD"] == "POST") 
     {
         // Retrieve user's credentials from the POST request
+        $permission = $_POST['permission'];
+        $fname = $_POST['fname'];
+        $lname = $_POST['lname'];
         $email = $_POST['email'];
         $password = $_POST['password'];
 
-        // Retrieve user's information from the account table
-        $sql = "SELECT id, permission FROM accounts WHERE email = '$email' AND password = '$password'";
+        // Insert user's information into the account table
+        $sql = "INSERT INTO accounts (permission, fname, lname, email, password) VALUES ({$permission}, '{$fname}', '{$lname}', '{$email}', '{$password}')";
         $result = mysqli_query($conn, $sql);
-        $row = mysqli_fetch_assoc($result);
 
-        // Check if user's credentials are correct
-        if (mysqli_num_rows($result) == 1) 
+        if ($result) 
         {
-            $_SESSION['user_id'] = $row["id"];
-            $_SESSION['user_permission'] = $row["permission"];
-
-            header("Location: index.php");
-            exit;
+            // Display a success message if user was added to the account table
+            echo '<div class="success-message">Account created successfully.</div>';
         } 
         else 
         {
-            // Display an error message if user's credentials are incorrect
-            echo '<div class="error-message">Invalid email or password.</div>';
+            // Display an error message if there was an error adding user to the account table
+            echo '<div class="error-message">Error creating account.</div>';
         }
 
         mysqli_close($conn);
     }
-    include_once 'header.php';
 ?>
-        
+
 <!DOCTYPE html>
 <html>
     <head>
-        <title>InstaQuiz Login</title>
+        <title>InstaQuiz Registration</title>
         <style>
             body 
             {
@@ -48,7 +51,7 @@
                 text-align: center;
                 text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.6);
             }
-            #login-form 
+            #register-form 
             {
                 display: inline-block;
                 margin-top: 50px;
@@ -61,7 +64,8 @@
                 border-radius: 10px;
                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             }
-            input[type=text], input[type=password] 
+
+            input[type=text], input[type=password], select 
             {
                 width: 100%;
                 padding: 12px 20px;
@@ -94,29 +98,41 @@
             .error-message
             {
                 color: #FF0000;
-                font-size: 14px;
+                font-size: 18px;
                 margin-top: 10px;
             }
             .success-message
             {
                 color: #00FF00;
-                font-size: 14px;
+                font-size: 18px;
                 margin-top: 10px;
             }
         </style>
     </head>
     <body>
-        
-        <div id="login-form">
-            <form action="login.php" method="POST">
+        <div id="register-form">
+            <form action="register.php" method="POST">
+                <label for="permission"><b>Permissions</b></label>
+                <select name="permission">
+                    <option value="" selected disabled>Select Permission Level (Student or Instructor)</option>
+                    <option value="0">Student (Can enroll in classes and provide responses to questions.)</option>
+                    <option value="1">Instructor (Can create/manage classes and provide questions to their students.)</option>
+                </select>
+
+                <label for="fname"><b>First Name</b></label>
+                <input type="text" placeholder="Enter First Name (Max 255 Characters)" name="fname" required>
+
+                <label for="lname"><b>Last Name</b></label>
+                <input type="text" placeholder="Enter Last Name (Max 255 Characters)" name="lname" required>
+
                 <label for="email"><b>Email</b></label>
-                <input type="text" placeholder="Enter Email" name="email" required>
+                <input type="text" placeholder="Enter Email (Max 255 Characters)" name="email" required>
 
                 <label for="password"><b>Password</b></label>
-                <input type="password" placeholder="Enter Password" name="password" required>
+                <input type="password" placeholder="Enter Password (Max 255 Characters)" name="password" required>
 
-                <button type="submit">Login</button>
-                <button onclick="window.location.href = 'index.php';">Home</button>
+                <button type="submit">Register</button>
+                <button onclick="window.location.href = '../index.php';">Home</button>
             </form>
         </div>
     </body>

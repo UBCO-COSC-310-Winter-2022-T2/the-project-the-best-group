@@ -1,8 +1,13 @@
 <?php
     session_start();
+<<<<<<< HEAD:InstaQuiz (WebApp)/app/tables.php
     $pageTitle = "Database";
     include_once 'header.php';
     require_once 'config.php';
+=======
+    include_once __DIR__ . '/../scripts/header.php';
+    require_once __DIR__ . '/../scripts/config.php';
+>>>>>>> e7c0cf58cb454d041fc475df91444c07c27148a8:InstaQuiz (WebApp)/app/pages/tables.php
 ?>
 
 <!DOCTYPE html>

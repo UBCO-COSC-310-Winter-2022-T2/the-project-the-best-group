@@ -81,15 +81,19 @@
     </head>
     <body>
         <header>
+<<<<<<< HEAD:InstaQuiz (WebApp)/app/header_default.php
             <button class="logo" onclick="location.href='index.php'">InstaQuiz</button>
             <div class="title">
                 <?php 
                     echo $pageTitle;
                 ?>
             </div>
+=======
+            <button class="logo" onclick="location.href='../index.php'">InstaQuiz</button>
+>>>>>>> e7c0cf58cb454d041fc475df91444c07c27148a8:InstaQuiz (WebApp)/app/scripts/header_default.php
             <nav>
-                <a href="login.php">Login</a>
-                <a href="register.php">Register</a>
+                <a href="../pages/login.php">Login</a>
+                <a href="../pages/register.php">Register</a>
             </nav>
         </header>
     </body>

@@ -1,13 +1,13 @@
 <?php
     session_start();
-    include_once 'header.php';
-    require_once 'config.php';
+    include_once __DIR__ . '/../scripts/header.php';
+    require_once __DIR__ . '/../scripts/config.php';
 ?>
 
 <!DOCTYPE html>
 <html>
     <head>
-    <title>InstaQuiz Instructor Dashboard</title>
+    <title>InstaQuiz Student Dashboard</title>
     <link rel="stylesheet" href="css/body.css">
     <style>
         button 
@@ -20,8 +20,9 @@
     </style>
     </head>
     <body>
-        <p>This is the dashboard for instructors.</p>
+        <p>This is the dashboard for students.</p>
         <button onclick="window.location.href = 'account.php';">Account</button>
         <button onclick="window.location.href = 'courses.php';">Courses</button>
+        <button onclick="window.location.href = 'grades.php';">Grades</button>
     </body>
 </html>
