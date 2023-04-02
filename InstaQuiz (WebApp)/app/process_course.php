@@ -13,7 +13,7 @@
         $name = $_POST['coursename'];
 
         // check if course already exists
-        $sql = "SELECT course_name FROM course WHERE course_name = '".$name."' AND instructor_id = ".$instructor_id;
+        $sql = "SELECT cname FROM courses WHERE cname = '".$name."' AND Iid = ".$instructor_id;
         $result = mysqli_query($conn, $sql);
 
         if (mysqli_num_rows($result) > 0) { 
@@ -23,7 +23,7 @@
         }
 
         // 
-        $sql_insert = "INSERT INTO course (course_name, instructor_id) VALUES ('".$name."', ".$instructor_id.")";
+        $sql_insert = "INSERT INTO course (cname, Iid) VALUES ('".$name."', ".$instructor_id.")";
         if (mysqli_query($conn, $sql_insert)) {
             header('Location: index_instructor.php');
             exit();
