@@ -8,7 +8,7 @@ start writing queries and making our pages functional
 
 USE instaquiz -- our database
 
------------------------------- ACCOUNTS -------------------------------------------------
+/*------------------------------ ACCOUNTS -------------------------------------------------*/
 
 CREATE TABLE accounts (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -33,7 +33,7 @@ VALUES (1, 'Jane', 'Doe', 'janedoe@mail.com', 'janedoepw');
 INSERT INTO accounts (permission, fname, lname, email, password) 
 VALUES (0, 'Henry', 'Smith', 'hsmith@mail.com', 'henrypw');
 
------------------------------------- ENROLLMENT -------------------------------------------
+/*------------------------------------ ENROLLMENT -------------------------------------------*/
 
 CREATE TABLE enrollment (
   sid int,
@@ -48,7 +48,7 @@ VALUES (1,5,"Software Engineering")
 -- Simple table to keep track of enrollment. Query SELECT * FROM enrollment WHERE sid = _____ 
 -- to get a list of courses a particular student is enrolled in. 
 
------------------------------- COURSES -------------------------------------------------
+/*------------------------------ COURSES -------------------------------------------------*/
 
 
 CREATE TABLE courses (
@@ -66,7 +66,7 @@ INSERT INTO courses (cid, cname, Iid, students)
 VALUES (5, 'Software Engineering', 2, '1, 3');
 
 
------------------------------- QUESTIONS -------------------------------------------------
+/*------------------------------ QUESTIONS -------------------------------------------------*/
 
 CREATE TABLE questions (
   qid int AUTO_INCREMENT PRIMARY KEY,
@@ -83,7 +83,7 @@ VALUES (1, 5, 'What 2+2? A=3, B=4, C=5, D=6', 'B');
 INSERT INTO questions (qid, cid, prompt, answer)
 VALUES (2, 5, 'What province is Kelowna in? A=British Columbia, B=Alberta, C=Ontario, D=Manitoba', 'A');
 
--------------------------- SCORES -----------------------------------------------
+/*-------------------------- SCORES -----------------------------------------------*/
 
 CREATE TABLE scores (
   sid int,
