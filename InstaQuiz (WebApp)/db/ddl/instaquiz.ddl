@@ -11,18 +11,18 @@ USE instaquiz -- our database
 /*------------------------------ ACCOUNTS -------------------------------------------------*/
 
 CREATE TABLE accounts (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id int AUTO_INCREMENT PRIMARY KEY,
     permission BIT(1) NOT NULL, -- 0 = student, 1 = instructor
     fname VARCHAR(255) NOT NULL,
     lname VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-    rtoken NEWID() DEFAULT UNIQUE -- generates a random token (for forgot password recovery). Default keyword means we dont need to assign a value, system will do automatically
+    rtoken VARCHAR(36) DEFAULT UUID() UNIQUE -- generates a random token (for forgot password recovery). Default keyword means we dont need to assign a value, system will do automatically
 );
 
 -- John Doe is a student (id auto set to 1)
-INSERT INTO accounts (permission, fname, lname, email, password) 
-VALUES (0, 'John', 'Doe', 'johndoe@mail.com', 'johndoepw');
+INSERT INTO accounts (id, permission, fname, lname, email, password) 
+VALUES (1, 0, 'John', 'Doe', 'johndoe@mail.com', 'johndoepw');
 
 
 -- Jane Doe is a instructor (id auto set to 2)
@@ -43,7 +43,7 @@ CREATE TABLE enrollment (
 
 -- student 1 (John Doe) is enrolled in course 5 ("Software Engineering")
 INSERT INTO enrollment (sid, cid, cname)
-VALUES (1,5,"Software Engineering")
+VALUES (1,5,'Software Engineering')
 
 -- Simple table to keep track of enrollment. Query SELECT * FROM enrollment WHERE sid = _____ 
 -- to get a list of courses a particular student is enrolled in. 
