@@ -11,13 +11,13 @@ USE instaquiz -- our database
 /*------------------------------ ACCOUNTS -------------------------------------------------*/
 
 CREATE TABLE accounts (
-    id int AUTO_INCREMENT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     permission BIT(1) NOT NULL, -- 0 = student, 1 = instructor
     fname VARCHAR(255) NOT NULL,
     lname VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-    rtoken VARCHAR(36) DEFAULT UUID() UNIQUE -- generates a random token (for forgot password recovery). Default keyword means we dont need to assign a value, system will do automatically
+    rtoken VARCHAR(36) DEFAULT (SELECT UUID()) UNIQUE -- generates a random token (for forgot password recovery). Default keyword means we dont need to assign a value, system will do automatically
 );
 
 -- John Doe is a student (id auto set to 1)
