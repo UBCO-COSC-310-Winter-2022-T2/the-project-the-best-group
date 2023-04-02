@@ -71,25 +71,25 @@
     <ul id="question-list"></ul>
 
     <h2>Create a Question</h2>
-    <form method="post" action="addQuestion.php" id="question-form">
+    <form method="post" action="addQuestions.php" id="question-form">
         <label for="question-text">Question:</label>
         <input type="text" id="question-text" name="question-text"><br>
     
         <label for="answer-1">Answer 1:</label>
         <input type="text" id="answer-1" name="answer-1">
-        <input type="checkbox" id="correct-answer-1" name="correct-answer" value="1"><br>
+        <input type="checkbox" id="correct-answer-1" name="correct-answer" value="A"><br>
         
         <label for="answer-2">Answer 2:</label>
         <input type="text" id="answer-2" name="answer-2">
-        <input type="checkbox" id="correct-answer-2" name="correct-answer" value="2"><br>
+        <input type="checkbox" id="correct-answer-2" name="correct-answer" value="B"><br>
     
         <label for="answer-3">Answer 3:</label>
         <input type="text" id="answer-3" name="answer-3">
-        <input type="checkbox" id="correct-answer-3" name="correct-answer" value="3"><br>
+        <input type="checkbox" id="correct-answer-3" name="correct-answer" value="C"><br>
     
         <label for="answer-4">Answer 4:</label>
         <input type="text" id="answer-4" name="answer-4">
-        <input type="checkbox" id="correct-answer-4" name="correct-answer" value="4"><br>
+        <input type="checkbox" id="correct-answer-4" name="correct-answer" value="D"><br>
     
         <input type="submit" value="Create Question">
     </form>
