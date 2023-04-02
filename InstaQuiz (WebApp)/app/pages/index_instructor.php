@@ -1,7 +1,7 @@
 <?php
     session_start();
-    include_once __DIR__ . '/../scripts/header.php';
-    require_once __DIR__ . '/../scripts/config.php';
+    include_once('header.php');
+    require_once('scripts/config.php');
 ?>
 
 <!DOCTYPE html>
@@ -21,7 +21,7 @@
     </head>
     <body>
         <p>This is the dashboard for instructors.</p>
-        <button onclick="window.location.href = 'account.php';">Account</button>
-        <button onclick="window.location.href = 'courses.php';">Courses</button>
+        <button onclick="window.location.href = '../account.php';">Account</button>
+        <button onclick="window.location.href = '../courses.php';">Courses</button>
     </body>
 </html>

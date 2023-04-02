@@ -1,11 +1,7 @@
 <?php
     session_start();
-<<<<<<< HEAD:InstaQuiz (WebApp)/app/login.php
     $pageTitle = "Login";
-    require_once 'config.php';
-=======
-    require_once __DIR__ . '/../scripts/config.php';
->>>>>>> e7c0cf58cb454d041fc475df91444c07c27148a8:InstaQuiz (WebApp)/app/pages/login.php
+    require_once('../scripts/config.php');
 
     if($_SERVER["REQUEST_METHOD"] == "POST") 
     {
@@ -14,11 +10,7 @@
         $password = $_POST['password'];
 
         // Retrieve user's information from the account table
-<<<<<<< HEAD:InstaQuiz (WebApp)/app/login.php
         $sql = "SELECT id, permission FROM accounts WHERE email = '$email' AND password = '$password'";
-=======
-        $sql = "SELECT * FROM accounts WHERE email = '$email' AND password = '$password'";
->>>>>>> e7c0cf58cb454d041fc475df91444c07c27148a8:InstaQuiz (WebApp)/app/pages/login.php
         $result = mysqli_query($conn, $sql);
         $row = mysqli_fetch_assoc($result);
 
@@ -28,21 +20,8 @@
             $_SESSION['user_id'] = $row["id"];
             $_SESSION['user_permission'] = $row["permission"];
 
-<<<<<<< HEAD:InstaQuiz (WebApp)/app/login.php
-            header("Location: index.php");
+            header("Location: ../index.php");
             exit;
-=======
-            if ($row["permission"] == 1) 
-            {
-                header("Location: ../index.php");
-                exit;
-            } 
-            else 
-            {
-                header("Location: ../index.php");
-                exit;
-            }
->>>>>>> e7c0cf58cb454d041fc475df91444c07c27148a8:InstaQuiz (WebApp)/app/pages/login.php
         } 
         else 
         {
@@ -52,26 +31,22 @@
 
         mysqli_close($conn);
     }
-    include_once __DIR__ . '/../scripts/header.php';
+    include_once('../header.php');
 ?>
         
 <!DOCTYPE html>
 <html>
     <head>
         <title>InstaQuiz Login</title>
+        <link rel="stylesheet" href="../css/body.css">
         <style>
-            body 
+            body
             {
-                color: #CCCCCC;
-                background-color: #05386B;
-                background-image: url("https://www.transparenttextures.com/patterns/dark-mosaic.png");
-                font-family: "cambria", serif;
                 text-align: center;
-                text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.6);
             }
             #login-form 
             {
-                display: inline-block;
+                display: block;
                 margin-top: 50px;
                 margin-left: auto;
                 margin-right: auto;
@@ -92,38 +67,6 @@
                 border-radius: 5px;
                 box-sizing: border-box;
             }
-            button 
-            {
-                background-color: transparent;
-                text-decoration: none;
-                border: none;
-                border-radius: 5px;
-                outline: none;
-                cursor: pointer;
-                padding: 10px;
-                margin: 0;
-                font-size: 18px;
-                font-weight: bold;
-                color: #CCCCCC;
-                transition: background-color 0.3s ease;
-            }
-            button:hover 
-            {
-                background-color: #F64C72;
-                color: #CCCCCC;
-            }
-            .error-message
-            {
-                color: #FF0000;
-                font-size: 14px;
-                margin-top: 10px;
-            }
-            .success-message
-            {
-                color: #00FF00;
-                font-size: 14px;
-                margin-top: 10px;
-            }
         </style>
     </head>
     <body>
@@ -137,8 +80,8 @@
                 <input type="password" placeholder="Enter Password" name="password" required>
 
                 <button type="submit">Login</button>
-                <button onclick="window.location.href = '../index.php';">Home</button>
-                <button onclick="window.location.href = 'forgot_password.php';">Forgot Password?</button>
+                <button class="button" onclick="window.location.href = '../index.php';">Home</button>
+                <button class="button" onclick="window.location.href = 'forgot_password.php';">Forgot Password?</button>
             </form>
         </div>
     </body>

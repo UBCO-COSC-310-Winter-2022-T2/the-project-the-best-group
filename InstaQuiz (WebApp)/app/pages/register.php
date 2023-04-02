@@ -1,13 +1,8 @@
 <?php
     session_start();
-<<<<<<< HEAD:InstaQuiz (WebApp)/app/register.php
     $pageTitle = "Register";
-    include_once 'header.php';
-    require_once 'config.php';
-=======
-    include_once __DIR__ . '/../scripts/header.php';
-    require_once __DIR__ . '/../scripts/config.php';
->>>>>>> e7c0cf58cb454d041fc475df91444c07c27148a8:InstaQuiz (WebApp)/app/pages/register.php
+    include_once('../header.php');
+    require_once('../scripts/config.php');
 
     if($_SERVER["REQUEST_METHOD"] == "POST") 
     {
@@ -41,15 +36,11 @@
 <html>
     <head>
         <title>InstaQuiz Registration</title>
+        <link rel="stylesheet" href="../css/body.css">
         <style>
             body 
             {
-                color: #CCCCCC;
-                background-color: #05386B;
-                background-image: url("https://www.transparenttextures.com/patterns/dark-mosaic.png");
-                font-family: "cambria", serif;
                 text-align: center;
-                text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.6);
             }
             #register-form 
             {
@@ -64,7 +55,6 @@
                 border-radius: 10px;
                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             }
-
             input[type=text], input[type=password], select 
             {
                 width: 100%;
@@ -74,38 +64,6 @@
                 border: none;
                 border-radius: 5px;
                 box-sizing: border-box;
-            }
-            button 
-            {
-                background-color: transparent;
-                text-decoration: none;
-                border: none;
-                border-radius: 5px;
-                outline: none;
-                cursor: pointer;
-                padding: 10px;
-                margin: 0;
-                font-size: 18px;
-                font-weight: bold;
-                color: #CCCCCC;
-                transition: background-color 0.3s ease;
-            }
-            button:hover 
-            {
-                background-color: #F64C72;
-                color: #CCCCCC;
-            }
-            .error-message
-            {
-                color: #FF0000;
-                font-size: 18px;
-                margin-top: 10px;
-            }
-            .success-message
-            {
-                color: #00FF00;
-                font-size: 18px;
-                margin-top: 10px;
             }
         </style>
     </head>

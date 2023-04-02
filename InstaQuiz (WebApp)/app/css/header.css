@@ -1,0 +1,69 @@
+body 
+{
+    color: #CCCCCC;
+    background-color: #05386B;
+    background-image: url("https://www.transparenttextures.com/patterns/dark-mosaic.png");
+    font-family: "cambria", serif;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.6);
+}
+header 
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #07223E;
+    background-image: url("https://www.transparenttextures.com/patterns/dark-mosaic.png");
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+header a 
+{
+    background-color: transparent;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+    padding: 10px;
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+    color: #CCCCCC;
+    transition: background-color 0.3s ease;
+}
+header a:hover 
+{
+    background-color: #F64C72;
+    color: #CCCCCC;
+}
+.logo 
+{
+    background-color: transparent;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+    padding: 10px;
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+    color: #CCCCCC;
+    transition: background-color 0.3s ease;
+}
+.logo:hover 
+{
+    background-color: #F64C72;
+    color: #CCCCCC;
+}
+.title 
+{
+    position: absolute;
+    left: 50%;
+    top: 4.5%;
+    transform: translate(-50%, -50%);
+}

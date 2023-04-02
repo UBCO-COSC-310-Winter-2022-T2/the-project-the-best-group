@@ -26,3 +26,15 @@ button:hover
     background-color: #F64C72;
     color: #CCCCCC;
 }
+.error-message
+{
+    color: #FF0000;
+    font-size: 14px;
+    margin-top: 10px;
+}
+.success-message
+{
+    color: #00FF00;
+    font-size: 14px;
+    margin-top: 10px;
+}

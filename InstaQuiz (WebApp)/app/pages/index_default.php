@@ -1,7 +1,7 @@
 <?php
     session_start();
-    include_once __DIR__ . '/../scripts/header.php';
-    require_once __DIR__ . '/../scripts/config.php';
+    include_once('header.php');
+    require_once('scripts/config.php');
 ?>
 
 <!DOCTYPE html>

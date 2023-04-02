@@ -1,8 +1,11 @@
 <?php
     session_start();
     $pageTitle = "Grades";
-    include_once 'header.php';
-    require_once 'config.php';
+    require_once('scripts/config.php');
+
+
+
+    include_once('header.php');
 ?>
 
 <!DOCTYPE html>
