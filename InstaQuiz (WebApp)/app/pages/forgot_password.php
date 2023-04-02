@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require_once 'config.php';
+    require_once __DIR__ . '/../scripts/config.php';
 
     if($_SERVER["REQUEST_METHOD"] == "POST") 
     {
@@ -36,7 +36,7 @@
         }
         mysqli_close($conn);
     }
-    include_once 'header.php';
+    include_once __DIR__ . '/../scripts/header.php';
 ?>
 
 <!DOCTYPE html>
@@ -121,7 +121,7 @@
                 <input type="password" placeholder="Enter New Password (Max 255 Characters)" name = "newpassword" required>
 
                 <button type="submit">Recover</button>
-                <button onclick="window.location.href = 'index.php';">Home</button>
+                <button onclick="window.location.href = '../index.php';">Home</button>
             </form>
         </div>
     </body>

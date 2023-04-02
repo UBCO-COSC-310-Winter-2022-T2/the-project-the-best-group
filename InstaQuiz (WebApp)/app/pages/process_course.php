@@ -9,7 +9,7 @@
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         
-        include "config.php";
+        include __DIR__ . '/../scripts/config.php';
         $name = $_POST['coursename'];
 
         // check if course already exists

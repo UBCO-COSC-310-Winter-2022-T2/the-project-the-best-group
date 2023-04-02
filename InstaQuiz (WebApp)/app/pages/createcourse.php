@@ -49,7 +49,7 @@
         </style>
     </head>
     <body>
-        <?php include_once 'header.php'; ?>
+        <?php include_once __DIR__ . '/../scripts/header.php'; ?>
         <div id="create-course-form">
             <form action="process_course.php" method="post">
                 <h1>Create InstaQuiz Course</h1>
@@ -58,7 +58,7 @@
                 <input type="text" placeholder="Enter Course Name" name="coursename" class='course-input'>
                 <br>
                 <button type='submit'>Create Course</button>
-                <button onclick="window.location.href = 'index.php';">Home</button>
+                <button onclick="window.location.href = '../index.php';">Home</button>
                 <br>
                 <?php
                     if ($_GET['msg'] == 'exists')

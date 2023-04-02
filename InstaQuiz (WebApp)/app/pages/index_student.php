@@ -1,7 +1,7 @@
 <?php
     session_start();
-    include_once 'header.php';
-    require_once 'config.php';
+    include_once __DIR__ . '/../scripts/header.php';
+    require_once __DIR__ . '/../scripts/config.php';
 ?>
 
 <!DOCTYPE html>
@@ -20,6 +20,6 @@
         </style>
     </head>
     <body>
-        <p>This is the dashboard for default users.</p>
+        <p>This is the dashboard for students.</p>
     </body>
 </html>

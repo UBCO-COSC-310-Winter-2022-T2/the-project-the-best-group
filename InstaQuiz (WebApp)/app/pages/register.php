@@ -1,7 +1,7 @@
 <?php
     session_start();
-    include_once 'header.php';
-    require_once 'config.php';
+    include_once __DIR__ . '/../scripts/header.php';
+    require_once __DIR__ . '/../scripts/config.php';
 
     if($_SERVER["REQUEST_METHOD"] == "POST") 
     {
@@ -124,7 +124,7 @@
                 <input type="password" placeholder="Enter Password (Max 255 Characters)" name="password" required>
 
                 <button type="submit">Register</button>
-                <button onclick="window.location.href = 'index.php';">Home</button>
+                <button onclick="window.location.href = '../index.php';">Home</button>
             </form>
         </div>
     </body>

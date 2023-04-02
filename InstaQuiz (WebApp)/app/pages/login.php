@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require_once 'config.php';
+    require_once __DIR__ . '/../scripts/config.php';
 
     if($_SERVER["REQUEST_METHOD"] == "POST") 
     {
@@ -21,12 +21,12 @@
 
             if ($row["permission"] == 1) 
             {
-                header("Location: index.php");
+                header("Location: ../index.php");
                 exit;
             } 
             else 
             {
-                header("Location: index.php");
+                header("Location: ../index.php");
                 exit;
             }
         } 
@@ -38,7 +38,7 @@
 
         mysqli_close($conn);
     }
-    include_once 'header.php';
+    include_once __DIR__ . '/../scripts/header.php';
 ?>
         
 <!DOCTYPE html>
@@ -121,7 +121,7 @@
                 <input type="password" placeholder="Enter Password" name="password" required>
 
                 <button type="submit">Login</button>
-                <button onclick="window.location.href = 'index.php';">Home</button>
+                <button onclick="window.location.href = '../index.php';">Home</button>
                 <button onclick="window.location.href = 'forgot_password.php';">Forgot Password?</button>
             </form>
         </div>

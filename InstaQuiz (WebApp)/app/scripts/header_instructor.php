@@ -74,10 +74,10 @@
     </head>
     <body>
         <header>
-            <button class="logo" onclick="location.href='index.php'">InstaQuiz</button>
+            <button class="logo" onclick="location.href='../index.php'">InstaQuiz</button>
             <nav>
-                <a href="logout.php">Logout</a>
-                <a href="tables.php">Database</a>
+                <a href="../pages/logout.php">Logout</a>
+                <a href="../pages/tables.php">Database</a>
             </nav>
         </header>
     </body>
