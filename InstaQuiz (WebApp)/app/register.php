@@ -1,5 +1,6 @@
 <?php
     session_start();
+    $pageTitle = "Register";
     include_once 'header.php';
     require_once 'config.php';
 
@@ -13,7 +14,7 @@
         $password = $_POST['password'];
 
         // Insert user's information into the account table
-        $sql = "INSERT INTO account (permission, fname, lname, email, password) VALUES ({$permission}, '{$fname}', '{$lname}', '{$email}', '{$password}')";
+        $sql = "INSERT INTO accounts (permission, fname, lname, email, password) VALUES ({$permission}, '{$fname}', '{$lname}', '{$email}', '{$password}')";
         $result = mysqli_query($conn, $sql);
 
         if ($result) 
@@ -45,16 +46,20 @@
                 text-align: center;
                 text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.6);
             }
-            #register-form
+            #register-form 
             {
                 display: inline-block;
                 margin-top: 50px;
+                margin-left: auto;
+                margin-right: auto;
+                width: 60%;
                 padding: 20px;
                 background-color: #07223E;
                 background-image: url("https://www.transparenttextures.com/patterns/dark-mosaic.png");
                 border-radius: 10px;
                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             }
+
             input[type=text], input[type=password], select 
             {
                 width: 100%;
@@ -102,8 +107,6 @@
     <body>
         <div id="register-form">
             <form action="register.php" method="POST">
-                <h1>Register for InstaQuiz</h1>
-
                 <label for="permission"><b>Permissions</b></label>
                 <select name="permission">
                     <option value="" selected disabled>Select Permission Level (Student or Instructor)</option>

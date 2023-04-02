@@ -7,18 +7,14 @@
 
     if($user_permission == "0")
     {
-        $pageTitle = "Student Dashboard";
-        include_once 'index_student.php';
+        $pageTitle = "Student Account";
+        include_once 'account_student.php';
     }
     else if ($user_permission == "1")
     {
-        $pageTitle = "Instructor Dashboard";
-        include_once 'index_instructor.php';
+        $pageTitle = "Instructor Account";
+        include_once 'account_instructor.php';
     }
-    else
-    {
-        $pageTitle = "Welcome Page";
-        include_once 'index_default.php';
-    }
+
     include_once 'header.php';
 ?>

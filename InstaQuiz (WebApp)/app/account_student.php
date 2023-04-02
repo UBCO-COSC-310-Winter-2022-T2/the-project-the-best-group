@@ -7,10 +7,10 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>InstaQuiz Welcome Page</title>
+        <title>InstaQuiz Courses</title>
         <link rel="stylesheet" href="css/body.css">
     </head>
     <body>
-        <p>This is the dashboard for default users.</p>
+        <p>This is the dashboard for student accounts.</p>
     </body>
 </html>

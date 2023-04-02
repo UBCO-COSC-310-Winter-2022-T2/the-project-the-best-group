@@ -1,0 +1,28 @@
+body 
+{
+    color: #CCCCCC;
+    background-color: #05386B;
+    background-image: url("https://www.transparenttextures.com/patterns/dark-mosaic.png");
+    font-family: "cambria", serif;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.6);
+}
+button 
+{
+    background-color: transparent;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+    padding: 10px;
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+    color: #CCCCCC;
+    transition: background-color 0.3s ease;
+}
+button:hover 
+{
+    background-color: #F64C72;
+    color: #CCCCCC;
+}

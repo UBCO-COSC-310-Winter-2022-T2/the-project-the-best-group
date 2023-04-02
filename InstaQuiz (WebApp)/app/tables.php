@@ -1,5 +1,6 @@
 <?php
     session_start();
+    $pageTitle = "Database";
     include_once 'header.php';
     require_once 'config.php';
 ?>
@@ -51,7 +52,7 @@
     </head>
     <body>
         <div class="container">
-            <h2>Account:</h2>
+            <h2>Accounts:</h2>
             <table>
                 <thead>
                     <tr>
@@ -65,7 +66,7 @@
                 </thead>
                 <tbody>
                     <?php
-                        $sql = "SELECT * FROM account";
+                        $sql = "SELECT * FROM accounts";
                         $result = mysqli_query($conn, $sql);
 
                         if ($result->num_rows > 0) 
@@ -84,10 +85,140 @@
                         } 
                         else 
                         {
-                            echo "<tr><td colspan='6'>No entries in 'account' table.</td></tr>";
+                            echo "<tr><td colspan='6'>No entries in 'accounts' table.</td></tr>";
+                        }
+                    ?>
+                </tbody>
+            </table>
+            <h2>Courses:</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>CID</th>
+                        <th>CNAME</th>
+                        <th>LID</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                        $sql = "SELECT * FROM courses";
+                        $result = mysqli_query($conn, $sql);
+
+                        if ($result->num_rows > 0) 
+                        {
+                            while($row = $result->fetch_assoc()) 
+                            {
+                                echo "<tr>";
+                                echo "<td>" . $row["cid"] . "</td>";
+                                echo "<td>" . $row["cname"] . "</td>";
+                                echo "<td>" . $row["lid"] . "</td>";
+                                echo "</tr>";
+                            }
+                        } 
+                        else 
+                        {
+                            echo "<tr><td colspan='6'>No entries in 'courses' table.</td></tr>";
+                        }
+                    ?>
+                </tbody>
+            </table>
+            <h2>Enrollment:</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>CID</th>
+                        <th>SID</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                        $sql = "SELECT * FROM enrollment";
+                        $result = mysqli_query($conn, $sql);
+
+                        if ($result->num_rows > 0) 
+                        {
+                            while($row = $result->fetch_assoc()) 
+                            {
+                                echo "<tr>";
+                                echo "<td>" . $row["cid"] . "</td>";
+                                echo "<td>" . $row["sid"] . "</td>";
+                                echo "</tr>";
+                            }
+                        } 
+                        else 
+                        {
+                            echo "<tr><td colspan='6'>No entries in 'enrollment' table.</td></tr>";
+                        }
+                    ?>
+                </tbody>
+            </table>
+            <h2>Questions:</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>QID</th>
+                        <th>CID</th>
+                        <th>PROMPT</th>
+                        <th>ANSWER</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                        $sql = "SELECT * FROM questions";
+                        $result = mysqli_query($conn, $sql);
+
+                        if ($result->num_rows > 0) 
+                        {
+                            while($row = $result->fetch_assoc()) 
+                            {
+                                echo "<tr>";
+                                echo "<td>" . $row["qid"] . "</td>";
+                                echo "<td>" . $row["cid"] . "</td>";
+                                echo "<td>" . $row["prompt"] . "</td>";
+                                echo "<td>" . $row["answer"] . "</td>";
+                                echo "</tr>";
+                            }
+                        } 
+                        else 
+                        {
+                            echo "<tr><td colspan='6'>No entries in 'questions' table.</td></tr>";
+                        }
+                    ?>
+                </tbody>
+            </table>
+            <h2>Scores:</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>SID</th>
+                        <th>CID</th>
+                        <th>TOTAL CORRECT</th>
+                        <th>TOTAL ASKED</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                        $sql = "SELECT * FROM scores";
+                        $result = mysqli_query($conn, $sql);
+
+                        if ($result->num_rows > 0) 
+                        {
+                            while($row = $result->fetch_assoc()) 
+                            {
+                                echo "<tr>";
+                                echo "<td>" . $row["sid"] . "</td>";
+                                echo "<td>" . $row["cid"] . "</td>";
+                                echo "<td>" . $row["totalCorrect"] . "</td>";
+                                echo "<td>" . $row["totalAsked"] . "</td>";
+                                echo "</tr>";
+                            }
+                        } 
+                        else 
+                        {
+                            echo "<tr><td colspan='6'>No entries in 'scores' table.</td></tr>";
                         }
 
-                        $conn->close();
+                        mysqli_close($conn);
                     ?>
                 </tbody>
             </table>

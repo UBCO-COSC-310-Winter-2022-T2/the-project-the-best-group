@@ -7,19 +7,21 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>InstaQuiz Homepage</title>
-        <style>
-            body 
-            {
-                color: #CCCCCC;
-                background-color: #05386B;
-                background-image: url("https://www.transparenttextures.com/patterns/dark-mosaic.png");
-                font-family: "cambria", serif;
-                text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.6);
-            }
-        </style>
+    <title>InstaQuiz Instructor Dashboard</title>
+    <link rel="stylesheet" href="css/body.css">
+    <style>
+        button 
+        {
+            display: block;
+            margin: 0 auto;
+            font-size: 2em;
+            padding: 20px 40px;
+        }
+    </style>
     </head>
     <body>
         <p>This is the dashboard for instructors.</p>
+        <button onclick="window.location.href = 'account.php';">Account</button>
+        <button onclick="window.location.href = 'courses.php';">Courses</button>
     </body>
 </html>

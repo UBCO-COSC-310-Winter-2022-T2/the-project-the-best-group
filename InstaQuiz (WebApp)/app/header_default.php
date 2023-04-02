@@ -70,11 +70,23 @@
                 background-color: #F64C72;
                 color: #CCCCCC;
             }
+            .title 
+            {
+                position: absolute;
+                left: 50%;
+                top: 4.5%;
+                transform: translate(-50%, -50%);
+            }
         </style>
     </head>
     <body>
         <header>
             <button class="logo" onclick="location.href='index.php'">InstaQuiz</button>
+            <div class="title">
+                <?php 
+                    echo $pageTitle;
+                ?>
+            </div>
             <nav>
                 <a href="login.php">Login</a>
                 <a href="register.php">Register</a>

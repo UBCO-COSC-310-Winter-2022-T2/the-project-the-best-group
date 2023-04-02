@@ -1,5 +1,6 @@
 <?php
     session_start();
+    $pageTitle = "Login";
     require_once 'config.php';
 
     if($_SERVER["REQUEST_METHOD"] == "POST") 
@@ -9,7 +10,7 @@
         $password = $_POST['password'];
 
         // Retrieve user's information from the account table
-        $sql = "SELECT * FROM account WHERE email = '$email' AND password = '$password'";
+        $sql = "SELECT id, permission FROM accounts WHERE email = '$email' AND password = '$password'";
         $result = mysqli_query($conn, $sql);
         $row = mysqli_fetch_assoc($result);
 
@@ -19,16 +20,8 @@
             $_SESSION['user_id'] = $row["id"];
             $_SESSION['user_permission'] = $row["permission"];
 
-            if ($row["permission"] == 1) 
-            {
-                header("Location: index.php");
-                exit;
-            } 
-            else 
-            {
-                header("Location: index.php");
-                exit;
-            }
+            header("Location: index.php");
+            exit;
         } 
         else 
         {
@@ -55,10 +48,13 @@
                 text-align: center;
                 text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.6);
             }
-            #login-form
+            #login-form 
             {
                 display: inline-block;
                 margin-top: 50px;
+                margin-left: auto;
+                margin-right: auto;
+                width: 60%;
                 padding: 20px;
                 background-color: #07223E;
                 background-image: url("https://www.transparenttextures.com/patterns/dark-mosaic.png");
@@ -113,7 +109,6 @@
         
         <div id="login-form">
             <form action="login.php" method="POST">
-                <h1>Login to InstaQuiz</h1>
                 <label for="email"><b>Email</b></label>
                 <input type="text" placeholder="Enter Email" name="email" required>
 
