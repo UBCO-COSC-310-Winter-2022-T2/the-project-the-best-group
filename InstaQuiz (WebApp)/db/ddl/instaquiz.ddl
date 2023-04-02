@@ -6,23 +6,24 @@ checking if a response is correct, and checking grades. Hopefully we can use thi
 start writing queries and making our pages functional
 */
 
-USE instaquiz -- our database
+USE instaquiz; -- our database
 
 /*------------------------------ ACCOUNTS -------------------------------------------------*/
 
 CREATE TABLE accounts (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id INT AUTO_INCREMENT,
     permission BIT(1) NOT NULL, -- 0 = student, 1 = instructor
     fname VARCHAR(255) NOT NULL,
     lname VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-    rtoken VARCHAR(36) DEFAULT (SELECT UUID()) UNIQUE -- generates a random token (for forgot password recovery). Default keyword means we dont need to assign a value, system will do automatically
+    rtoken VARCHAR(36) DEFAULT UUID() UNIQUE, -- generates a random token (for forgot password recovery). Default keyword means we dont need to assign a value, system will do automatically
+    PRIMARY KEY (id)
 );
 
 -- John Doe is a student (id auto set to 1)
-INSERT INTO accounts (id, permission, fname, lname, email, password) 
-VALUES (1, 0, 'John', 'Doe', 'johndoe@mail.com', 'johndoepw');
+INSERT INTO accounts (permission, fname, lname, email, password) 
+VALUES (0, 'John', 'Doe', 'johndoe@mail.com', 'johndoepw');
 
 
 -- Jane Doe is a instructor (id auto set to 2)
@@ -36,14 +37,16 @@ VALUES (0, 'Henry', 'Smith', 'hsmith@mail.com', 'henrypw');
 /*------------------------------------ ENROLLMENT -------------------------------------------*/
 
 CREATE TABLE enrollment (
-  sid int,
-  cid int,
-  cname VARCHAR(255)
+  cid INT NOT NULL,
+  sid INT NOT NULL,
+  PRIMARY KEY (cid, sid),
+  FOREIGN KEY (cid) REFERENCES courses(cid),
+  FOREIGN KEY (sid) REFERENCES accounts(id)
 );
 
--- student 1 (John Doe) is enrolled in course 5 ("Software Engineering")
-INSERT INTO enrollment (sid, cid, cname)
-VALUES (1,5,'Software Engineering')
+-- student 1 (John Doe) is enrolled in course 5
+INSERT INTO enrollment (sid, cid)
+VALUES (1,5);
 
 -- Simple table to keep track of enrollment. Query SELECT * FROM enrollment WHERE sid = _____ 
 -- to get a list of courses a particular student is enrolled in. 
@@ -55,15 +58,13 @@ CREATE TABLE courses (
     cid INT AUTO_INCREMENT PRIMARY KEY,
     cname VARCHAR(255) NOT NULL,
     Iid int NOT NULL, -- id of instructor
-    students VARCHAR(255) -- students field is a comma seperated list of students ids (can't store ArrayLists in SQL)
 );
 
 -- to check if a student is in a class write query returning students string for that course and then see if it contains the sid
 
--- course 5 is "Software Engineering", it is taught by instructor Jane Doe (account id 2) 
--- It currently only has 2 students, John Doe and Henry Smith (acounts 1 and 3).
-INSERT INTO courses (cid, cname, Iid, students)
-VALUES (5, 'Software Engineering', 2, '1, 3');
+-- course 5 is "Software Engineering", it is taught by instructor Jane Doe (account id 2)
+INSERT INTO courses (cid, cname, Iid)
+VALUES (5, 'Software Engineering', 2);
 
 
 /*------------------------------ QUESTIONS -------------------------------------------------*/
