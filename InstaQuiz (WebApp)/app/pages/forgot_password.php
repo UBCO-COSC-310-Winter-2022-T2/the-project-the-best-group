@@ -1,6 +1,7 @@
 <?php
     session_start();
-    require_once __DIR__ . '/../scripts/config.php';
+    $pageTitle = 'Forgot Password';
+    require_once('../scripts/config.php');
 
     if($_SERVER["REQUEST_METHOD"] == "POST") 
     {
@@ -37,27 +38,26 @@
         }
         mysqli_close($conn);
     }
-    include_once __DIR__ . '/../scripts/header.php';
+    include_once('../header.php');
 ?>
 
 <!DOCTYPE html>
 <html>
     <head>
         <title>Forgot Password | InstaQuiz</title>
+        <link rel="stylesheet" href="../css/body.css">
         <style>
-            body 
+            body
             {
-                color: #CCCCCC;
-                background-color: #05386B;
-                background-image: url("https://www.transparenttextures.com/patterns/dark-mosaic.png");
-                font-family: "cambria", serif;
                 text-align: center;
-                text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.6);
             }
-            #forgot-password-form
+            #forgot-password-form 
             {
-                display: inline-block;
+                display: block;
                 margin-top: 50px;
+                margin-left: auto;
+                margin-right: auto;
+                width: 60%;
                 padding: 20px;
                 background-color: #07223E;
                 background-image: url("https://www.transparenttextures.com/patterns/dark-mosaic.png");
@@ -73,38 +73,6 @@
                 border: none;
                 border-radius: 5px;
                 box-sizing: border-box;
-            }
-            button 
-            {
-                background-color: transparent;
-                text-decoration: none;
-                border: none;
-                border-radius: 5px;
-                outline: none;
-                cursor: pointer;
-                padding: 10px;
-                margin: 0;
-                font-size: 18px;
-                font-weight: bold;
-                color: #CCCCCC;
-                transition: background-color 0.3s ease;
-            }
-            button:hover 
-            {
-                background-color: #F64C72;
-                color: #CCCCCC;
-            }
-            .error-message
-            {
-                color: #FF0000;
-                font-size: 14px;
-                margin-top: 10px;
-            }
-            .success-message
-            {
-                color: #00FF00;
-                font-size: 14px;
-                margin-top: 10px;
             }
         </style>
     </head>
