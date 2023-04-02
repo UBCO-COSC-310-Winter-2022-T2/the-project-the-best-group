@@ -1,40 +1,15 @@
 <?php
     session_start();
-    include_once __DIR__ . '/../scripts/header.php';
-    require_once __DIR__ . '/../scripts/config.php';
+    include_once('../header.php');
+    require_once('../scripts/config.php');
 ?>
 
 <!DOCTYPE html>
 <html>
     <head>
         <title>InstaQuiz Enroll Course</title>
+        <link rel="stylesheet" href="css/body.css">
         <style>
-            body 
-            {
-                color: #CCCCCC;
-                background-color: #05386B;
-                background-image: url("https://www.transparenttextures.com/patterns/dark-mosaic.png");
-                font-family: "cambria", serif;
-                text-align: center;
-                text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.6);
-            }
-            button
-            {
-                background-color: transparent;
-                text-decoration: none;
-                border: none;
-                border-radius: 5px;
-                cursor: pointer;
-                font-size: 18px;
-                font-weight: bold;
-                color: #CCCCCC;
-                transition: background-color 0.3s ease;
-            }
-            button:hover 
-            {
-                background-color: #F64C72;
-                color: #CCCCCC;
-            }
             #enroll-course
             {
                 display: inline-block;
