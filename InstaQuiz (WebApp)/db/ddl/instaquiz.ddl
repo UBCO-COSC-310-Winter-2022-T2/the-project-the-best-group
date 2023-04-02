@@ -16,7 +16,8 @@ CREATE TABLE accounts (
     fname VARCHAR(255) NOT NULL,
     lname VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL
+    password VARCHAR(255) NOT NULL,
+    rtoken NEWID() DEFAULT UNIQUE -- generates a random token (for forgot password recovery). Default keyword means we dont need to assign a value, system will do automatically
 );
 
 -- John Doe is a student (id auto set to 1)
@@ -32,6 +33,20 @@ VALUES (1, 'Jane', 'Doe', 'janedoe@mail.com', 'janedoepw');
 INSERT INTO accounts (permission, fname, lname, email, password) 
 VALUES (0, 'Henry', 'Smith', 'hsmith@mail.com', 'henrypw');
 
+------------------------------------ ENROLLMENT -------------------------------------------
+
+CREATE TABLE enrollment (
+  sid int,
+  cid int,
+  cname VARCHAR(255)
+);
+
+-- student 1 (John Doe) is enrolled in course 5 ("Software Engineering")
+INSERT INTO enrollment (sid, cid, cname)
+VALUES (1,5,"Software Engineering")
+
+-- Simple table to keep track of enrollment. Query SELECT * FROM enrollment WHERE sid = _____ 
+-- to get a list of courses a particular student is enrolled in. 
 
 ------------------------------ COURSES -------------------------------------------------
 
