@@ -1,40 +1,48 @@
 <?php
     session_start();
-    include_once 'header.php';
     require_once 'config.php';
 
     if($_SERVER["REQUEST_METHOD"] == "POST") 
     {
         // Retrieve user's credentials from the POST request
-        $permission = $_POST['permission'];
-        $fname = $_POST['fname'];
-        $lname = $_POST['lname'];
         $email = $_POST['email'];
-        $password = $_POST['password'];
+        $rtoken = $_POST['rtoken'];
+        $newpassword = $_POST['newpassword'];
 
-        // Insert user's information into the account table
-        $sql = "INSERT INTO accounts (permission, fname, lname, email, password) VALUES ({$permission}, '{$fname}', '{$lname}', '{$email}', '{$password}')";
+        // Retrieve user's information from the account table
+        $sql = "SELECT * FROM accounts WHERE email = '$email' AND rtoken = '$rtoken'";
         $result = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_assoc($result);
 
-        if ($result) 
+        // Check if user's credentials are correct
+        if (mysqli_num_rows($result) == 1) 
         {
-            // Display a success message if user was added to the account table
-            echo '<div class="success-message">Account created successfully.</div>';
+            $sqlresetpassword = "UPDATE accounts SET password = 'new_password' WHERE email = '$email'";
+            $result = mysqli_query($conn,$sqlresetpassword);
+
+            if($result)
+            {
+                echo '<div class="success-message">Password Reset Successfully.</div>';
+            }
+            else
+            {
+                echo '<div class-"error-message">Password Reset Unsuccessful.</div>';
+            }
         } 
         else 
         {
-            // Display an error message if there was an error adding user to the account table
-            echo '<div class="error-message">Error creating account.</div>';
+            // Display an error message if user's credentials are incorrect
+            echo '<div class="error-message">Email or Recovery Token Invalid</div>';
         }
-
         mysqli_close($conn);
     }
+    include_once 'header.php';
 ?>
 
 <!DOCTYPE html>
 <html>
     <head>
-        <title>InstaQuiz Registration</title>
+        <title>Forgot Password | InstaQuiz</title>
         <style>
             body 
             {
@@ -45,7 +53,7 @@
                 text-align: center;
                 text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.6);
             }
-            #register-form
+            #forgot-password-form
             {
                 display: inline-block;
                 margin-top: 50px;
@@ -55,7 +63,7 @@
                 border-radius: 10px;
                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             }
-            input[type=text], input[type=password], select 
+            input[type=text], input[type=password] 
             {
                 width: 100%;
                 padding: 12px 20px;
@@ -88,42 +96,31 @@
             .error-message
             {
                 color: #FF0000;
-                font-size: 18px;
+                font-size: 14px;
                 margin-top: 10px;
             }
             .success-message
             {
                 color: #00FF00;
-                font-size: 18px;
+                font-size: 14px;
                 margin-top: 10px;
             }
         </style>
     </head>
     <body>
-        <div id="register-form">
-            <form action="register.php" method="POST">
-                <h1>Register for InstaQuiz</h1>
-
-                <label for="permission"><b>Permissions</b></label>
-                <select name="permission">
-                    <option value="" selected disabled>Select Permission Level (Student or Instructor)</option>
-                    <option value="0">Student (Can enroll in classes and provide responses to questions.)</option>
-                    <option value="1">Instructor (Can create/manage classes and provide questions to their students.)</option>
-                </select>
-
-                <label for="fname"><b>First Name</b></label>
-                <input type="text" placeholder="Enter First Name (Max 255 Characters)" name="fname" required>
-
-                <label for="lname"><b>Last Name</b></label>
-                <input type="text" placeholder="Enter Last Name (Max 255 Characters)" name="lname" required>
-
+        <div id="forgot-password-form">
+            <form action="forgot_password.php" method="POST">
+                <h1>Login to InstaQuiz</h1>
                 <label for="email"><b>Email</b></label>
-                <input type="text" placeholder="Enter Email (Max 255 Characters)" name="email" required>
+                <input type="text" placeholder="Enter Email" name="email" required>
 
-                <label for="password"><b>Password</b></label>
-                <input type="password" placeholder="Enter Password (Max 255 Characters)" name="password" required>
+                <label for="rtoken"><b>Recovery Token</b></label>
+                <input type="text" placeholder="Enter Recovery Token" name="rtoken" required>
 
-                <button type="submit">Register</button>
+                <label for="newpassword"><b>New Password</b></label>
+                <input type="password" placeholder="Enter New Password (Max 255 Characters)" name = "newpassword" required>
+
+                <button type="submit">Recover</button>
                 <button onclick="window.location.href = 'index.php';">Home</button>
             </form>
         </div>

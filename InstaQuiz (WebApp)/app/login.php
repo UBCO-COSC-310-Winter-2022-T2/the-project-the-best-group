@@ -9,7 +9,7 @@
         $password = $_POST['password'];
 
         // Retrieve user's information from the account table
-        $sql = "SELECT * FROM account WHERE email = '$email' AND password = '$password'";
+        $sql = "SELECT * FROM accounts WHERE email = '$email' AND password = '$password'";
         $result = mysqli_query($conn, $sql);
         $row = mysqli_fetch_assoc($result);
 
@@ -122,6 +122,7 @@
 
                 <button type="submit">Login</button>
                 <button onclick="window.location.href = 'index.php';">Home</button>
+                <button onclick="window.location.href = 'forgot_password.php';">Forgot Password?</button>
             </form>
         </div>
     </body>
