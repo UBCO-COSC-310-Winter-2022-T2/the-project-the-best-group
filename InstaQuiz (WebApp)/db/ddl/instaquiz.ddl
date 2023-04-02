@@ -34,23 +34,6 @@ VALUES (1, 'Jane', 'Doe', 'janedoe@mail.com', 'janedoepw');
 INSERT INTO accounts (permission, fname, lname, email, password) 
 VALUES (0, 'Henry', 'Smith', 'hsmith@mail.com', 'henrypw');
 
-/*------------------------------------ ENROLLMENT -------------------------------------------*/
-
-CREATE TABLE enrollment (
-  cid INT NOT NULL,
-  sid INT NOT NULL,
-  PRIMARY KEY (cid, sid),
-  FOREIGN KEY (cid) REFERENCES courses(cid),
-  FOREIGN KEY (sid) REFERENCES accounts(id)
-);
-
--- student 1 (John Doe) is enrolled in course 5
-INSERT INTO enrollment (sid, cid)
-VALUES (1,5);
-
--- Simple table to keep track of enrollment. Query SELECT * FROM enrollment WHERE sid = _____ 
--- to get a list of courses a particular student is enrolled in. 
-
 /*------------------------------ COURSES -------------------------------------------------*/
 
 
@@ -83,6 +66,24 @@ VALUES (1, 5, 'What 2+2? A=3, B=4, C=5, D=6', 'B');
 -- question 2 in course 5 (Software Engineering) is 'What province is Kelowna in?', correct answer is A
 INSERT INTO questions (qid, cid, prompt, answer)
 VALUES (2, 5, 'What province is Kelowna in? A=British Columbia, B=Alberta, C=Ontario, D=Manitoba', 'A');
+
+
+/*------------------------------------ ENROLLMENT -------------------------------------------*/
+
+CREATE TABLE enrollment (
+  cid INT NOT NULL,
+  sid INT NOT NULL,
+  PRIMARY KEY (cid, sid),
+  FOREIGN KEY (cid) REFERENCES courses(cid),
+  FOREIGN KEY (sid) REFERENCES accounts(id)
+);
+
+-- student 1 (John Doe) is enrolled in course 5
+INSERT INTO enrollment (sid, cid)
+VALUES (1,5);
+
+-- Simple table to keep track of enrollment. Query SELECT * FROM enrollment WHERE sid = _____ 
+-- to get a list of courses a particular student is enrolled in. 
 
 /*-------------------------- SCORES -----------------------------------------------*/
 
