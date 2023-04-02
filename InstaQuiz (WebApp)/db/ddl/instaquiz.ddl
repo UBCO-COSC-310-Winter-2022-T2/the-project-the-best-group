@@ -17,7 +17,7 @@ CREATE TABLE accounts (
     lname VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-    rtoken VARCHAR(36) DEFAULT UUID() UNIQUE, -- generates a random token (for forgot password recovery). Default keyword means we dont need to assign a value, system will do automatically
+    -- rtoken VARCHAR(36) DEFAULT UUID() UNIQUE, -- generates a random token (for forgot password recovery). Default keyword means we dont need to assign a value, system will do automatically
     PRIMARY KEY (id)
 );
 
