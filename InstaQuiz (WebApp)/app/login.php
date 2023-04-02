@@ -1,4 +1,5 @@
 <?php
+    session_start();
     require_once 'config.php';
 
     if($_SERVER["REQUEST_METHOD"] == "POST") 
@@ -15,16 +16,17 @@
         // Check if user's credentials are correct
         if (mysqli_num_rows($result) == 1) 
         {
+            $_SESSION['user_id'] = $row["id"];
+            $_SESSION['user_permission'] = $row["permission"];
+
             if ($row["permission"] == 1) 
             {
-                // Redirect to instructor.php if user has permission value 1
-                header("Location: instructor.php");
+                header("Location: index.php");
                 exit;
             } 
             else 
             {
-                // Redirect to student.php if user has permission value 0
-                header("Location: student.php");
+                header("Location: index.php");
                 exit;
             }
         } 
@@ -48,6 +50,7 @@
             {
                 color: #CCCCCC;
                 background-color: #05386B;
+                background-image: url("https://www.transparenttextures.com/patterns/dark-mosaic.png");
                 font-family: "cambria", serif;
                 text-align: center;
                 text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.6);
@@ -58,6 +61,7 @@
                 margin-top: 50px;
                 padding: 20px;
                 background-color: #07223E;
+                background-image: url("https://www.transparenttextures.com/patterns/dark-mosaic.png");
                 border-radius: 10px;
                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             }

@@ -1,19 +1,21 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>InstaQuiz Homepage</title>
-        <style>
-            body 
-            {
-                color: #CCCCCC;
-                background-color: #05386B;
-                font-family: "cambria", serif;
-                text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.6);
-            }
-        </style>
-    </head>
-    <body>
-        <?php include_once 'header.php'; ?>
-        <p>This is a homepage.</p>
-    </body>
-</html>
+<?php
+    session_start();
+    include_once 'header.php';
+    require_once 'config.php';
+
+    $user_id = $_SESSION['user_id'];
+    $user_permission = $_SESSION['user_permission'];
+
+    if($user_permission == "0")
+    {
+        include_once 'index_student.php';
+    }
+    else if ($user_permission == "1")
+    {
+        include_once 'index_instructor.php';
+    }
+    else
+    {
+        include_once 'index_default.php';
+    }
+?>

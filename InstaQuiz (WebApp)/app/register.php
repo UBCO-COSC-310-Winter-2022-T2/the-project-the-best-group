@@ -1,5 +1,6 @@
-<?php include_once 'header.php'; ?>
 <?php
+    session_start();
+    include_once 'header.php';
     require_once 'config.php';
 
     if($_SERVER["REQUEST_METHOD"] == "POST") 
@@ -39,6 +40,7 @@
             {
                 color: #CCCCCC;
                 background-color: #05386B;
+                background-image: url("https://www.transparenttextures.com/patterns/dark-mosaic.png");
                 font-family: "cambria", serif;
                 text-align: center;
                 text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.6);
@@ -49,6 +51,7 @@
                 margin-top: 50px;
                 padding: 20px;
                 background-color: #07223E;
+                background-image: url("https://www.transparenttextures.com/patterns/dark-mosaic.png");
                 border-radius: 10px;
                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             }

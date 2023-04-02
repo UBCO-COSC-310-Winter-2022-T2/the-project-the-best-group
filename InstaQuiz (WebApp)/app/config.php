@@ -4,7 +4,6 @@
     define('PASSWORD', '310adminpw');
     define('DBNAME', 'instaquiz');
 
-
     $conn = mysqli_connect(SERVERNAME, USERNAME, PASSWORD, DBNAME);
 
     if ($conn->connect_error) 
