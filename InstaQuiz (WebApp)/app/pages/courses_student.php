@@ -1,70 +1,112 @@
 <?php
+  session_start();
+  $pageTitle = "Student Courses";
+  require_once 'scripts/config.php';
+  include_once 'header.php';
+  $userId = $_SESSION['userId'];
+
+  $searchResult = '';
+
+  if ($_SERVER['REQUEST_METHOD'] == "GET") 
+  {
+    if (isset($_GET['msg'])) 
+    {
+      $message = $_GET['msg'];
+
+      if ($message == 'exists') {
+        $searchResult = '<div class="error-message">You are already enrolled in this course!</div>';
+      } else if ($message == 'fail') {
+        $searchResult = '<div class="error-message">Error enrolling in course. Please try again.</div>';
+      } else if ($message == 'success') {
+        $searchResult = '<div class="success-message">Successfully enrolled, good luck!.</div>';
+      }
+    }
+
+    $search = isset($_GET['search']) ? $_GET['search'] : '';
+
+    $sql = "SELECT C.cid, C.cname, A.fname, A.lname FROM courses C INNER JOIN accounts A ON C.Iid = A.id WHERE C.cname LIKE '%$search%'";
+    $result = mysqli_query($conn, $sql);
+
+    if ($result->num_rows > 0) 
+    {
+        while($row = $result->fetch_assoc()) 
+        {
+          $searchResult .=
+          "<form class='course-item' method='post'>
+          <h1>{$row['cname']}</h1>
+          <p>Instructor: {$row['fname']} {$row['lname']}</p>
+          <input type='hidden' name='cid' value='{$row['cid']}'>
+          <button class='good-button' type='submit'>Enroll</button>
+          </form>"; 
+        }
+    } 
+    else 
+    {
+      $searchResult = '<div class="error-message">There are no courses by that name.</div>';
+    }
+  }
+?>
+<?php
     session_start();
-    include_once('header.php');
-    require_once('scripts/config.php');
+    $userId = $_SESSION['user_id'];
+
+    $enrolledResult = '';
+
+    $sql = "SELECT C.cid, C.cname, A.fname, A.lname FROM courses C JOIN accounts A ON C.Iid = A.id JOIN enrollment E ON C.cid = E.cid WHERE E.sid = '$userId'";
+    $result = mysqli_query($conn, $sql);
+
+    if ($result->num_rows > 0) 
+    {
+      while($row = $result->fetch_assoc()) 
+      {
+        $enrolledResult .=
+        "<form class='course-item' method='post'>
+        <h1>{$row['cname']}</h1>
+        <p>Instructor: {$row['fname']} {$row['lname']}</p>
+        <input type='hidden' name='cid' value='{$row['cid']}'>
+        <button class='good-button' type='submit'>Join Class</button>
+        <button class='bad-button' type='submit'>Unenroll</button>
+        </form>"; 
+      }
+    } 
+    else 
+    {
+      echo '<div class="error-message">You are not currently enrolled in any courses<br></div>';
+      echo '<div class="success-message">Search for a course on the left to get started!</div>';
+    }
 ?>
 
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>InstaQuiz Courses</title>
-        <link rel="stylesheet" href="css/body.css">
-        <style>
-            button 
-            {
-                display: block;
-                margin: 0 auto;
-                font-size: 20;
-                padding: 10px;
-            }
-            #course-list
-            {
-                display: inline-block;
-                width: 60%;
-                margin-left: 20%;
-                margin-top: 100px;
-                padding: 20px;
-                background-color: #07223E;
-                background-image: url("https://www.transparenttextures.com/patterns/dark-mosaic.png");
-                border-radius: 10px;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            }
-            .course-item {
-                float: top;
-                width: 80%;
-                margin: auto;
-                margin-top: 20px;
-                padding: 5px;
-                border: 1px solid #05386B;
-            }
-        </style>
-    </head>
-    <body>
-        <p>This is the dashboard for student courses.</p>
-        <div id='course-list'>
-        <?php
-
-            $sid = $_SESSION['user_id'];
-            'SELECT cid FROM enrollment WHERE sid = ".$sid';
-
-            $sql = "SELECT E.sid, C.cid, C.cname, A.fname, A.lname FROM (SELECT sid, cid FROM enrollment WHERE sid = ".$sid.") AS E INNER JOIN courses C ON E.cid = C.cid INNER JOIN accounts A ON C.Iid = A.id";
-            $result = mysqli_query($conn, $sql);
-
-            if (mysqli_num_rows($result) == 0) { 
-                echo "<p>No courses found</p>";
-            } else {
-                while ($course_info = mysqli_fetch_assoc($result)) {                                                                                                                                                                                                                                                                                                                                                                                                            
-                    echo 
-                    "<form class='course-item' action='../scripts/student_unenroll.php' method='post'>
-                        <h1>".$course_info['cname']."</h1>
-                        <p>Instructor: ".$course_info['fname']." ".$course_info['lname']."</p>
-                        <input type='hidden' name='cid' value=".$course_info['cid'].">
-                        <button type='submit'>Unenroll</button>
-                    </div>";
-                }
-            }
-        ?>
-        <button onclick="window.location.href = 'pages/courses_enroll.php';">Enroll</button>
-        </div>
-    </body>
+<head>
+  <title>InstaQuiz Student Courses</title>
+  <link rel="stylesheet" href="../css/body.css">
+  <link rel="stylesheet" href="../css/courses_student.css">
+</head>
+<body>
+  <section class="container">
+    <div class="left">
+      <div class='container-form-top'>
+        <form method="get">
+          <div class="search-container">
+            <input type="text" name="search" placeholder="Search for a course...">
+            <button type="submit">Search</button>
+          </div>
+        </form>
+      </div>
+      <div class='container-form-bottom'>
+        <?php echo $searchResult; ?>
+      </div>
+    </div>
+    <div class="right">
+      <div class="container-form-top">
+        <h1>YOUR COURSES:</h1>
+      </div>  
+      <div class="container-form-bottom">     
+        <?php echo $enrolledResult ?>
+      </div>
+    </div>
+  </section>
+</body>
 </html>
+

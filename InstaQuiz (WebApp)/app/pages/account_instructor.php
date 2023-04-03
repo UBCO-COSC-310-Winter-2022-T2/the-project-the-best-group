@@ -8,9 +8,8 @@
 <html>
     <head>
         <title>InstaQuiz Courses</title>
-        <link rel="stylesheet" href="css/body.css">
+        <link rel="stylesheet" href="../css/body.css">
     </head>
     <body>
-        <p>This is the dashboard for instructor accounts.</p>
     </body>
 </html>

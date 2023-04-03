@@ -1,0 +1,14 @@
+colors
+{
+    /* Main Page Colors */
+    --navy-light: #05386B;
+    --navy-dark: #07223E;
+    --navy-darkest: #061A2D;
+    
+
+    /* Buttons / Accents */
+    --crimson: #F64C72;
+
+    /* Text */
+    --silver: #CCCCCC;
+}

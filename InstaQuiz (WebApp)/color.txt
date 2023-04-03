@@ -1,8 +1,0 @@
-Navy:
-- Darkest:  #061A2D
-- Dark:     #07223E
-- Light:    #05386B
-
-Crimson:    #F64C72
-
-Silver:     #CCCCCC

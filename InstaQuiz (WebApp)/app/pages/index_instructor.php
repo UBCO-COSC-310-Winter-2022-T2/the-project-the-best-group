@@ -8,7 +8,7 @@
 <html>
     <head>
     <title>InstaQuiz Instructor Dashboard</title>
-    <link rel="stylesheet" href="css/body.css">
+    <link rel="stylesheet" href="../css/body.css">
     <style>
         button 
         {
@@ -20,7 +20,6 @@
     </style>
     </head>
     <body>
-        <p>This is the dashboard for instructors.</p>
         <button onclick="window.location.href = '../account.php';">Account</button>
         <button onclick="window.location.href = '../courses.php';">Courses</button>
     </body>
