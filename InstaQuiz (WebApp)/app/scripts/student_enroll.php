@@ -21,7 +21,7 @@
         if (mysqli_num_rows($result) > 0) 
         { 
             // course already exists: exit
-            header('Location: ' . $_SERVER['HTTP_REFERER'] . '?msg=exists');
+            header('Location: ../pages/courses_enroll.php?msg=exists');
             exit();
         }
 
@@ -29,12 +29,12 @@
         $sql_insert = "INSERT INTO enrollment (cid, sid) VALUES (".$course_id.", ".$student_id.")";
         if (mysqli_query($conn, $sql_insert)) 
         {
-            header('Location: ' . $_SERVER['HTTP_REFERER'] . '?msg=success');
+            header('Location: ../pages/courses_enroll.php?msg=success');
             exit();
         } 
         else 
         {
-            header('Location: ' . $_SERVER['HTTP_REFERER'] . '?msg=fail');
+            header('Location: ../pages/courses_enroll.php?msg=fail');
             exit();
         }
     } 

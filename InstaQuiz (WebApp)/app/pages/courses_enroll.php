@@ -59,7 +59,7 @@
             {
                 if ($_GET['msg'] == 'exists') 
                 { 
-                    echo '<div class="error-message">Already enrolled in course. Please try again.</div>';
+                    echo '<div class="error-message">You are already enrolled in this course!</div>';
                 }  
                 if ($_GET['msg'] == 'fail') 
                 { 
