@@ -101,10 +101,7 @@ although we could probably easliy write code to do the math for them too if we w
 */
 
 -- John Doe has answered 3 questions correct in course 5 (Software Engineering) 
--- and there have been a total int4 questions for that class
+-- and there have been a total of 4 questions for that class
 INSERT INTO scores (sid, cid, totalCorrect, totalAsked)
-<<<<<<< HEAD
 VALUES (1, 5, 3, 4);
-=======
-VALUES (1, 5, 3, 4);
->>>>>>> e7c0cf58cb454d041fc475df91444c07c27148a8
+
