@@ -53,8 +53,8 @@ VALUES (5, 'Software Engineering', 2);
 /*------------------------------ QUESTIONS -------------------------------------------------*/
 
 CREATE TABLE questions (
-  qid int AUTO_INCREMENT PRIMARY KEY,
-  cid int NOT NULL,
+  qid INT AUTO_INCREMENT PRIMARY KEY,
+  cid INT NOT NULL,
   prompt VARCHAR(255), -- prompt string includes answer options ex: ('Capital of BC? A=Vancouver, B=Victoria,')
   answer CHAR(1)
 );
@@ -88,10 +88,11 @@ VALUES (1,5);
 /*-------------------------- SCORES -----------------------------------------------*/
 
 CREATE TABLE scores (
-  sid int,
-  cid int,
-  totalCorrect int, -- need a method to incremented everytime a student answers a question correctly (use sid)
-  totalAsked int -- need a method to increment everytime a course posts a question (use cid)
+  scoreid INT AUTO_INCREMENT PRIMARY KEY, -- unique identifier for score entries so that we can delete rows and edit this table
+  sid INT,
+  cid INT,
+  totalCorrect INT, -- need a method to incremented everytime a student answers a question correctly (use sid)
+  totalAsked INT -- need a method to increment everytime a course posts a question (use cid)
 );
 /*
 This system would mean that students have a table row for each course they are in. Grades can be
