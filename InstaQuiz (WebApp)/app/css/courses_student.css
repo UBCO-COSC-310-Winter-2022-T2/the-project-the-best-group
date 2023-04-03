@@ -1,0 +1,147 @@
+html
+{
+  height: 100%;
+}
+body
+{
+  text-align: center;
+  height: 100%;
+}
+.good-button 
+{
+    background-color: transparent;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+    padding: 10px;
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+    color: #CCCCCC;
+    transition: background-color 0.3s ease;
+}
+.good-button:hover 
+{
+    background-color: green;
+    color: #CCCCCC;
+}
+.bad-button 
+{
+    background-color: transparent;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+    padding: 10px;
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+    color: #CCCCCC;
+    transition: background-color 0.3s ease;
+}
+.bad-button:hover 
+{
+    background-color: red;
+    color: #CCCCCC;
+}
+.container 
+{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content:flex-start;
+  height: 100%;
+  width: 100%;
+}
+.left 
+{
+  position: absolute;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  box-sizing: border-box;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+.right 
+{
+  position: absolute;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  box-sizing: border-box;
+  margin-top: 10px;
+}
+.container-form-top
+{
+  font-family: 'Courier New', Courier, monospace;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border-radius: 15px;
+  width: 98%;
+  height: 100px;
+}
+.search-container 
+{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: #07223E;
+  border-radius: 5px;
+  border: 1px solid #CCCCCC;
+  padding: 5px;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+}
+.search-container input[type="text"] 
+{
+  background-color: white;
+  border: none;
+  padding-left: 15px;
+  padding-right: 100px;
+  color: #CCCCCC;
+  font-size: 18px;
+  font-weight: bold;
+  outline: none;
+  width: 100%;
+  height: 100%;
+  margin-right: 5px;
+}
+.container-form-bottom 
+{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #07223E;
+  border-radius: 15px;
+  border-style: solid;
+  border-color: #061A2D;
+  border-width: 5px;
+  margin-top: 10px;
+  width: 98%;
+  height: 100%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+}
+.course-item 
+{
+  display: block;
+  width: 65%;
+  height: 160px;
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #05386B;
+  border-style: solid;
+  border-color: #061A2D;
+  border-width: 5px;
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+}

@@ -3,8 +3,6 @@
     $pageTitle = "Grades";
     require_once('scripts/config.php');
 
-
-
     include_once('header.php');
 ?>
 
@@ -15,6 +13,5 @@
         <link rel="stylesheet" href="css/body.css">
     </head>
     <body>
-        <p>This is the dashboard for grades.</p>
     </body>
 </html>

@@ -9,15 +9,8 @@
 <html>
     <head>
         <title>InstaQuiz Database</title>
+        <link rel="stylesheet" href="../css/body.css">
         <style>
-            body 
-            {
-                color: #CCCCCC;
-                background-color: #05386B;
-                background-image: url("https://www.transparenttextures.com/patterns/dark-mosaic.png");
-                font-family: "cambria", serif;
-                text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.6);
-            }
             table 
             {
                 border-collapse: collapse;
@@ -94,9 +87,9 @@
             <table>
                 <thead>
                     <tr>
-                        <th>CID</th>
-                        <th>CNAME</th>
-                        <th>LID</th>
+                        <th>COURSE ID</th>
+                        <th>COURSE NAME</th>
+                        <th>INSTRUCTOR ID</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -111,7 +104,7 @@
                                 echo "<tr>";
                                 echo "<td>" . $row["cid"] . "</td>";
                                 echo "<td>" . $row["cname"] . "</td>";
-                                echo "<td>" . $row["lid"] . "</td>";
+                                echo "<td>" . $row["Iid"] . "</td>";
                                 echo "</tr>";
                             }
                         } 
@@ -126,8 +119,8 @@
             <table>
                 <thead>
                     <tr>
-                        <th>CID</th>
-                        <th>SID</th>
+                        <th>COURSE ID</th>
+                        <th>STUDENT ID</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -156,8 +149,8 @@
             <table>
                 <thead>
                     <tr>
-                        <th>QID</th>
-                        <th>CID</th>
+                        <th>QUESTION ID</th>
+                        <th>COURSE ID</th>
                         <th>PROMPT</th>
                         <th>ANSWER</th>
                     </tr>
@@ -190,8 +183,8 @@
             <table>
                 <thead>
                     <tr>
-                        <th>SID</th>
-                        <th>CID</th>
+                        <th>STUDENT ID</th>
+                        <th>COURSE ID</th>
                         <th>TOTAL CORRECT</th>
                         <th>TOTAL ASKED</th>
                     </tr>

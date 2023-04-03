@@ -34,6 +34,10 @@ VALUES (1, 'Jane', 'Doe', 'janedoe@mail.com', 'janedoepw');
 INSERT INTO accounts (permission, fname, lname, email, password) 
 VALUES (0, 'Henry', 'Smith', 'hsmith@mail.com', 'henrypw');
 
+-- Henrietta Smith is an instructor (id auto set to 4)
+INSERT INTO accounts (permission, fname, lname, email, password) 
+VALUES (1, 'Harold', 'Smith', 'haroldsmith@mail.com', 'hsmithpw');
+
 /*------------------------------ COURSES -------------------------------------------------*/
 
 
@@ -45,10 +49,13 @@ CREATE TABLE courses (
 
 -- to check if a student is in a class write query returning students string for that course and then see if it contains the sid
 
--- course 5 is "Software Engineering", it is taught by instructor Jane Doe (account id 2)
-INSERT INTO courses (cid, cname, Iid)
-VALUES (5, 'Software Engineering', 2);
+-- course (id auto set to 1) is "Software Engineering", it is taught by instructor Jane Doe (account id 2)
+INSERT INTO courses (cname, Iid)
+VALUES ('Software Engineering', 2);
 
+-- course (id auto set to 2) is "Machine Architecture", it is taught by instructor Harold Smith (account id 4)
+INSERT INTO courses (cname, Iid)
+VALUES ('Machine Architecture', 4);
 
 /*------------------------------ QUESTIONS -------------------------------------------------*/
 
@@ -78,9 +85,13 @@ CREATE TABLE enrollment (
   FOREIGN KEY (sid) REFERENCES accounts(id)
 );
 
--- student 1 (John Doe) is enrolled in course 5
+-- student 1 (John Doe) is enrolled in course 1
 INSERT INTO enrollment (sid, cid)
-VALUES (1,5);
+VALUES (1,1);
+
+-- student 3 (Henry Smith) is enrolled in course 2
+INSERT INTO enrollment (sid, cid)
+VALUES (3,2);
 
 -- Simple table to keep track of enrollment. Query SELECT * FROM enrollment WHERE sid = _____ 
 -- to get a list of courses a particular student is enrolled in. 

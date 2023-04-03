@@ -2,8 +2,9 @@ body
 {
     color: #CCCCCC;
     background-color: #05386B;
-    background-image: url("https://www.transparenttextures.com/patterns/dark-mosaic.png");
-    font-family: "cambria", serif;
+    background-image: url("https://www.transparenttextures.com/patterns/inspiration-geometry.png");
+    font-size: 18px;
+    font-family: 'Courier New', Courier, monospace;
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.6);
 }
 header 
@@ -13,19 +14,22 @@ header
     align-items: center;
     padding: 10px;
     background-color: #07223E;
-    background-image: url("https://www.transparenttextures.com/patterns/dark-mosaic.png");
     font-size: 18px;
     font-weight: bold;
     color: white;
-    border-radius: 10px;
+    border-style: solid;
+    border-color: #061A2D;
+    border-width: 5px;
+    border-radius: 15px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 header a 
 {
+    font-family: 'Courier New', Courier, monospace;
     background-color: transparent;
     text-decoration: none;
     border: none;
-    border-radius: 5px;
+    border-radius: 7px;
     outline: none;
     cursor: pointer;
     padding: 10px;
@@ -34,6 +38,7 @@ header a
     font-weight: bold;
     color: #CCCCCC;
     transition: background-color 0.3s ease;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.6);
 }
 header a:hover 
 {
@@ -45,15 +50,16 @@ header a:hover
     background-color: transparent;
     text-decoration: none;
     border: none;
-    border-radius: 5px;
+    border-radius: 7px;
     outline: none;
     cursor: pointer;
     padding: 10px;
     margin: 0;
-    font-size: 24px;
+    font-size: 28px;
     font-weight: bold;
     color: #CCCCCC;
     transition: background-color 0.3s ease;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.6);
 }
 .logo:hover 
 {
@@ -62,8 +68,11 @@ header a:hover
 }
 .title 
 {
-    position: absolute;
-    left: 50%;
-    top: 4.5%;
-    transform: translate(-50%, -50%);
+    text-align: center;
+    text-decoration: underline #CCCCCC 2px;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.6);
+    font-size: 18px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    margin-left: 2.75%;
 }
