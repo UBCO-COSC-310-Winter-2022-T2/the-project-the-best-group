@@ -75,47 +75,51 @@ VALUES ('Software Engineering', 2);
 CREATE TABLE questions (
   qid INT AUTO_INCREMENT PRIMARY KEY,
   cid INT NOT NULL,
-  prompt VARCHAR(255), -- prompt string includes answer options ex: ('Capital of BC? A=Vancouver, B=Victoria,')
+  prompt VARCHAR(255),
+  a VARCHAR(255),
+  b VARCHAR(255),
+  c VARCHAR(255),
+  d VARCHAR(255),
   answer CHAR(1)
 );
 
 -- starter code questions are just for example, not actually relavent to the course topics
 
 -- 4 questions in course 1
-INSERT INTO questions (cid, prompt, answer)
+INSERT INTO questions (cid, prompt, a, b, c, d, answer)
 VALUES 
-(1, 'Whats 8-3? A=3, B=4, C=5, D=6', 'C'),
-(1, 'What province is Vancouver in? A=British Columbia, B=Alberta, C=Ontario, D=Manitoba', 'A'),
-(1, 'Whats 3 times 2? A=3, B=4, C=5, D=6', 'D'),
-(1, 'How many continents are there? A=7, B=40, C=12', 'A');
+(1, 'Which of the following is a problem with low-level programming', 'takes too long', 'user expectations can be too high', 'they are too small to see', 'none of these answers', 'D'),
+(1, 'Which of these is the best description of a conceptual model', 'a very tall model', 'a high level description of how a systems organization/operation', 'a fully functional model', 'none of these answers', 'B'),
+(1, 'Which of the following is the name of a common physical input device', 'cat', 'dog', 'mouse', 'rabbit', 'C'),
+(1, 'What does UI stand for in computer science', 'User Interface', 'Usable Item', 'Unsafe Internet', 'Uncommon Identifier', 'A');
 
 -- 2 questions in course 2
-INSERT INTO questions (cid, prompt, answer)
+INSERT INTO questions (cid, prompt, a, b, c, d, answer)
 VALUES 
-(2, 'Whats 2.5 doubled? A=3, B=4, C=5, D=6', 'C'),
-(2, 'What province is the furthest east? A=British Columbia, B=Alberta, C=Ontario, D=Manitoba', 'C');
+(2, 'Which common symbol represents a register in MIPS code', '#', '@', '&', '$', 'D'),
+(2, 'What does CPU stand for in computer science', 'Central Processing Unit', 'Cat Pull Under', 'Center Pile Unit', 'Central Password User', 'A');
 
 -- 4 questions in course 3
-INSERT INTO questions (cid, prompt, answer)
+INSERT INTO questions (cid, prompt, a, b, c, d, answer)
 VALUES 
-(3, 'What color is a banana? A=Red, B=Orange, C=Yellow, D=Green', 'C'),
-(3, 'What province is Calgary in? A=British Columbia, B=Alberta, C=Ontario, D=Manitoba', 'B'),
-(3, 'Whats 5+1? A=3, B=4, C=5, D=6', 'D');
+(3, 'Which of the following is a common data structure', 'HashPath', 'HillTop', 'HashMap', 'HelpTable', 'C'),
+(3, 'Which of the following is NOT a common data structure', 'Array', 'ArrayList', 'Skip List', 'Arrow List', 'D'),
+(3, 'Select the invalid time complexity', 'O(1)', 'O(n)', 'O(-2)', 'O(logn)', 'C');
 
 -- 4 questions in course 4
-INSERT INTO questions (cid, prompt, answer)
+INSERT INTO questions (cid, prompt, a, b, c, d, answer)
 VALUES 
-(4, 'How sides does a stop sign have? A=3, B=4, C=5, D=8', 'D'),
-(4, 'What province is Toronto in? A=British Columbia, B=Alberta, C=Ontario, D=Manitoba', 'C'),
-(4, 'Whats 3 times 1? A=3, B=4, C=5, D=6', 'A');
+(4, 'Which of these is a common database', 'MongoDB', 'MangoDB', 'MondoDB', 'OrangeDB', 'A'),
+(4, 'What does DBMS stand for', 'Database Management System', 'Database More Secure', 'Data Before Making System', 'Dont Build More Stacks', 'A'),
+(4, 'Which of the following is not a DBMS', 'Google', 'MySQL', 'IBM DB2', 'Mircosoft Acess', 'A');
 
 -- 4 questions in course 5
-INSERT INTO questions (cid, prompt, answer)
+INSERT INTO questions (cid, prompt, a, b, c, d, answer)
 VALUES
-(5, 'Whats 2+2? A=3, B=4, C=5, D=6', 'B'),
-(5, 'What province is Kelowna in? A=British Columbia, B=Alberta, C=Ontario, D=Manitoba', 'A'),
-(5, 'Whats 4 divided by 1? A=3, B=4, C=5, D=6', 'B'),
-(5, 'How many states are there in the USA? A=50, B=40, C=30', 'A');
+(5, 'Which of the following is not a programming language', 'Python', 'Java', 'HTML', 'CSS', 'C'),
+(5, 'Which of the following is not a version control system', 'Git', 'Subversion', 'Mercurial', 'MySQL', 'D'),
+(5, 'Which of the following is not an operating system', 'Windows', 'Linux', 'macOS', 'Oracle', 'D'),
+(5, 'Which of the following is not a software development methodology', 'Agile', 'Waterfall', 'Crumb', 'Scrum', 'C');
 
 /*------------------------------------ ENROLLMENT -------------------------------------------*/
 
