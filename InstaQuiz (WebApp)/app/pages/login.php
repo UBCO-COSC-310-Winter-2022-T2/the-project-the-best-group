@@ -82,8 +82,8 @@
                 <input type="password" placeholder="Enter Password" name="password" required>
 
                 <button type="submit">Login</button>
-                <button class="button" onclick="window.location.href = '../index.php';">Home</button>
                 <button class="button" onclick="window.location.href = 'forgot_password.php';">Forgot Password?</button>
+                <button class="button" onclick="window.location.href = '../index.php';">Home</button>
             </form>
         </div>
     </body>
