@@ -59,8 +59,9 @@
           <input type='hidden' name='cid' value='{$row['cid']}'>
           <button class='good-button' type='submit'>Edit</button>
         </form>
-        <form action='../courses.php' method='POST'>
+        <form action='../pages/courses_deleteConf.php' method='POST'>
           <input type='hidden' name='cid' value='{$row['cid']}'>
+          <input type='hidden' name='cname' value='{$row['cname']}'>
           <button class='bad-button' type='submit'>Delete</button>
         </form>
       </div>";

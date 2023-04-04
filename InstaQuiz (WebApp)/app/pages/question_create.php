@@ -74,6 +74,7 @@
             align-items: center;
             justify-content: center;
             align-content: center;
+            margin-top: 1em;
             padding-bottom: 1em;
             padding-left: 1em;
             padding-right: 1em;

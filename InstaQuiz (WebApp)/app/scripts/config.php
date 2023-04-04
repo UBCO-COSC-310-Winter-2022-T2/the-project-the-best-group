@@ -1,6 +1,6 @@
 <?php
     define('SERVERNAME', 'db');
-    define('USERNAME', 'admin');
+    define('USERNAME', 'root');
     define('PASSWORD', '310adminpw');
     define('DBNAME', 'instaquiz');
 

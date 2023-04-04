@@ -7,17 +7,9 @@
     if ($_SERVER['REQUEST_METHOD'] == 'POST') 
     {
         $courseId = $_POST['cid'];
-        $sql_select = "SELECT cid FROM enrollment WHERE cid = ".$courseId." AND sid = ".$userId;
-        $result = mysqli_query($conn, $sql_select);
+        $sql = "INSERT INTO enrollment (cid, sid) VALUES (".$courseId.", ".$userId.")";
 
-        if (mysqli_num_rows($result) > 0) 
-        { 
-            header('Location: ../courses.php');
-            exit();
-        }
-
-        $sql_insert = "INSERT INTO enrollment (cid, sid) VALUES (".$courseId.", ".$userId.")";
-        if (mysqli_query($conn, $sql_insert)) 
+        if (mysqli_query($conn, $sql)) 
         {
             $_SESSION['result_message'] = "<div class='success-message'>Successfully enrolled in course! Good luck!</div>";
             mysqli_close($conn);
@@ -35,5 +27,6 @@
     else 
     {
         header('Location: ' . $_SERVER['HTTP_REFERER']);
+        exit();
     }
 ?>
