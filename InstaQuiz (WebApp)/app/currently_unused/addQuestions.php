@@ -1,8 +1,8 @@
 <?php
-    // Include the database credentials
-    include __DIR__ . '/../scripts/config.php';
+    require_once('scripts/config.php');
+    
     try {
-        $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+        #$pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
     } catch (PDOException $e) {
         die("Error connecting to the database: " . $e->getMessage());
     }

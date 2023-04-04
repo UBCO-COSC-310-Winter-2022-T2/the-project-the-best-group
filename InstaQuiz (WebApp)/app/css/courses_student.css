@@ -19,12 +19,7 @@
     justify-self: stretch;
     align-items: center;
     justify-items: center; 
-    background-color: #07223E;
-    border-radius: 15px;
-    border-style: solid;
-    border-color: #061A2D;
-    border-width: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    background-color: transparent;
 }
 .right-form-top
 {
@@ -34,12 +29,7 @@
     justify-self: stretch;
     align-items: center;
     justify-items: center;
-    background-color: #07223E;
-    border-radius: 15px;
-    border-style: solid;
-    border-color: #061A2D;
-    border-width: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    background-color: transparent;
 }
 .left-form-bottom 
 {

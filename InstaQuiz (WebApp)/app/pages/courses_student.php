@@ -85,7 +85,7 @@
             </form>
         </div>
         <div class="right-form-top">
-            Currently Enrolled In:
+            <h2>Enrolled Courses:</h2>
         </div>
         <div class='left-form-bottom'>
             <?php echo $searchResult; ?>

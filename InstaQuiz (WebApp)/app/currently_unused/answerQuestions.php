@@ -1,12 +1,12 @@
 <?php
-include __DIR__ . '/../scripts/config.php';
+    require_once('scripts/config.php');
 
 $sql = "SELECT * FROM questions";
 
 $result = $conn->query($sql);
 
 if ($result === false) {
-    echo "Error: " . $sql . "<br>" . $conn->error;
+    #echo "Error: " . $sql . "<br>" . $conn->error;
 } else {
     $total_asked = 0;
     echo "<form method='POST'>";
@@ -29,7 +29,7 @@ if ($result === false) {
             $sql = "SELECT answer FROM questions WHERE qid=" . $qid;
             $result = $conn->query($sql);
             if ($result === false) {
-                echo "Error: " . $sql . "<br>" . $conn->error;
+                #echo "Error: " . $sql . "<br>" . $conn->error;
             } else {
                 $row = $result->fetch_assoc();
                 $correct_answer = $row['answer'];
@@ -40,7 +40,7 @@ if ($result === false) {
         }
         $sql = "INSERT INTO scores (sid, cid, totalCorrect, totalAsked) VALUES (1, 1, $score, $total_asked)";
         if ($conn->query($sql) === FALSE) {
-            echo "Error inserting score: " . $conn->error;
+            #echo "Error inserting score: " . $conn->error;
         }
     }
 }
