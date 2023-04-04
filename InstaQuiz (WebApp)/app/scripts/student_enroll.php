@@ -1,40 +1,33 @@
 <?php
     session_start();
-
-    if (!isset($_SESSION['user_permission'])) 
-    {
-        header('Location: ../pages/login.php');
-        exit();
-    }
-
-    $student_id = $_SESSION['user_id'];
+    $userId = $_SESSION['user_id'];
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') 
     {
         require_once('config.php');
-        $course_id = $_POST['cid'];
+        $courseId = $_POST['cid'];
 
         // check student not already enrolled in that course
-        $sql_select = "SELECT cid FROM enrollment WHERE cid = ".$course_id." AND sid = ".$student_id;
+        $sql_select = "SELECT cid FROM enrollment WHERE cid = ".$courseId." AND sid = ".$userId;
         $result = mysqli_query($conn, $sql_select);
 
         if (mysqli_num_rows($result) > 0) 
         { 
             // course already exists: exit
-            header('Location: ../pages/courses_enroll.php?msg=exists');
+            header('Location: ../courses.php?msg=exists');
             exit();
         }
 
         // add enrollment to database
-        $sql_insert = "INSERT INTO enrollment (cid, sid) VALUES (".$course_id.", ".$student_id.")";
+        $sql_insert = "INSERT INTO enrollment (cid, sid) VALUES (".$courseId.", ".$userId.")";
         if (mysqli_query($conn, $sql_insert)) 
         {
-            header('Location: ../pages/courses_enroll.php?msg=success');
+            header('Location: ../courses.php?msg=success');
             exit();
         } 
         else 
         {
-            header('Location: ../pages/courses_enroll.php?msg=fail');
+            header('Location: ../courses.php?msg=fail');
             exit();
         }
     } 

@@ -6,74 +6,65 @@
   $userId = $_SESSION['userId'];
 
   $searchResult = '';
+  $search = isset($_GET['search']) ? $_GET['search'] : '';
 
-  if ($_SERVER['REQUEST_METHOD'] == "GET") 
+  $sql = "SELECT C.cid, C.cname, A.fname, A.lname FROM courses C INNER JOIN accounts A ON C.Iid = A.id WHERE C.cname LIKE '%$search%'";
+  $result = mysqli_query($conn, $sql);
+
+  if ($result->num_rows > 0) 
   {
-    if (isset($_GET['msg'])) 
+    while($row = $result->fetch_assoc()) 
     {
-      $message = $_GET['msg'];
-
-      if ($message == 'exists') {
-        $searchResult = '<div class="error-message">You are already enrolled in this course!</div>';
-      } else if ($message == 'fail') {
-        $searchResult = '<div class="error-message">Error enrolling in course. Please try again.</div>';
-      } else if ($message == 'success') {
-        $searchResult = '<div class="success-message">Successfully enrolled, good luck!.</div>';
-      }
-    }
-
-    $search = isset($_GET['search']) ? $_GET['search'] : '';
-
-    $sql = "SELECT C.cid, C.cname, A.fname, A.lname FROM courses C INNER JOIN accounts A ON C.Iid = A.id WHERE C.cname LIKE '%$search%'";
-    $result = mysqli_query($conn, $sql);
-
-    if ($result->num_rows > 0) 
-    {
-        while($row = $result->fetch_assoc()) 
-        {
-          $searchResult .=
-          "<form class='course-item' method='post'>
-          <h1>{$row['cname']}</h1>
-          <p>Instructor: {$row['fname']} {$row['lname']}</p>
+      $searchResult .= "
+      <div class='course-item'>
+        <h2>{$row['cname']}</h2>
+        <p>Instructor: {$row['fname']} {$row['lname']}</p>
+        <form action='../scripts/student_enroll.php' method='POST'>
           <input type='hidden' name='cid' value='{$row['cid']}'>
           <button class='good-button' type='submit'>Enroll</button>
-          </form>"; 
-        }
-    } 
-    else 
-    {
-      $searchResult = '<div class="error-message">There are no courses by that name.</div>';
+        </form>
+      </div>"; 
     }
+  } 
+  else 
+  {
+    $searchResult = '<div class="error-message">There are no courses by that name.</div>';
   }
 ?>
 <?php
-    session_start();
-    $userId = $_SESSION['user_id'];
+  session_start();
+  $userId = $_SESSION['user_id'];
+  $enrolledResult = '';
 
-    $enrolledResult = '';
+  $sql = "SELECT C.cid, C.cname, A.fname, A.lname FROM courses C JOIN accounts A ON C.Iid = A.id JOIN enrollment E ON C.cid = E.cid WHERE E.sid = '$userId'";
+  $result = mysqli_query($conn, $sql);
 
-    $sql = "SELECT C.cid, C.cname, A.fname, A.lname FROM courses C JOIN accounts A ON C.Iid = A.id JOIN enrollment E ON C.cid = E.cid WHERE E.sid = '$userId'";
-    $result = mysqli_query($conn, $sql);
-
-    if ($result->num_rows > 0) 
+  if ($result->num_rows > 0) 
+  {
+    while($row = $result->fetch_assoc()) 
     {
-      while($row = $result->fetch_assoc()) 
-      {
-        $enrolledResult .=
-        "<form class='course-item' method='post'>
-        <h1>{$row['cname']}</h1>
+      $enrolledResult .= "
+      <div class='course-item'>
+        <h2>{$row['cname']}</h2>
         <p>Instructor: {$row['fname']} {$row['lname']}</p>
-        <input type='hidden' name='cid' value='{$row['cid']}'>
-        <button class='good-button' type='submit'>Join Class</button>
-        <button class='bad-button' type='submit'>Unenroll</button>
-        </form>"; 
-      }
-    } 
-    else 
-    {
-      echo '<div class="error-message">You are not currently enrolled in any courses<br></div>';
-      echo '<div class="success-message">Search for a course on the left to get started!</div>';
+        <button class='good-button' type='submit'>Join???</button>
+        <form action='../scripts/student_unenroll.php' method='POST'>
+          <input type='hidden' name='cid' value='{$row['cid']}'>
+          <button class='bad-button' type='submit'>Drop Course</button>
+        </form>
+      </div>";
     }
+  } 
+  else 
+  {
+    $enrolledResult .= "
+    <div class='error-message'>
+      You are not currently enrolled in any courses.<br>
+      <div class='success-message'>
+        Search for a course on the left to get started!
+      </div>
+    </div>";
+  }
 ?>
 
 <!DOCTYPE html>
@@ -84,29 +75,25 @@
   <link rel="stylesheet" href="../css/courses_student.css">
 </head>
 <body>
-  <section class="container">
-    <div class="left">
-      <div class='container-form-top'>
-        <form method="get">
-          <div class="search-container">
-            <input type="text" name="search" placeholder="Search for a course...">
-            <button type="submit">Search</button>
-          </div>
-        </form>
-      </div>
-      <div class='container-form-bottom'>
-        <?php echo $searchResult; ?>
-      </div>
+    <div class="container">
+        <div class="left-form-top">
+            <form method="get">
+                <div class="search-container">
+                    <input type="text" name="search" placeholder="Search for a course...">
+                    <button type="submit">Search</button>
+                </div>
+            </form>
+        </div>
+        <div class="right-form-top">
+            Currently Enrolled In:
+        </div>
+        <div class='left-form-bottom'>
+            <?php echo $searchResult; ?>
+        </div>
+        <div class='right-form-bottom'>
+            <?php echo $enrolledResult; ?>
+        </div>
     </div>
-    <div class="right">
-      <div class="container-form-top">
-        <h1>YOUR COURSES:</h1>
-      </div>  
-      <div class="container-form-bottom">     
-        <?php echo $enrolledResult ?>
-      </div>
-    </div>
-  </section>
 </body>
 </html>
 
