@@ -18,7 +18,7 @@
         // Check if user's credentials are correct
         if (mysqli_num_rows($result) == 1) 
         {
-            $sqlresetpassword = "UPDATE accounts SET password = 'new_password' WHERE email = '$email'";
+            $sqlresetpassword = "UPDATE accounts SET password = '$newpassword' WHERE email = '$email'";
             $result = mysqli_query($conn,$sqlresetpassword);
             
             //message if password has been successfully reset and error message if not
