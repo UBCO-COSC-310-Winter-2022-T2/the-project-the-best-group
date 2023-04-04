@@ -14,9 +14,19 @@ CREATE TABLE accounts (
     lname VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-    rtoken CHAR(8) DEFAULT (UUID()), -- generates a random 8 char token (for forgot password recovery)
+    rtoken VARCHAR(36), -- random 36 char token (for forgot password recovery)
     PRIMARY KEY (id)
 );
+
+-- creates trigger so that everytime there is a new account created it will be assigned a random rtoken
+DELIMITER $$
+CREATE TRIGGER set_rtoken_default
+BEFORE INSERT ON accounts
+FOR EACH ROW
+BEGIN
+    SET NEW.rtoken = UUID();
+END$$
+DELIMITER ;
 
 -- John Doe is a student (id auto set to 1)
 INSERT INTO accounts (permission, fname, lname, email, password) 
