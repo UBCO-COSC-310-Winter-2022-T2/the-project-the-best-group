@@ -1,5 +1,5 @@
 <?php
-    require_once('scripts/config.php');
+include __DIR__ . '/../scripts/config.php';
 
 $sql = "SELECT * FROM questions";
 
@@ -50,7 +50,6 @@ $conn->close();
 <!DOCTYPE html>
 <html>
     <head>
-        <title>InstaQuiz</title>
         <style>
             body 
             {
@@ -88,3 +87,5 @@ $conn->close();
     </head>
     <body>
         <div id="quiz-form">
+    </body>
+</html>

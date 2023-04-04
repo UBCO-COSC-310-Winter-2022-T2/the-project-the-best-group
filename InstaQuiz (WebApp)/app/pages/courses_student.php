@@ -1,9 +1,9 @@
 <?php
   session_start();
   $pageTitle = "Student Courses";
-  require_once 'scripts/config.php';
-  include_once 'header.php';
-  $userId = $_SESSION['userId'];
+  require_once('scripts/config.php');
+  include_once('header.php');
+  $userId = $_SESSION['user_id'];
 
   $searchResult = '';
   $search = isset($_GET['search']) ? $_GET['search'] : '';
@@ -50,7 +50,7 @@
         <button class='good-button' type='submit'>Join???</button>
         <form action='../scripts/student_unenroll.php' method='POST'>
           <input type='hidden' name='cid' value='{$row['cid']}'>
-          <button class='bad-button' type='submit'>Drop Course</button>
+          <button class='bad-button' type='submit'>Unenroll</button>
         </form>
       </div>";
     }
@@ -88,10 +88,19 @@
             <h2>Enrolled Courses:</h2>
         </div>
         <div class='left-form-bottom'>
-            <?php echo $searchResult; ?>
+            <?php 
+              echo $searchResult; 
+            ?>
         </div>
         <div class='right-form-bottom'>
-            <?php echo $enrolledResult; ?>
+            <?php 
+              if (isset($_SESSION['result_message'])) 
+              {
+                  echo $_SESSION['result_message'];
+                  unset($_SESSION['result_message']);
+              }
+              echo $enrolledResult; 
+            ?>
         </div>
     </div>
 </body>
