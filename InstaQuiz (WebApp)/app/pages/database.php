@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>InstaQuiz Database</title>
+        <title>InstaQuiz</title>
         <link rel="stylesheet" href="../css/body.css">
         <style>
             table 

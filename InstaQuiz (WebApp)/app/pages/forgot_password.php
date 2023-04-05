@@ -43,7 +43,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Forgot Password | InstaQuiz</title>
+        <title>InstaQuiz</title>
         <link rel="stylesheet" href="../css/body.css">
         <style>
             body

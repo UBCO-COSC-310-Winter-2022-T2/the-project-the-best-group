@@ -69,7 +69,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>InstaQuiz Student Courses</title>
+  <title>InstaQuiz</title>
   <link rel="stylesheet" href="../css/body.css">
   <link rel="stylesheet" href="../css/courses_student.css">
 </head>

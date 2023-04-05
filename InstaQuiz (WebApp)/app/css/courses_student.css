@@ -36,7 +36,8 @@
     align-self: flex-start;
     justify-self: stretch;
     align-items: center;
-    justify-items: center; 
+    justify-items: center;
+    padding: 1em;
     background-color: #07223E;
     border-radius: 15px;
     border-style: solid;
@@ -48,11 +49,11 @@
 {
     grid-area: "d";
     display: grid;
-    max-height: 1040px;
     align-self: flex-start;
     justify-self: stretch;
     align-items: center;
     justify-items: center;
+    padding: 1em;
     background-color: #07223E;
     border-radius: 15px;
     border-style: solid;
@@ -113,42 +114,4 @@
     border-color: #061A2D;
     border-width: 5px;
     border-radius: 15px;
-}
-.good-button 
-{
-    background-color: transparent;
-    text-decoration: none;
-    border: none;
-    border-radius: 5px;
-    outline: none;
-    cursor: pointer;
-    padding: 10px;
-    font-size: 18px;
-    font-weight: bold;
-    color: #CCCCCC;
-    transition: background-color 0.3s ease;
-}
-.good-button:hover 
-{
-    background-color: green;
-    color: #CCCCCC;
-}
-.bad-button 
-{
-    background-color: transparent;
-    text-decoration: none;
-    border: none;
-    border-radius: 5px;
-    outline: none;
-    cursor: pointer;
-    padding: 10px;
-    font-size: 18px;
-    font-weight: bold;
-    color: #CCCCCC;
-    transition: background-color 0.3s ease;
-}
-.bad-button:hover 
-{
-    background-color: red;
-    color: #CCCCCC;
 }

@@ -15,15 +15,23 @@
             while($row = $result->fetch_assoc()) 
             {
                 $editResult .= "
+                <a href='../courses.php'>- Clear Course</a> 
                 <div class='course-item'>
-                    <h2>{$row['cname']}</h2>
-                    <p>Instructor: {$row['fname']} {$row['lname']}</p>
-                    <form action='../pages/question_create.php' method='POST'>
-                        <input type='hidden' name='cid' value='{$row['cid']}'>
-                        <button class='good-button' type='submit'>Add Question</button>
-                    </form>
-                </div>
-                <a href='../courses.php'>Clear Selected Course</a>"; 
+                  <h2>{$row['cname']}</h2>
+                  <p>Instructor: {$row['fname']} {$row['lname']}</p>
+                  <form action='../pages/' method='POST'>
+                      <input type='hidden' name='cid' value='{$row['cid']}'>
+                      <button class='good-button' type='submit'>??? Start Class ???</button>
+                  </form>
+                  <form action='../pages/question_create.php' method='POST'>
+                      <input type='hidden' name='cid' value='{$row['cid']}'>
+                      <button type='submit'>Questions</button>
+                  </form>
+                  <form action='../pages/' method='POST'>
+                      <input type='hidden' name='cid' value='{$row['cid']}'>
+                      <button type='submit'>??? Students ???</button>
+                  </form>
+                </div>";
             }
         } 
         else 
@@ -78,40 +86,50 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>InstaQuiz Instructor Courses</title>
+  <title>InstaQuiz</title>
   <link rel="stylesheet" href="../css/body.css">
   <link rel="stylesheet" href="../css/courses_student.css">
   <style>
-    .right-form-top
+    a
     {
-        grid-area: "c";
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-items: center;
-        background-color: transparent;
-    }
-    a 
-    {
-        font-family: 'Courier New', Courier, monospace;
-        background-color: transparent;
-        text-decoration: none;
-        border: none;
-        border-radius: 7px;
-        outline: none;
-        cursor: pointer;
-        padding: 10px;
-        margin: 0;
-        font-size: 18px;
-        font-weight: bold;
-        color: #CCCCCC;
-        transition: background-color 0.3s ease;
-        text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.6);
+      background-color: #05386B;
+      font-size: 28px;
+      font-weight: bold;
+      font-family: 'Courier New', Courier, monospace;
+      text-align: center;
+      text-shadow: 0px 3px 3px rgba(0, 0, 0, 0.6);
+      text-decoration: none;
+      color: #CCCCCC;
+      padding: 0.5em;
+      border-radius: 15px;
+      border-style: solid;
+      border-color: #061A2D;
+      border-width: 5px;
+      transition: background-color 0.3s ease;
     }
     a:hover 
     {
-        background-color: #F64C72;
-        color: #CCCCCC;
+      background-color: red;
+    }
+    .new-course-button
+    {
+      background-color: #05386B;
+      font-size: 28px;
+      font-weight: bold;
+      font-family: 'Courier New', Courier, monospace;
+      text-align: center;
+      text-shadow: 0px 3px 3px rgba(0, 0, 0, 0.6);
+      padding: 0.5em;
+      border-radius: 15px;
+      border-style: solid;
+      border-color: #061A2D;
+      border-width: 5px;
+      transition: background-color 0.3s ease;
+    }
+    .new-course-button:hover 
+    {
+      background-color: green;
+      color: #CCCCCC;
     }
   </style>
 </head>
@@ -125,7 +143,11 @@
             <h2>Edit Course:</h2>
         </div>
         <div class='left-form-bottom'>
-            <?php echo $enrolledResult; ?>
+          <form action='pages/courses_create.php' method='POST'>
+            <input type='hidden' name='cid' value='{$row['cid']}'>
+            <button class='new-course-button' type='submit'>+ New Course</button>
+          </form>
+          <?php echo $enrolledResult; ?>
         </div>
         <div class='right-form-bottom'>
             <?php 

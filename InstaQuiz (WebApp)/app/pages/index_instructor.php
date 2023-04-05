@@ -7,6 +7,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+    <title>InstaQuiz</title>
     <link rel="stylesheet" href="../css/body.css">
     <link rel="stylesheet" href="../css/dashboard.css">
     </style>

@@ -13,7 +13,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title> Add Question </title>
+    <title>InstaQuiz</title>
     <link rel="stylesheet" href="../css/body.css">
     <style>
         .container
@@ -81,7 +81,7 @@
     </style>
 </head>
 <body>
-    <?php include_once('header.php'); ?>
+    <?php include_once('../header.php'); ?>
     <div class='container'>
         <div class='container-form'>
             <h1>Delete Course:</h1>
@@ -90,6 +90,7 @@
                 <input type='hidden' name='cid' value='<?= $cid ?>'>
                 <button class='bad-button' type='submit'>I am totally sure that I want to delete this course.</button>
             </form>
+            <button onclick="window.location.href = '../courses.php';" class='good-button'>I have changed my mind, take me back!</button>
         </div>
     </div>
 </body>

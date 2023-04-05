@@ -34,7 +34,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>InstaQuiz Registration</title>
+        <title>InstaQuiz</title>
         <link rel="stylesheet" href="../css/body.css">
         <style>
             body 
