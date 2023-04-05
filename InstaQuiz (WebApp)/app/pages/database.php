@@ -1,7 +1,6 @@
 <?php
     session_start();
     $pageTitle = "Database";
-    include_once('../header.php');
     require_once('../scripts/config.php');
 ?>
 
@@ -44,6 +43,7 @@
         </style>
     </head>
     <body>
+        <?php include_once('../header.php'); ?>
         <div class="container">
             <h2>Accounts:</h2>
             <table>

@@ -38,7 +38,6 @@
         }
         mysqli_close($conn);
     }
-    include_once('../header.php');
 ?>
 
 <!DOCTYPE html>
@@ -79,6 +78,7 @@
         </style>
     </head>
     <body>
+        <?php include_once('../header.php'); ?>
         <div id="forgot-password-form">
             <form action="forgot_password.php" method="POST">
                 <label for="email"><b>Email</b></label>

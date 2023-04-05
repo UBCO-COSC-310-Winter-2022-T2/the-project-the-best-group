@@ -1,7 +1,6 @@
 <?php
     session_start();
     $pageTitle = "Delete Course Confirmation";
-    include_once('../header.php');
     $userId = (int)$_SESSION['user_id'];
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") 
@@ -82,6 +81,7 @@
     </style>
 </head>
 <body>
+    <?php include_once('header.php'); ?>
     <div class='container'>
         <div class='container-form'>
             <h1>Delete Course:</h1>

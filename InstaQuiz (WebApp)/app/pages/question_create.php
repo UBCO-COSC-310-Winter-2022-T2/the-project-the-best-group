@@ -1,7 +1,6 @@
 <?php
     session_start();
     $pageTitle = "Add Question";
-    include_once('../header.php');
     $userId = $_SESSION['user_id'];
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") 
@@ -114,6 +113,7 @@
     </style>
 </head>
 <body>
+    <?php include_once('../header.php'); ?>
     <div class='container'>
         <div class='question-form'>
             <h1>Create a Question</h1>

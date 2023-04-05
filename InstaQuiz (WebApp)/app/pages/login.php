@@ -31,7 +31,6 @@
 
         mysqli_close($conn);
     }
-    include_once('../header.php');
 ?>
         
 <!DOCTYPE html>
@@ -72,7 +71,7 @@
         </style>
     </head>
     <body>
-        
+        <?php include_once('../header.php'); ?>
         <div id="login-form">
             <form action="login.php" method="POST">
                 <label for="email"><b>Email</b></label>

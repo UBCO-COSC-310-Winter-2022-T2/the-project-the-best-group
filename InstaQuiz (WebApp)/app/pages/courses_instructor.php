@@ -2,10 +2,7 @@
     session_start();
     $pageTitle = "Instructor Courses";
     require_once('scripts/config.php');
-    include_once('header.php');
     $userId = $_SESSION['user_id'];
-    $editResult = '';
-    $courseId = '0';
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') 
     {
@@ -42,7 +39,6 @@
 <?php
   session_start();
   $userId = $_SESSION['user_id'];
-  $enrolledResult = '';
 
   $sql = "SELECT C.cid, C.cname, A.fname, A.lname FROM courses C JOIN accounts A ON C.Iid = A.id WHERE A.id = '$userId'";
   $result = mysqli_query($conn, $sql);
@@ -120,6 +116,7 @@
   </style>
 </head>
 <body>
+  <?php include_once('header.php'); ?>
     <div class="container">
         <div class="left-form-top">
             <h2>Your Courses:</h2>

@@ -2,7 +2,6 @@
   session_start();
   $pageTitle = "Student Courses";
   require_once('scripts/config.php');
-  include_once('header.php');
   $userId = $_SESSION['user_id'];
 
   $searchResult = '';
@@ -75,6 +74,7 @@
   <link rel="stylesheet" href="../css/courses_student.css">
 </head>
 <body>
+    <?php include_once('header.php'); ?>
     <div class="container">
         <div class="left-form-top">
             <form method="get">

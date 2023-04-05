@@ -1,7 +1,6 @@
 <?php
     session_start();
     $pageTitle = "Register";
-    include_once('../header.php');
     require_once('../scripts/config.php');
 
     if($_SERVER["REQUEST_METHOD"] == "POST") 
@@ -71,6 +70,7 @@
         </style>
     </head>
     <body>
+        <?php include_once('../header.php'); ?>
         <div id="register-form">
             <form action="register.php" method="POST">
                 <label for="permission"><b>Permissions</b></label>
