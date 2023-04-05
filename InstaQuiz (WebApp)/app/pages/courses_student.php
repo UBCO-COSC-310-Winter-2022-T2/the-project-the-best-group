@@ -7,7 +7,13 @@
   $searchResult = '';
   $search = isset($_GET['search']) ? $_GET['search'] : '';
 
-  $sql = "SELECT C.cid, C.cname, A.fname, A.lname FROM courses C INNER JOIN accounts A ON C.Iid = A.id WHERE C.cname LIKE '%$search%'";
+  $sql = "SELECT C.cid, C.cname, A.fname, A.lname 
+          FROM courses C 
+          INNER JOIN accounts A ON C.Iid = A.id 
+          LEFT JOIN enrollment E ON C.cid = E.cid AND E.sid = '$userId'
+          WHERE (C.cname LIKE '%$search%' OR CONCAT(A.fname, ' ', A.lname) LIKE '%$search%')
+          AND E.sid IS NULL";
+
   $result = mysqli_query($conn, $sql);
 
   if ($result->num_rows > 0) 
@@ -27,7 +33,7 @@
   } 
   else 
   {
-    $searchResult = '<div class="error-message">There are no courses by that name.</div>';
+    $searchResult = '<div class="error-message">There are no available courses by that name.</div>';
   }
 ?>
 <?php
@@ -72,6 +78,13 @@
   <title>InstaQuiz</title>
   <link rel="stylesheet" href="../css/body.css">
   <link rel="stylesheet" href="../css/courses_student.css">
+  <style>
+    .success-message, .error-message
+    {
+      text-align: center;
+      margin-bottom: 1em;
+    }
+  </style>
 </head>
 <body>
     <?php include_once('header.php'); ?>
@@ -88,11 +101,13 @@
             <h2>Enrolled Courses:</h2>
         </div>
         <div class='left-form-bottom'>
+          <div class='success-message'>Search for courses by title, or instructor's name:<br>(Courses you are already enrolled in have been filtered out.)</div>
             <?php 
               echo $searchResult; 
             ?>
         </div>
         <div class='right-form-bottom'>
+          <div class='success-message'>These are courses you are currently enrolled in:<br>Search for new courses to join on the left!</div>
             <?php 
               if (isset($_SESSION['result_message'])) 
               {
