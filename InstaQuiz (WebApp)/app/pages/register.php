@@ -13,11 +13,15 @@
         $password = $_POST['password'];
 
         // Insert user's information into the account table
-        $sql = "INSERT INTO accounts (permission, fname, lname, email, password) VALUES ({$permission}, '{$fname}', '{$lname}', '{$email}', '{$password}')";
-        $result = mysqli_query($conn, $sql);
+        $sql = "INSERT INTO accounts (permission, fname, lname, email, password) VALUES ({$permission}, '{$fname}', '{$lname}', '{$email}', '{$password}');SELECT rtoken FROM accounts WHERE fname = '$fname' AND lname = '$lname' AND email = '$email' AND password = '$password'";
+        $result = mysqli_multi_query($conn, $sql);
 
         if ($result) 
         {
+            //store rtoken
+            mysqli_next_result($conn);
+            $second_result = mysqli_use_result($conn);
+
             // Display a success message if user was added to the account table
             echo '<div class="success-message">Account created successfully.</div>';
         } 
@@ -26,8 +30,6 @@
             // Display an error message if there was an error adding user to the account table
             echo '<div class="error-message">Error creating account.</div>';
         }
-
-        mysqli_close($conn);
     }
 ?>
 
@@ -41,7 +43,7 @@
             {
                 text-align: center;
             }
-            #register-form 
+            #register-form
             {
                 display: inline-block;
                 margin-top: 50px;
@@ -66,6 +68,12 @@
                 border: none;
                 border-radius: 5px;
                 box-sizing: border-box;
+            }
+            .rtoken
+            {
+                font-size: 18px;
+                margin-top: 15px;
+                text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.6);
             }
         </style>
     </head>
@@ -95,6 +103,19 @@
                 <button type="submit">Register</button>
                 <button onclick="window.location.href = '../index.php';">Home</button>
             </form>
+            <?php
+                if ($second_result) 
+                {
+                    $row = mysqli_fetch_assoc($second_result);
+                    $rtoken = $row["rtoken"];
+                    echo "<h3>Here is your Recovery Token!</h3><h3>Keep it written down in case you forget your password:</h3><h3>$rtoken</h3>";
+                }
+                else if ($result)
+                {
+                    echo '<div class="error-message">Sorry, error occurred while creating recovery token.</div>';
+                }
+                mysqli_close($conn);
+            ?>
         </div>
     </body>
 </html>
