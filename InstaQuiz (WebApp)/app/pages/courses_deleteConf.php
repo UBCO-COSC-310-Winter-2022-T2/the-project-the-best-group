@@ -84,8 +84,10 @@
     <?php include_once('../header.php'); ?>
     <div class='container'>
         <div class='container-form'>
-            <h1>Delete Course:</h1>
-            <h2><?php echo $cname."?" ?></h2>
+            <div class='container-form-row'>
+                <h1>Delete Course:</h1>
+                <h2><?php echo $cname."?" ?></h2>
+            </div>
             <form action='../scripts/courses_delete.php' method='POST'>
                 <input type='hidden' name='cid' value='<?= $cid ?>'>
                 <button class='bad-button' type='submit'>I am totally sure that I want to delete this course.</button>

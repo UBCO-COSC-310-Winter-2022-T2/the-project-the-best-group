@@ -23,6 +23,7 @@
                       <input type='hidden' name='cid' value='{$row['cid']}'>
                       <button class='good-button' type='submit'>??? Start Class ???</button>
                   </form>
+                  <br>
                   <form action='../pages/question_create.php' method='POST'>
                       <input type='hidden' name='cid' value='{$row['cid']}'>
                       <button type='submit'>Questions</button>
@@ -110,6 +111,10 @@
     a:hover 
     {
       background-color: red;
+    }
+    button
+    {
+      font-size: 28px;
     }
     .new-course-button
     {

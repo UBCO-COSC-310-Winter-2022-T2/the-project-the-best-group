@@ -11,9 +11,11 @@
         $lname = $_POST['lname'];
         $email = $_POST['email'];
         $password = $_POST['password'];
+        $hash = password_hash($password, PASSWORD_DEFAULT);
 
         // Insert user's information into the account table
-        $sql = "INSERT INTO accounts (permission, fname, lname, email, password) VALUES ({$permission}, '{$fname}', '{$lname}', '{$email}', '{$password}');SELECT rtoken FROM accounts WHERE fname = '$fname' AND lname = '$lname' AND email = '$email' AND password = '$password'";
+        $sql = "INSERT INTO accounts (permission, fname, lname, email, password) VALUES ({$permission}, '{$fname}', '{$lname}', '{$email}', '{$hash}');
+                SELECT rtoken FROM accounts WHERE fname = '$fname' AND lname = '$lname' AND email = '$email' AND password = '$hash'";
         $result = mysqli_multi_query($conn, $sql);
 
         if ($result) 
@@ -68,6 +70,10 @@
                 border: none;
                 border-radius: 5px;
                 box-sizing: border-box;
+            }
+            h3
+            {
+                color: green;
             }
             .rtoken
             {

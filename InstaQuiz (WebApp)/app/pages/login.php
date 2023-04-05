@@ -10,16 +10,13 @@
         $password = $_POST['password'];
 
         // Retrieve user's information from the account table
-        $sql = "SELECT id, permission FROM accounts WHERE email = '$email' AND password = '$password'";
+        $sql = "SELECT id, permission, password FROM accounts WHERE email = '$email'";
         $result = mysqli_query($conn, $sql);
         $row = mysqli_fetch_assoc($result);
 
-        // Check if user's credentials are correct
-        if (mysqli_num_rows($result) == 1) 
-        {
-            $_SESSION['user_id'] = $row["id"];
-            $_SESSION['user_permission'] = $row["permission"];
-
+        if (mysqli_num_rows($result) == 1 && password_verify($password, $row['password'])) {
+            $_SESSION['user_id'] = $row['id'];
+            $_SESSION['user_permission'] = $row['permission'];
             header("Location: ../index.php");
             exit;
         } 
@@ -32,6 +29,7 @@
         mysqli_close($conn);
     }
 ?>
+
         
 <!DOCTYPE html>
 <html>

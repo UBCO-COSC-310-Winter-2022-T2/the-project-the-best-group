@@ -12,6 +12,8 @@
         <style>
             table 
             {
+                justify-self: flex-start;
+                align-self: center;
                 border-collapse: collapse;
                 border: 3px solid #061A2D;
                 width: 100%;
@@ -36,9 +38,14 @@
             .container 
             {
                 text-align: center;
-                max-width: 800px;
-                margin: 0 auto;
-                padding: 20px;
+                display: flex;
+                flex-direction: column;
+                justify-self: flex-start;
+                align-self: center;
+                justify-items: flex-start;
+                align-items: center;
+                justify-content: flex-start;
+                align-content: center;
             }
         </style>
     </head>
@@ -55,6 +62,7 @@
                         <th>LAST NAME</th>
                         <th>EMAIL</th>
                         <th>PASSWORD</th>
+                        <th>RECOVERY TOKEN</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -73,6 +81,7 @@
                                 echo "<td>" . $row["lname"] . "</td>";
                                 echo "<td>" . $row["email"] . "</td>";
                                 echo "<td>" . $row["password"] . "</td>";
+                                echo "<td>" . $row["rtoken"] . "</td>";
                                 echo "</tr>";
                             }
                         } 
