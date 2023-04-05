@@ -55,9 +55,10 @@ VALUES (1, 'Al', 'Anderson', 'alanderson@mail.com', 'alpw');
 /*------------------------------ COURSES -------------------------------------------------*/
 
 CREATE TABLE courses (
-    cid INT AUTO_INCREMENT PRIMARY KEY,
+    cid INT AUTO_INCREMENT,
     cname VARCHAR(255) NOT NULL,
-    Iid int NOT NULL -- id of instructor
+    Iid int NOT NULL, -- id of instructor
+    PRIMARY KEY (cid)
 );
 
 -- course (id auto set to 1) is "Computer Human Interaction", it is taught by instructor Al Anderson (account id 6)
@@ -70,7 +71,7 @@ VALUES ('Machine Architecture', 4);
 
 -- course (id auto set to 3) is "Data Structures", it is taught by instructor Jane Doe (account id 2)
 INSERT INTO courses (cname, Iid)
-VALUES ('Data Structures', 4);
+VALUES ('Data Structures', 2);
 
 -- course (id auto set to 4) is "Intro To Database Systems", it is taught by instructor Harold Smith (account id 4)
 INSERT INTO courses (cname, Iid)
@@ -83,14 +84,16 @@ VALUES ('Software Engineering', 2);
 /*------------------------------ QUESTIONS -------------------------------------------------*/
 
 CREATE TABLE questions (
-  qid INT AUTO_INCREMENT PRIMARY KEY,
+  qid INT AUTO_INCREMENT,
   cid INT NOT NULL,
   prompt VARCHAR(255),
   a VARCHAR(255),
   b VARCHAR(255),
   c VARCHAR(255),
   d VARCHAR(255),
-  answer CHAR(1)
+  answer CHAR(1),
+  FOREIGN KEY (cid) REFERENCES courses(cid) ON DELETE CASCADE,
+  PRIMARY KEY (qid)
 );
 
 -- starter code questions are just for example, not actually relavent to the course topics
@@ -136,9 +139,8 @@ VALUES
 CREATE TABLE enrollment (
   cid INT NOT NULL,
   sid INT NOT NULL,
-  PRIMARY KEY (cid, sid),
-  FOREIGN KEY (cid) REFERENCES courses(cid),
-  FOREIGN KEY (sid) REFERENCES accounts(id)
+  FOREIGN KEY (cid) REFERENCES courses(cid) ON DELETE CASCADE,
+  FOREIGN KEY (sid) REFERENCES accounts(id) ON DELETE CASCADE
 );
 
 -- student 1 (John Doe) is enrolled in course 1 and 2
@@ -156,11 +158,14 @@ VALUES (5,3), (5,4), (5,5);
 /*-------------------------- SCORES -----------------------------------------------*/
 
 CREATE TABLE scores (
-  scoreid INT AUTO_INCREMENT PRIMARY KEY, -- unique identifier for score entries so that we can delete rows and edit this table
+  scoreid INT AUTO_INCREMENT, -- unique identifier for score entries so that we can delete rows and edit this table
   sid INT,
   cid INT,
   totalCorrect INT, -- need a method to incremented everytime a student answers a question correctly (use sid)
-  totalAsked INT -- need a method to increment everytime a course posts a question (use cid)
+  totalAsked INT, -- need a method to increment everytime a course posts a question (use cid)
+  FOREIGN KEY (cid) REFERENCES courses(cid) ON DELETE CASCADE,
+  FOREIGN KEY (sid) REFERENCES accounts(id) ON DELETE CASCADE,
+  PRIMARY KEY (scoreid)
 );
 
 -- John Doe has answered 2 questions correct out of 4 in course 1 and is 1 for 2 in course 2
