@@ -139,6 +139,7 @@ VALUES
 CREATE TABLE enrollment (
   cid INT NOT NULL,
   sid INT NOT NULL,
+  CONSTRAINT unique_entry UNIQUE (cid, sid),
   FOREIGN KEY (cid) REFERENCES courses(cid) ON DELETE CASCADE,
   FOREIGN KEY (sid) REFERENCES accounts(id) ON DELETE CASCADE
 );
