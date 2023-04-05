@@ -1,6 +1,5 @@
 <?php
     session_start();
-    include_once('header.php');
     require_once('scripts/config.php');
 
     $user_id = $_SESSION['user_id'];
@@ -8,14 +7,14 @@
 
     if($user_permission == "0")
     {
-        include_once('component/header_student.php');
+        $pageTitle = "Student Courses";
+        include_once('pages/courses_student.php');
     }
     else if ($user_permission == "1")
     {
-        include_once('component/header_instructor.php');
+        $pageTitle = "Instructor Courses";
+        include_once('pages/courses_instructor.php');
     }
-    else
-    {
-        include_once('component/header_default.php');
-    }
+
+    include_once('header.php');
 ?>

@@ -1,0 +1,122 @@
+.container 
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 5em auto;
+    grid-template-areas: 
+        "a b"
+        "c d";
+    grid-column-gap: 7.5em;
+    margin-left: 7.5em; 
+    margin-right: 7.5em; 
+    align-items: center;
+    justify-items: center; 
+}
+.left-form-top 
+{
+    grid-area: "a";
+    display: grid;
+    align-items: center;
+    justify-items: center; 
+    background-color: transparent;
+}
+.right-form-top
+{
+    grid-area: "c";
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    background-color: transparent;
+}
+.left-form-bottom 
+{
+    grid-area: "b";
+    align-self: flex-start;
+    justify-self: stretch;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+    align-content: center;
+    justify-content: flex-start;
+    padding: 1em;
+    background-color: #07223E;
+    border-radius: 15px;
+    border-style: solid;
+    border-color: #061A2D;
+    border-width: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+.right-form-bottom
+{
+    grid-area: "d";
+    align-self: flex-start;
+    justify-self: stretch;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: flex-start;
+    align-content: center;
+    justify-content: flex-start;
+    padding: 1em;
+    background-color: #07223E;
+    border-radius: 15px;
+    border-style: solid;
+    border-color: #061A2D;
+    border-width: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+.search-container 
+{
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    grid-template-rows: 1fr;
+    grid-gap: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;     
+    align-self: stretch;
+    justify-self: stretch;
+    align-items: center;
+    justify-items: center;
+    background-color: #07223E;
+    border-radius: 15px;
+    border: 2.5px solid #061A2D;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+    box-sizing: border-box;
+}
+.search-container input[type="text"] 
+{
+    display: grid;
+    grid-area: 1 / 1 / 1 / 1;
+    align-self: stretch;
+    justify-self: stretch;
+    align-items: center;
+    justify-items: center;
+    background-color: white;
+    border-radius: 15px;
+    color: #CCCCCC;
+    font-size: 18px;
+    font-weight: bold;
+    outline: none;
+}
+.course-item
+{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 50px 40px 1fr;
+    grid-gap: 5px;
+    align-items: center;
+    justify-items: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 66%;
+    padding: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #CCCCCC;
+    background-color: #05386B;
+    border-style: solid;
+    border-color: #061A2D;
+    border-width: 5px;
+    border-radius: 15px;
+}

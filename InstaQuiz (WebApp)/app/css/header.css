@@ -1,0 +1,78 @@
+body 
+{
+    color: #CCCCCC;
+    background-color: #05386B;
+    background-image: url("https://www.transparenttextures.com/patterns/inspiration-geometry.png");
+    font-size: 18px;
+    font-family: 'Courier New', Courier, monospace;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.6);
+}
+header 
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #07223E;
+    font-size: 18px;
+    font-weight: bold;
+    color: #CCCCCC;
+    border-style: solid;
+    border-color: #061A2D;
+    border-width: 5px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+header a 
+{
+    font-family: 'Courier New', Courier, monospace;
+    background-color: transparent;
+    text-decoration: none;
+    border: none;
+    border-radius: 7px;
+    outline: none;
+    cursor: pointer;
+    padding: 10px;
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+    color: #CCCCCC;
+    transition: background-color 0.3s ease;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.6);
+}
+header a:hover 
+{
+    background-color: #F64C72;
+    color: #CCCCCC;
+}
+.logo 
+{
+    background-color: transparent;
+    text-decoration: none;
+    border: none;
+    border-radius: 7px;
+    outline: none;
+    cursor: pointer;
+    padding: 10px;
+    margin: 0;
+    font-size: 28px;
+    font-weight: bold;
+    color: #CCCCCC;
+    transition: background-color 0.3s ease;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.6);
+}
+.logo:hover 
+{
+    background-color: #F64C72;
+    color: #CCCCCC;
+}
+.title 
+{
+    text-align: center;
+    text-decoration: underline #CCCCCC 2px;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.6);
+    font-size: 18px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    margin-left: 2.75%;
+}
