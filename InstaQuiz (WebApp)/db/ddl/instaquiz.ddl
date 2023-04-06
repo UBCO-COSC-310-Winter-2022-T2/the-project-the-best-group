@@ -57,29 +57,31 @@ VALUES (1, 'Al', 'Anderson', 'alanderson@mail.com', 'alpw');
 CREATE TABLE courses (
     cid INT AUTO_INCREMENT,
     cname VARCHAR(255) NOT NULL,
-    Iid int NOT NULL, -- id of instructor
+    Iid INT NOT NULL, -- id of instructor
+    sessions_held INT DEFAULT (0), -- will be incremented everytime a live session happens
+    live BIT DEFAULT (0), -- 0 = false, course not active, 1 = true, course is active
     PRIMARY KEY (cid)
 );
 
 -- course (id auto set to 1) is "Computer Human Interaction", it is taught by instructor Al Anderson (account id 6)
-INSERT INTO courses (cname, Iid)
-VALUES ('Computer Human Interaction', 6);
+INSERT INTO courses (cname, Iid, sessions_held)
+VALUES ('Computer Human Interaction', 6, 1);
 
 -- course (id auto set to 2) is "Machine Architecture", it is taught by instructor Harold Smith (account id 4)
-INSERT INTO courses (cname, Iid)
-VALUES ('Machine Architecture', 4);
+INSERT INTO courses (cname, Iid, sessions_held)
+VALUES ('Machine Architecture', 4, 1);
 
 -- course (id auto set to 3) is "Data Structures", it is taught by instructor Jane Doe (account id 2)
-INSERT INTO courses (cname, Iid)
-VALUES ('Data Structures', 2);
+INSERT INTO courses (cname, Iid, sessions_held)
+VALUES ('Data Structures', 2, 1);
 
 -- course (id auto set to 4) is "Intro To Database Systems", it is taught by instructor Harold Smith (account id 4)
-INSERT INTO courses (cname, Iid)
-VALUES ('Intro To Database Systems', 4);
+INSERT INTO courses (cname, Iid, sessions_held)
+VALUES ('Intro To Database Systems', 4, 1);
 
 -- course (id auto set to 5) is "Software Engineering", it is taught by instructor Jane Doe (account id 2)
-INSERT INTO courses (cname, Iid)
-VALUES ('Software Engineering', 2);
+INSERT INTO courses (cname, Iid, sessions_held)
+VALUES ('Software Engineering', 2, 2);
 
 /*------------------------------ QUESTIONS -------------------------------------------------*/
 
@@ -139,22 +141,24 @@ VALUES
 CREATE TABLE enrollment (
   cid INT NOT NULL,
   sid INT NOT NULL,
+  student_attendance INT DEFAULT (0),
+  sessions_held INT DEFAULT (0),
   CONSTRAINT unique_entry UNIQUE (cid, sid),
   FOREIGN KEY (cid) REFERENCES courses(cid) ON DELETE CASCADE,
   FOREIGN KEY (sid) REFERENCES accounts(id) ON DELETE CASCADE
 );
 
--- student 1 (John Doe) is enrolled in course 1 and 2
-INSERT INTO enrollment (sid, cid)
-VALUES (1,1), (1,2);
+-- student 1 (John Doe) is enrolled in course 1 and 2, he has attended 1/1 sessions in both
+INSERT INTO enrollment (sid, cid, student_attendance, sessions_held)
+VALUES (1,1,1,1), (1,2,1,1);
 
--- student 3 (Henry Smith) is enrolled in course 2 and 4
-INSERT INTO enrollment (sid, cid)
-VALUES (3,2), (3,4);
+-- student 3 (Henry Smith) is enrolled in course 2 and 4, he has attended 1/1 sessions in both
+INSERT INTO enrollment (sid, cid, student_attendance, sessions_held)
+VALUES (3,2,1,1), (3,4,1,1);
 
--- student 5 (Greg Green) is enrolled in course 3 4 and 5
-INSERT INTO enrollment (sid, cid)
-VALUES (5,3), (5,4), (5,5);
+-- student 5 (Greg Green) is enrolled in course 3 4 and 5, he has attended 1/1 sessions in course 3 and 4 and 2/2 sessions in course 5
+INSERT INTO enrollment (sid, cid, student_attendance, sessions_held)
+VALUES (5,3,1,1), (5,4,1,1), (5,5,2,2);
 
 /*-------------------------- SCORES -----------------------------------------------*/
 
@@ -180,3 +184,4 @@ VALUES (5, 3, 3, 3), (5, 4, 3, 3), (5, 5, 4, 4);
 -- Henry Smith has answered all 3 questions correct in course 4 and 1 out of 2 correct in course 2.
 INSERT INTO scores (sid, cid, totalCorrect, totalAsked)
 VALUES (3, 4, 3, 3), (3, 2, 1, 2);
+
