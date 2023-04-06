@@ -84,6 +84,25 @@
       text-align: center;
       margin-bottom: 1em;
     }
+    .right-form-bottom
+    {
+      grid-area: "d";
+      align-self: flex-start;
+      justify-self: stretch;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-items: flex-start;
+      align-content: center;
+      justify-content: flex-start;
+      padding: 1em;
+      background-color: #07223E;
+      border-radius: 15px;
+      border-style: solid;
+      border-color: #061A2D;
+      border-width: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
   </style>
 </head>
 <body>
