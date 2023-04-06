@@ -7,12 +7,12 @@
     if ($_SERVER['REQUEST_METHOD'] == 'POST') 
     {
         $cid = $_POST['cid'];
-        $prompt = $_POST["prompt"];
-        $a = $_POST["a"];
-        $b = $_POST["b"];
-        $c = $_POST["c"];
-        $d = $_POST["d"];
-        $answer = $_POST["answer"];
+        $prompt = mysqli_real_escape_string($conn, $_POST["prompt"]);
+        $a = mysqli_real_escape_string($conn, $_POST["a"]);
+        $b = mysqli_real_escape_string($conn, $_POST["b"]);
+        $c = mysqli_real_escape_string($conn, $_POST["c"]);
+        $d = mysqli_real_escape_string($conn, $_POST["d"]);
+        $answer = mysqli_real_escape_string($conn, $_POST["answer"]);
         
         $sql = "INSERT INTO questions (cid, prompt, a, b, c, d, answer) VALUES ('$cid', '$prompt', '$a', '$b', '$c', '$d', '$answer')";
         if (mysqli_query($conn, $sql)) 
