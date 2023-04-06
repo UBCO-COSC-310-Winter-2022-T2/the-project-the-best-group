@@ -1,40 +1,9 @@
 <?php
     session_start();
     $pageTitle = "Register";
-    require_once('../scripts/config.php');
-
-    if($_SERVER["REQUEST_METHOD"] == "POST") 
-    {
-        // Retrieve user's credentials from the POST request
-        $permission = $_POST['permission'];
-        $fname = $_POST['fname'];
-        $lname = $_POST['lname'];
-        $email = $_POST['email'];
-        $password = $_POST['password'];
-        $hash = password_hash($password, PASSWORD_DEFAULT);
-
-        // Insert user's information into the account table
-        $sql = "INSERT INTO accounts (permission, fname, lname, email, password) VALUES ({$permission}, '{$fname}', '{$lname}', '{$email}', '{$hash}');
-                SELECT rtoken FROM accounts WHERE fname = '$fname' AND lname = '$lname' AND email = '$email' AND password = '$hash'";
-        $result = mysqli_multi_query($conn, $sql);
-
-        if ($result) 
-        {
-            //store rtoken
-            mysqli_next_result($conn);
-            $second_result = mysqli_use_result($conn);
-
-            // Display a success message if user was added to the account table
-            echo '<div class="success-message">Account created successfully.</div>';
-        } 
-        else 
-        {
-            // Display an error message if there was an error adding user to the account table
-            echo '<div class="error-message">Error creating account.</div>';
-        }
-    }
+    echo $_SESSION['result_message_0'];
+    unset($_SESSION['result_message_0']);
 ?>
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -86,7 +55,7 @@
     <body>
         <?php include_once('../header.php'); ?>
         <div id="register-form">
-            <form action="register.php" method="POST">
+            <form action="../scripts/register_script.php" method="POST">
                 <label for="permission"><b>Permissions</b></label>
                 <select name="permission">
                     <option value="" selected disabled>Select Permission Level (Student or Instructor)</option>
@@ -110,17 +79,8 @@
                 <button onclick="window.location.href = '../index.php';">Home</button>
             </form>
             <?php
-                if ($second_result) 
-                {
-                    $row = mysqli_fetch_assoc($second_result);
-                    $rtoken = $row["rtoken"];
-                    echo "<h3>Here is your Recovery Token!</h3><h3>Keep it written down in case you forget your password:</h3><h3>$rtoken</h3>";
-                }
-                else if ($result)
-                {
-                    echo '<div class="error-message">Sorry, error occurred while creating recovery token.</div>';
-                }
-                mysqli_close($conn);
+                echo $_SESSION['result_message_1'];
+                unset($_SESSION['result_message_1']);
             ?>
         </div>
     </body>
