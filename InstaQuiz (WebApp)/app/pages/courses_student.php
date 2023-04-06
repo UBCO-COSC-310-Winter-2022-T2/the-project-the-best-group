@@ -53,8 +53,9 @@
         <h2>{$row['cname']}</h2>
         <p>Instructor: {$row['fname']} {$row['lname']}</p>
         <button class='good-button' type='submit'>Join???</button>
-        <form action='../scripts/student_unenroll.php' method='POST'>
+        <form action='../pages/courses_unenrollConf.php' method='POST'>
           <input type='hidden' name='cid' value='{$row['cid']}'>
+          <input type='hidden' name='cname' value='{$row['cname']}'>
           <button class='bad-button' type='submit'>Unenroll</button>
         </form>
       </div>";
