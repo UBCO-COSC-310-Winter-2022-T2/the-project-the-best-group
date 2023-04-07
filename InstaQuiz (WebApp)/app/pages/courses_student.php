@@ -1,7 +1,7 @@
 <?php
   session_start();
   $pageTitle = "Student Courses";
-  require_once('scripts/config.php');
+  require_once('../scripts/config.php');
   $userId = $_SESSION['user_id'];
 
   $searchResult = '';
@@ -33,7 +33,7 @@
   } 
   else 
   {
-    $searchResult = '<div class="error-message">There are no available courses by that name.</div>';
+    $searchResult = '<div class="error-message">There are no available courses.</div>';
   }
 ?>
 <?php
@@ -87,7 +87,7 @@
   </style>
 </head>
 <body>
-    <?php include_once('header.php'); ?>
+    <?php include_once('../header.php'); ?>
     <div class="container">
         <div class="left-form-top">
             <form method="get">

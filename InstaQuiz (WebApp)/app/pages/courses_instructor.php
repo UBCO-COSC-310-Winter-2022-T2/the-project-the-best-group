@@ -1,39 +1,37 @@
 <?php
     session_start();
     $pageTitle = "Instructor Courses";
-    require_once('scripts/config.php');
+    require_once('../scripts/config.php');
     $userId = $_SESSION['user_id'];
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') 
     {
-        $courseId = $_POST['cid'];
-        $sql = "SELECT C.cid, C.cname, A.fname, A.lname FROM courses C JOIN accounts A ON C.Iid = A.id WHERE C.cid = ".$courseId." AND A.id = ".$userId; 
+        $_SESSION['cid'] = $_POST['cid'];
+        $cid = $_SESSION['cid'];
+        $sql = "SELECT C.cid, C.cname, A.fname, A.lname FROM courses C JOIN accounts A ON C.Iid = A.id WHERE C.cid = ".$cid." AND A.id = ".$userId; 
         $result = mysqli_query($conn, $sql);
 
         if ($result->num_rows > 0) 
         {
-            while($row = $result->fetch_assoc()) 
-            {
-                $editResult .= "
-                <a href='../courses.php'>- Clear Course</a> 
-                <div class='course-item'>
-                  <h2>{$row['cname']}</h2>
-                  <p>Instructor: {$row['fname']} {$row['lname']}</p>
-                  <form action='../pages/' method='POST'>
-                      <input type='hidden' name='cid' value='{$row['cid']}'>
-                      <button class='good-button' type='submit'>??? Start Class ???</button>
-                  </form>
-                  <br>
-                  <form action='../pages/question_create.php' method='POST'>
-                      <input type='hidden' name='cid' value='{$row['cid']}'>
-                      <button type='submit'>Questions</button>
-                  </form>
-                  <form action='../pages/' method='POST'>
-                      <input type='hidden' name='cid' value='{$row['cid']}'>
-                      <button type='submit'>??? Students ???</button>
-                  </form>
-                </div>";
-            }
+          while($row = $result->fetch_assoc()) 
+          {
+            $editResult .= "
+            <a href='../courses.php'>- Clear Course</a> 
+            <div class='course-item'>
+              <h2>{$row['cname']}</h2>
+              <p>Instructor: {$row['fname']} {$row['lname']}</p>
+              <form action=''>
+                  <button>??? Start Class ???</button>
+              </form>
+              <br>
+              <form action='questions.php'>
+                  <button>Questions</button>
+              </form>
+              <form action='students.php'>
+                  <button>Students</button>
+              </form>
+            </div>";
+          }
         } 
         else 
         {
@@ -60,14 +58,14 @@
       <div class='course-item'>
         <h2>{$row['cname']}</h2>
         <p>Instructor: {$row['fname']} {$row['lname']}</p>
-        <form action='../courses.php' method='POST'>
+        <form action='courses_instructor.php' method='POST'>
           <input type='hidden' name='cid' value='{$row['cid']}'>
-          <button class='good-button' type='submit'>Edit</button>
+          <button class='good-button' type='submit'>View Options</button>
         </form>
-        <form action='../pages/courses_deleteConf.php' method='POST'>
+        <form action='courses_deleteConf.php' method='POST'>
           <input type='hidden' name='cid' value='{$row['cid']}'>
           <input type='hidden' name='cname' value='{$row['cname']}'>
-          <button class='bad-button' type='submit'>Delete</button>
+          <button class='bad-button' type='submit'>Delete Course</button>
         </form>
       </div>";
     }
@@ -139,7 +137,7 @@
   </style>
 </head>
 <body>
-  <?php include_once('header.php'); ?>
+  <?php include_once('../header.php'); ?>
     <div class="container">
         <div class="left-form-top">
             <h2>Your Courses:</h2>
@@ -148,7 +146,7 @@
             <h2>Edit Course:</h2>
         </div>
         <div class='left-form-bottom'>
-          <form action='pages/courses_create.php' method='POST'>
+          <form action='courses_create.php' method='POST'>
             <input type='hidden' name='cid' value='{$row['cid']}'>
             <button class='new-course-button' type='submit'>+ New Course</button>
           </form>

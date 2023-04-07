@@ -18,22 +18,22 @@
 </head>
 <body>
     <?php include_once('../header.php'); ?>
-    <div class='container'>
-        <div class='container-form'>
-            <div class='container-row'>
+    <div class='container-create'>
+        <div class='container-create-form'>
+            <div class='container-create-row'>
                 <h1>Course Information:</h1>
             </div>
-            <form method="POST" action="../scripts/courses_add.php" id="container-form">
-                <div class='container-row'>
+            <form method="POST" action="../scripts/courses_add.php" id="container-create-form">
+                <div class='containe-creater-row'>
                     <label for="cname">Course Name:</label>
                     <input type="text" id="cname" name="cname">
                 </div>
-                <div class='container-row'>
+                <div class='container-create-row'>
                     <input type='hidden' name='cid' value='<?= $cid ?>'>
                     <button class='good-button' type='submit'>Create</button>
                 </div>
             </form>
-            <div class='container-row'>
+            <div class='container-create-row'>
                 <button onclick="window.location.href='../courses.php'">Back</button>
             </div>
         </div>
