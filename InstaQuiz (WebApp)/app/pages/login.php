@@ -1,35 +1,7 @@
 <?php
     session_start();
     $pageTitle = "Login";
-    require_once('../scripts/config.php');
-
-    if($_SERVER["REQUEST_METHOD"] == "POST") 
-    {
-        // Retrieve user's credentials from the POST request
-        $email = $_POST['email'];
-        $password = $_POST['password'];
-
-        // Retrieve user's information from the account table
-        $sql = "SELECT id, permission, password FROM accounts WHERE email = '$email'";
-        $result = mysqli_query($conn, $sql);
-        $row = mysqli_fetch_assoc($result);
-
-        if (mysqli_num_rows($result) == 1 && password_verify($password, $row['password'])) {
-            $_SESSION['user_id'] = $row['id'];
-            $_SESSION['user_permission'] = $row['permission'];
-            header("Location: ../index.php");
-            exit;
-        } 
-        else 
-        {
-            // Display an error message if user's credentials are incorrect
-            echo '<div class="error-message">Invalid email or password.</div>';
-        }
-
-        mysqli_close($conn);
-    }
 ?>
-
         
 <!DOCTYPE html>
 <html>
@@ -71,7 +43,7 @@
     <body>
         <?php include_once('../header.php'); ?>
         <div id="login-form">
-            <form action="login.php" method="POST">
+            <form action="login_script.php" method="POST">
                 <label for="email"><b>Email</b></label>
                 <input type="text" placeholder="Enter Email" name="email" required>
 

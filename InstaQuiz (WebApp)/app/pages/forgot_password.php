@@ -1,44 +1,8 @@
 <?php
     session_start();
     $pageTitle = 'Forgot Password';
-    require_once('../scripts/config.php');
-
-    if($_SERVER["REQUEST_METHOD"] == "POST") 
-    {
-        // Retrieve user's credentials from the POST request
-        $email = $_POST['email'];
-        $rtoken = $_POST['rtoken'];
-        $newpassword = $_POST['newpassword'];
-        $hash = password_hash($newpassword,PASSWORD_DEFAULT);
-
-        // Retrieve user's information from the account table
-        $sql = "SELECT * FROM accounts WHERE email = '$email' AND rtoken = '$rtoken'";
-        $result = mysqli_query($conn, $sql);
-        $row = mysqli_fetch_assoc($result);
-
-        // Check if user's credentials are correct
-        if (mysqli_num_rows($result) == 1) 
-        {
-            $sqlresetpassword = "UPDATE accounts SET password = '$hash' WHERE email = '$email'";
-            $result = mysqli_query($conn,$sqlresetpassword);
-            
-            //message if password has been successfully reset and error message if not
-            if($result)
-            {
-                echo '<div class="success-message">Password Reset Successfully.</div>';
-            }
-            else
-            {
-                echo '<div class-"error-message">Password Reset Unsuccessful.</div>';
-            }
-        } 
-        else 
-        {
-            // Display an error message if user's credentials are incorrect
-            echo '<div class="error-message">Email or Recovery Token Invalid</div>';
-        }
-        mysqli_close($conn);
-    }
+    echo $_SESSION['result_message'];
+    unset($_SESSION['result_message']);
 ?>
 
 <!DOCTYPE html>
@@ -81,7 +45,7 @@
     <body>
         <?php include_once('../header.php'); ?>
         <div id="forgot-password-form">
-            <form action="forgot_password.php" method="POST">
+            <form action="forgot_password_script.php" method="POST">
                 <label for="email"><b>Email</b></label>
                 <input type="text" placeholder="Enter Email" name="email" required>
 

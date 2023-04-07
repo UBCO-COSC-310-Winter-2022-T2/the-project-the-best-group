@@ -21,8 +21,8 @@
             <div class='student-item'>
                 <h1>{$row['fname']} {$row['lname']}</h1>
                 <hr width='100%' color='#061A2D' style='border: 2px solid #061A2D;'>
-                <h2 class='$colorA'>Student ID: {$row['id']}</h2>
-                <h2 class='$colorB'>Email Address: {$row['email']}</h2>
+                <h2>Student ID: {$row['id']}</h2>
+                <h2>Email Address: {$row['email']}</h2>
                 <div class='question-button'>
                     <form action=''>
                         <button class='green-button' type='submit'>??? View Details ???</button>
