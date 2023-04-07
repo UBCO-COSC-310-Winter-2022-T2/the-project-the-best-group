@@ -21,7 +21,7 @@
         {
             $sqlresetpassword = "UPDATE accounts SET password = '$hash' WHERE email = '$email'";
             $result = mysqli_query($conn,$sqlresetpassword);
-            
+
             //message if password has been successfully reset and error message if not
             if($result)
             {

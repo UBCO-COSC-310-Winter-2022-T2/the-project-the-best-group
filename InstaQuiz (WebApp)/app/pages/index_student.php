@@ -1,7 +1,7 @@
 <?php
     session_start();
     $pageTitle = 'Student Dashboard';
-    require_once('scripts/config.php');
+    require_once('../scripts/config.php');
 ?>
 
 <!DOCTYPE html>
@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="../css/dashboard.css">
     </head>
     <body>
-        <?php include_once('header.php'); ?>
+        <?php include_once('../header.php'); ?>
         <div class='container'>
             <div class='container-nav-form'>
                 <button onclick="window.location.href = '../courses.php';">Courses</button>

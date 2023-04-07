@@ -1,0 +1,137 @@
+body 
+{
+    color: #CCCCCC;
+    background-color: #05386B;
+    background-image: url("https://www.transparenttextures.com/patterns/inspiration-geometry.png");
+    font-size: 28px;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: 0px 5px 5px rgba(0, 0, 0, 0.6);     
+}
+h1
+{
+    margin: 0;
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+    text-shadow: 0px 5px 5px rgba(0, 0, 0, 0.6); 
+}
+h2
+{
+    margin: 0;
+    font-size: 18px;
+    text-align: center;
+    text-shadow: 0px 5px 5px rgba(0, 0, 0, 0.6); 
+}
+.container-page
+{
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    grid-template-rows: 5em auto;
+    grid-template-areas: "a b" "c d";
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: center;
+    align-items: start;
+}
+.container-left-header
+{
+    grid-area: a;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    margin-top: 1em;
+    margin-left: 5em;
+    margin-right: 5em;
+    font-size: 28px;
+    font-weight: bold;
+        
+}
+.container-right-header
+{
+    grid-area: b;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    margin-top: 1em;
+    margin-left: 5em;
+    margin-right: 5em;
+    font-size: 28px;
+    font-weight: bold;
+}
+.container-left-body
+{
+    grid-area: c;
+    margin-top: 1em;
+    margin-left: 5em;
+    margin-right: 5em;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: center;
+    background-color: #07223E;
+    border-radius: 15px;
+    border: 5px solid #061A2D;
+    height: auto;
+}
+.container-right-body
+{
+    grid-area: d;
+    margin-top: 1em;
+    margin-left: 5em;
+    margin-right: 5em;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: center;
+    background-color: #07223E;
+    border-radius: 15px;
+    border: 5px solid #061A2D;
+    height: auto;
+}
+button
+{
+    color: white;
+    background-color: transparent;
+    cursor: pointer;
+    outline: none;
+    padding: 0.5em;
+    font-size: 28px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    text-decoration: none;
+    border: none;
+    border-radius: 15px;
+    transition: background-color 0.3s ease;
+}
+.pink-button:hover 
+{
+    background-color: #F64C72;
+}
+.green-button:hover 
+{
+    background-color: green;
+}
+.red-button:hover 
+{
+    background-color: red;
+}
+.red-message
+{
+    color: red;
+    font-size: 24px;
+    margin: 0;
+    text-shadow: 0px 3px 3px rgba(0, 0, 0, 0.6);
+}
+.green-message
+{
+    color: green;
+    font-size: 24px;
+    margin: 0;
+    text-shadow: 0px 3px 3px rgba(0, 0, 0, 0.6);
+}

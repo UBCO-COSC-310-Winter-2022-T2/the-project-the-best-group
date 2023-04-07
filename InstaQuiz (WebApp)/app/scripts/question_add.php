@@ -19,21 +19,21 @@
         {
             $_SESSION['result_message'] = "<div class='success-message'>Question added successfully! Add another:</div>";
             mysqli_close($conn);
-            header('Location: ../courses.php');
+            header('Location: ../pages/questions.php');
             exit();
         } 
         else 
         {
             $_SESSION['result_message'] = "<div class='error-message'>Error adding question. Try again:</div>";
             mysqli_close($conn);
-            header('Location: ../courses.php');
+            header('Location: ../pages/questions.php');
             exit();
         }
     } 
     else 
     {
         mysqli_close($conn);
-        header('Location: ../courses.php');
+        header('Location: ../pages/questions.php');
         exit();
     }
 ?>

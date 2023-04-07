@@ -6,7 +6,7 @@
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') 
     {
-        $cname = $_POST['cname'];
+        $cname = mysqli_real_escape_string($conn, $_POST["cname"]);
         $sql = "INSERT INTO courses (cname, Iid) VALUES ('$cname', '$userId')";
 
         if (mysqli_query($conn, $sql)) 
