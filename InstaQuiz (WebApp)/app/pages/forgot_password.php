@@ -9,6 +9,7 @@
         $email = $_POST['email'];
         $rtoken = $_POST['rtoken'];
         $newpassword = $_POST['newpassword'];
+        $hash = password_hash($newpassword,PASSWORD_DEFAULT);
 
         // Retrieve user's information from the account table
         $sql = "SELECT * FROM accounts WHERE email = '$email' AND rtoken = '$rtoken'";
@@ -18,7 +19,7 @@
         // Check if user's credentials are correct
         if (mysqli_num_rows($result) == 1) 
         {
-            $sqlresetpassword = "UPDATE accounts SET password = '$newpassword' WHERE email = '$email'";
+            $sqlresetpassword = "UPDATE accounts SET password = '$hash' WHERE email = '$email'";
             $result = mysqli_query($conn,$sqlresetpassword);
             
             //message if password has been successfully reset and error message if not
