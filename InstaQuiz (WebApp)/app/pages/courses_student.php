@@ -53,8 +53,9 @@
         <h2>{$row['cname']}</h2>
         <p>Instructor: {$row['fname']} {$row['lname']}</p>
         <button class='good-button' type='submit'>Join???</button>
-        <form action='../pages/courses_unenrollConf' method='POST'>
+        <form action='courses_unenrollConf.php' method='POST'>
           <input type='hidden' name='cid' value='{$row['cid']}'>
+          <input type='hidden' name='cname' value='{$row['cname']}'>
           <button class='bad-button' type='submit'>Unenroll</button>
         </form>
       </div>";
@@ -103,6 +104,16 @@
       border-width: 5px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     }
+    h3
+    {
+      font-size: 18px;
+      font-weight: lighter;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-self: flex-start;
+      align-self: center;
+    }
   </style>
 </head>
 <body>
@@ -120,21 +131,21 @@
             <h2>Enrolled Courses:</h2>
         </div>
         <div class='left-form-bottom'>
-          <div class='success-message'>Search for courses by title, or instructor's name:<br>(Courses you are already enrolled in have been filtered out.)</div>
-            <?php 
-              echo $searchResult; 
-            ?>
+          <h3>Search for courses by title, or instructor's name:<br>(Courses you are already enrolled in have been filtered out.)</h3>
+          <?php 
+            echo $searchResult; 
+          ?>
         </div>
         <div class='right-form-bottom'>
-          <div class='success-message'>These are courses you are currently enrolled in:<br>Search for new courses to join on the left!</div>
-            <?php 
-              if (isset($_SESSION['result_message'])) 
-              {
-                  echo $_SESSION['result_message'];
-                  unset($_SESSION['result_message']);
-              }
-              echo $enrolledResult; 
-            ?>
+          <h3>These are courses you are currently enrolled in:<br>Search for new courses to join on the left!</h3>
+          <?php 
+            if (isset($_SESSION['result_message'])) 
+            {
+                echo $_SESSION['result_message'];
+                unset($_SESSION['result_message']);
+            }
+            echo $enrolledResult; 
+          ?>
         </div>
     </div>
 </body>

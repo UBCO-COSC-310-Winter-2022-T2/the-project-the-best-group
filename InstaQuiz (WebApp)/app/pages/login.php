@@ -43,7 +43,11 @@
     <body>
         <?php include_once('../header.php'); ?>
         <div id="login-form">
-            <form action="login_script.php" method="POST">
+            <?php 
+                echo $_SESSION['result-message']; 
+                unset($_SESSION['result-message']);
+            ?>
+            <form action="../scripts/login_script.php" method="POST">
                 <label for="email"><b>Email</b></label>
                 <input type="text" placeholder="Enter Email" name="email" required>
 

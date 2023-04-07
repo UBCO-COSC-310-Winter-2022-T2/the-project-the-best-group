@@ -45,7 +45,7 @@
     <body>
         <?php include_once('../header.php'); ?>
         <div id="forgot-password-form">
-            <form action="forgot_password_script.php" method="POST">
+            <form action="../scripts/forgot_password_script.php" method="POST">
                 <label for="email"><b>Email</b></label>
                 <input type="text" placeholder="Enter Email" name="email" required>
 

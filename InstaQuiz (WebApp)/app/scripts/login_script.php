@@ -1,6 +1,7 @@
 <?php
     session_start();
     require_once('../scripts/config.php');
+    $_SESSION['result-message'] = ''; 
 
     if($_SERVER["REQUEST_METHOD"] == "POST") 
     {
@@ -22,7 +23,8 @@
         else 
         {
             // Display an error message if user's credentials are incorrect
-            echo '<div class="error-message">Invalid email or password.</div>';
+            $_SESSION['result-message'] = '<div class="error-message">Invalid email or password.</div><br>';
+            header("Location: ../pages/login.php");
         }
 
         mysqli_close($conn);
