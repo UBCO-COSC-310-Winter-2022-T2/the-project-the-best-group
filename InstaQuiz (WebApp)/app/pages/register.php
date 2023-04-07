@@ -4,7 +4,6 @@
     echo $_SESSION['result_message_0'];
     unset($_SESSION['result_message_0']);
 ?>
-
 <!DOCTYPE html>
 <html>
     <head>

@@ -184,3 +184,4 @@ VALUES (5, 3, 3, 3), (5, 4, 3, 3), (5, 5, 4, 4);
 -- Henry Smith has answered all 3 questions correct in course 4 and 1 out of 2 correct in course 2.
 INSERT INTO scores (sid, cid, totalCorrect, totalAsked)
 VALUES (3, 4, 3, 3), (3, 2, 1, 2);
+

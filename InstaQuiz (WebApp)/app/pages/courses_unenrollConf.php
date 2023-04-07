@@ -85,7 +85,9 @@
     <div class='container'>
         <div class='container-form'>
             <div class='container-form-row'>
+
                 <h1>Unenroll From:</h1>
+
                 <h2><?php echo $cname."?" ?></h2>
             </div>
             <form action='../scripts/student_unenroll.php' method='POST'>
