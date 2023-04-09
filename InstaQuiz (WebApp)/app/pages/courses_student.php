@@ -50,7 +50,7 @@
     {
       $enrolledResult .= "
       <div class='course-item'>
-        <h2>{$row['cname']}</h2>
+        <a href='course_view.php?cid={$row['cid']}'><h2>{$row['cname']}</h2></a>
         <p>Instructor: {$row['fname']} {$row['lname']}</p>
         <button class='good-button' type='submit'>Join???</button>
 
@@ -81,7 +81,14 @@
   <title>InstaQuiz</title>
   <link rel="stylesheet" href="../css/body.css">
   <link rel="stylesheet" href="../css/courses_student.css">
+  
   <style>
+    a:link {
+      color: white;
+    }
+    a:visited {
+      color: white;
+    }
     .success-message, .error-message
     {
       text-align: center;
