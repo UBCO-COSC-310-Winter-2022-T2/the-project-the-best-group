@@ -2,7 +2,7 @@
 $(document).ready(function() {
 
     getActiveQuestion();
-    //var interval = setInterval(getActiveQuestion, 5000);  //refresh comments every 5 seconds
+    var interval = setInterval(getActiveQuestion, 5000);  //refresh comments every 5 seconds
 
 });
 
