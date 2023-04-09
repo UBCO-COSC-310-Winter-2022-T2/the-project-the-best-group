@@ -40,7 +40,10 @@
 <body>
     <?php include_once('../header.php'); ?>
     <div id='join-container' class='hidden'>
-        <button id='join-button' class='good-button'>Join Session</button>
+        <form action='../scripts/join_class.php' method='POST'>
+            <?php echo "<input type='hidden' name='cid' value=".$cid.">"; ?>
+            <button id='join-button' class='good-button' type='submit'>Join Session</button>
+        <form>
     </div>
     <div class='container-page'>
         <div class='container-left-header'>
