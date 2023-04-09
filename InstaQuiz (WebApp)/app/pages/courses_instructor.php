@@ -62,6 +62,10 @@
           <input type='hidden' name='cid' value='{$row['cid']}'>
           <button class='good-button' type='submit'>View Options</button>
         </form>
+        <form action='../scripts/start_class.php' method='POST'>
+          <input type='hidden' name='cid' value='{$row['cid']}'>
+          <button class='good-button' >Start Class</button>
+        </form>
         <form action='courses_deleteConf.php' method='POST'>
           <input type='hidden' name='cid' value='{$row['cid']}'>
           <input type='hidden' name='cname' value='{$row['cname']}'>
