@@ -94,6 +94,7 @@ CREATE TABLE questions (
   c VARCHAR(255),
   d VARCHAR(255),
   answer CHAR(1),
+  live BIT DEFAULT (0), -- 0 = false, question not active, 1 = true, question is active
   FOREIGN KEY (cid) REFERENCES courses(cid) ON DELETE CASCADE,
   PRIMARY KEY (qid)
 );
