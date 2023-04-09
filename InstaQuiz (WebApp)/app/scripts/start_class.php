@@ -3,14 +3,12 @@
     
     // logged in instructor made request
     if ($_SESSION['user_permission'] != 1) {
-        echo "<script>alert('perm".$_SESSION['permission']."')</script>";
         header('Location: ' . $_SERVER['HTTP_REFERER']);
         exit();
     }
 
     // POST request
     if ($_SERVER['REQUEST_METHOD'] != 'POST')  {
-        echo "<script>alert('post')</script>";
         header('Location: ' . $_SERVER['HTTP_REFERER']);
         exit();
     }
