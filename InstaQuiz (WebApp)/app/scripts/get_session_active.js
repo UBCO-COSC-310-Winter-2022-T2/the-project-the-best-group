@@ -2,13 +2,13 @@
 $(document).ready(function() {
 
     getSessionActive();
-    var interval = setInterval(getSessionActive, 5000);  //refresh comments every 5 seconds
+    var interval = setInterval(getSessionActive, 5000);  //refresh every 5 seconds
 
 });
 
 function getSessionActive() {
 
-    // AJAX function to get new comments
+    // AJAX function to get if class has live session
     var cid = location.search.replace("?cid=", "");
     var xmlhttp= new XMLHttpRequest();
     xmlhttp.onreadystatechange=function() {

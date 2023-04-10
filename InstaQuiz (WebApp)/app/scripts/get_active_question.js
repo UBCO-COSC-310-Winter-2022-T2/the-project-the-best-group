@@ -2,13 +2,13 @@
 $(document).ready(function() {
 
     getActiveQuestion();
-    var interval = setInterval(getActiveQuestion, 5000);  //refresh comments every 5 seconds
+    var interval = setInterval(getActiveQuestion, 5000);  //refresh every 5 seconds
 
 });
 
 function getActiveQuestion() {
 
-    // AJAX function to get new comments
+    // AJAX function to get if question is active
     var cid = location.search.replace("?cid=", "");
     var xmlhttp= new XMLHttpRequest();
     xmlhttp.onreadystatechange=function() {
