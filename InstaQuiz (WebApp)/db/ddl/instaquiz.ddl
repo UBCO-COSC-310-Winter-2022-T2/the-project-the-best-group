@@ -14,7 +14,7 @@ CREATE TABLE accounts (
     lname VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-    rtoken VARCHAR(36), -- random 36 char token (for forgot password recovery)
+    rtoken VARCHAR(255), -- random 36 char token (for forgot password recovery)
     PRIMARY KEY (id)
 );
 
