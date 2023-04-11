@@ -21,6 +21,7 @@ services:
     container_name: instaquiz-database
     restart: always
     environment:
+      - HOSTNAME = db
       - MYSQL_DATABASE=instaquiz
       - MYSQL_USER=admin
       - MYSQL_PASSWORD=310adminpw 
