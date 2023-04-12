@@ -13,9 +13,6 @@
     if ($result->num_rows == 0) 
         exit('<p>Welcome to class! Currently there are no active polls<p>');
     
-
-    
-
     while($row = $result->fetch_assoc()) {
         $output .= "
             <div class='question-item'>
