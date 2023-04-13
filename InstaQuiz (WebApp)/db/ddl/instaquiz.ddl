@@ -137,30 +137,31 @@ CREATE TABLE `questions` (
   `c` varchar(255) DEFAULT NULL,
   `d` varchar(255) DEFAULT NULL,
   `answer` char(1) DEFAULT NULL,
-  `live` bit(1) DEFAULT (0)
+  `live` bit(1) DEFAULT (0),
+  `was_asked` bit(1) NOT NULL DEFAULT b'0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `questions`
 --
 
-INSERT INTO `questions` (`qid`, `cid`, `prompt`, `a`, `b`, `c`, `d`, `answer`, `live`) VALUES
-(1, 1, 'Which of the following is a problem with low-level programming', 'takes too long', 'user expectations can be too high', 'they are too small to see', 'none of these answers', 'D', b'0'),
-(2, 1, 'Which of these is the best description of a conceptual model', 'a very tall model', 'a high level description of how a systems organization/operation', 'a fully functional model', 'none of these answers', 'B', b'0'),
-(3, 1, 'Which of the following is the name of a common physical input device', 'cat', 'dog', 'mouse', 'rabbit', 'C', b'0'),
-(4, 1, 'What does UI stand for in computer science', 'User Interface', 'Usable Item', 'Unsafe Internet', 'Uncommon Identifier', 'A', b'0'),
-(5, 2, 'Which common symbol represents a register in MIPS code', '#', '@', '&', '$', 'D', b'0'),
-(6, 2, 'What does CPU stand for in computer science', 'Central Processing Unit', 'Cat Pull Under', 'Center Pile Unit', 'Central Password User', 'A', b'0'),
-(7, 3, 'Which of the following is a common data structure', 'HashPath', 'HillTop', 'HashMap', 'HelpTable', 'C', b'0'),
-(8, 3, 'Which of the following is NOT a common data structure', 'Array', 'ArrayList', 'Skip List', 'Arrow List', 'D', b'0'),
-(9, 3, 'Select the invalid time complexity', 'O(1)', 'O(n)', 'O(-2)', 'O(logn)', 'C', b'0'),
-(10, 4, 'Which of these is a common database', 'MongoDB', 'MangoDB', 'MondoDB', 'OrangeDB', 'A', b'0'),
-(11, 4, 'What does DBMS stand for', 'Database Management System', 'Database More Secure', 'Data Before Making System', 'Dont Build More Stacks', 'A', b'0'),
-(12, 4, 'Which of the following is not a DBMS', 'Google', 'MySQL', 'IBM DB2', 'Mircosoft Acess', 'A', b'0'),
-(13, 5, 'Which of the following is not a programming language', 'Python', 'Java', 'HTML', 'CSS', 'C', b'0'),
-(14, 5, 'Which of the following is not a version control system', 'Git', 'Subversion', 'Mercurial', 'MySQL', 'D', b'0'),
-(15, 5, 'Which of the following is not an operating system', 'Windows', 'Linux', 'macOS', 'Oracle', 'D', b'0'),
-(16, 5, 'Which of the following is not a software development methodology', 'Agile', 'Waterfall', 'Crumb', 'Scrum', 'C', b'0');
+INSERT INTO `questions` (`qid`, `cid`, `prompt`, `a`, `b`, `c`, `d`, `answer`, `live`, `was_asked`) VALUES
+(1, 1, 'Which of the following is a problem with low-level programming', 'takes too long', 'user expectations can be too high', 'they are too small to see', 'none of these answers', 'D', b'0', b'0'),
+(2, 1, 'Which of these is the best description of a conceptual model', 'a very tall model', 'a high level description of how a systems organization/operation', 'a fully functional model', 'none of these answers', 'B', b'0', b'0'),
+(3, 1, 'Which of the following is the name of a common physical input device', 'cat', 'dog', 'mouse', 'rabbit', 'C', b'0', b'0'),
+(4, 1, 'What does UI stand for in computer science', 'User Interface', 'Usable Item', 'Unsafe Internet', 'Uncommon Identifier', 'A', b'0', b'0'),
+(5, 2, 'Which common symbol represents a register in MIPS code', '#', '@', '&', '$', 'D', b'0', b'0'),
+(6, 2, 'What does CPU stand for in computer science', 'Central Processing Unit', 'Cat Pull Under', 'Center Pile Unit', 'Central Password User', 'A', b'0', b'0'),
+(7, 3, 'Which of the following is a common data structure', 'HashPath', 'HillTop', 'HashMap', 'HelpTable', 'C', b'0', b'0'),
+(8, 3, 'Which of the following is NOT a common data structure', 'Array', 'ArrayList', 'Skip List', 'Arrow List', 'D', b'0', b'0'),
+(9, 3, 'Select the invalid time complexity', 'O(1)', 'O(n)', 'O(-2)', 'O(logn)', 'C', b'0', b'0'),
+(10, 4, 'Which of these is a common database', 'MongoDB', 'MangoDB', 'MondoDB', 'OrangeDB', 'A', b'0', b'0'),
+(11, 4, 'What does DBMS stand for', 'Database Management System', 'Database More Secure', 'Data Before Making System', 'Dont Build More Stacks', 'A', b'0', b'0'),
+(12, 4, 'Which of the following is not a DBMS', 'Google', 'MySQL', 'IBM DB2', 'Mircosoft Acess', 'A', b'0', b'0'),
+(13, 5, 'Which of the following is not a programming language', 'Python', 'Java', 'HTML', 'CSS', 'C', b'0', b'0'),
+(14, 5, 'Which of the following is not a version control system', 'Git', 'Subversion', 'Mercurial', 'MySQL', 'D', b'0', b'0'),
+(15, 5, 'Which of the following is not an operating system', 'Windows', 'Linux', 'macOS', 'Oracle', 'D', b'0', b'0'),
+(16, 5, 'Which of the following is not a software development methodology', 'Agile', 'Waterfall', 'Crumb', 'Scrum', 'C', b'0', b'0');
 
 -- --------------------------------------------------------
 
