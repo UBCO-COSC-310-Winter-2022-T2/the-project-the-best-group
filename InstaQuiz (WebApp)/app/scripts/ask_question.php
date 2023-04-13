@@ -17,7 +17,7 @@
     unset($_SESSION['result_message']);
 
     $qid = $_POST['qid'];
-    $sql = "UPDATE questions SET live = 1 WHERE qid = ".$qid;
+    $sql = "UPDATE questions SET live = 1, was_asked = 1 WHERE qid = ".$qid;
 
     if (!mysqli_query($conn, $sql))  
         $_SESSION['result_message'] = "<div class='error-message'>Error asking question.</div>";
