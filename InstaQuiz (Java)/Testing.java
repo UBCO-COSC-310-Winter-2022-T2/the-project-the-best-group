@@ -519,20 +519,5 @@ public class Testing {
         assertEquals(B,summary[0].answer);
     }
     // End of 1.20 Unit Tests
-
-    
-    // TODO SESSION class 
-    // TODO POLL class 
-    // TODO QUESTION class
-    // TODO RESPONSE class 
-    // TODO POLL SUMMARY class
-    
-    // TODO INSTAQUIZ CLASS (needed?)
-    
-    // *************************************
-    // Possibly eliminate some of the above class and replace with data structures.
-    // Can't easily delete objects so maybe better on memory to not have classes/objects for everything
-    // Question bank test/system is messed, need to fix
-    
    
 }
