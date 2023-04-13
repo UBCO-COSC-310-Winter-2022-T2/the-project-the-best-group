@@ -60,6 +60,7 @@ if ($result->num_rows > 0) {
 <html>
 <head>
     <title>InstaQuiz</title>
+    <link rel="icon" type="image/png" href="../images/instaquiz_favicon.png">
     <link rel="stylesheet" href="../css/body.css">
     <link rel="stylesheet" href="../css/pages_twoColumns.css">
     <style>

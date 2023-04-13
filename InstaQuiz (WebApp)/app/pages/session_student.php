@@ -13,6 +13,7 @@
 <html>
 <head>
     <title>InstaQuiz</title>
+    <link rel="icon" type="image/png" href="../images/instaquiz_favicon.png">
     <link rel="stylesheet" href="../css/body.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src='../scripts/get_active_question.js'></script>

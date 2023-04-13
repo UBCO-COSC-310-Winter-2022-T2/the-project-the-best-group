@@ -13,6 +13,7 @@
 <html>
 <head>
     <title>InstaQuiz</title>
+    <link rel="icon" type="image/png" href="../images/instaquiz_favicon.png">
     <link rel="stylesheet" href="../css/pages_oneColumn.css">
     <link rel="stylesheet" href="../css/create.css">
     <style>
