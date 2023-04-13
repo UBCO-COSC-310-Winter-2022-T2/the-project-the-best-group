@@ -8,6 +8,7 @@
     
     $pageTitle = "Course";
     $cid = $_GET['cid'];
+    $sid = $_SESSION['user_id']
 ?>
 
 <!DOCTYPE html>
@@ -17,6 +18,7 @@
     <link rel="stylesheet" href="../css/pages_twoColumns.css">
     <link rel="stylesheet" href="../css/body.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <script src="../scripts/get_session_active.js"></script>
     <style>
         .hidden {
@@ -56,7 +58,7 @@
             <h2>Pie chart here</h2>
         </div>
         <div class='container-right-body'>
-            <h2>Pie Chart here</h2>
+            <?php include "../scripts/student_grade_chart.php";?>
         </div>
     </div>
 </body>
