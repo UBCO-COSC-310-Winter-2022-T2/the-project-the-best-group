@@ -7,8 +7,7 @@ label
 input[type="text"]
 {
     display: flex;
-    width: 50em;
-    height: 1.5em;
+    width: 100%;
     border-radius: 5px;
 }
 select[name="answer"]
@@ -24,16 +23,10 @@ select[name="answer"]
 {
     display: flex;
     flex-direction: column;
-    justify-self: flex-start;
-    align-self: center;
-    justify-items: center;
-    align-items: center;
     justify-content: center;
     align-content: center;
     margin: 1.5em;
-    padding-bottom: 1.5em;
-    padding-left: 1.5em;
-    padding-right: 1.5em;
+    padding: 1em;
     background-color: #07223E;
     font-weight: bold;
     color: #CCCCCC;

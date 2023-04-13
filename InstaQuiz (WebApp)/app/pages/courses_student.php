@@ -22,18 +22,21 @@
     {
       $searchResult .= "
       <div class='course-item'>
-        <h2>{$row['cname']}</h2>
+      <div class='course-title'>
+        {$row['cname']}
+      </div>
+        <hr width='100%' color='#061A2D' style='border: 2px solid #061A2D;'>
         <p>Instructor: {$row['fname']} {$row['lname']}</p>
         <form action='../scripts/student_enroll.php' method='POST'>
           <input type='hidden' name='cid' value='{$row['cid']}'>
-          <button class='good-button' type='submit'>Enroll</button>
+          <button class='green-button' type='submit'>Enroll</button>
         </form>
       </div>"; 
     }
   } 
   else 
   {
-    $searchResult = '<div class="error-message">There are no available courses.</div>';
+    $searchResult = '<div class="red-message">There are no available courses.</div>';
   }
 ?>
 <?php
@@ -50,15 +53,15 @@
     {
       $enrolledResult .= "
       <div class='course-item'>
-        <a href='course_view.php?cid={$row['cid']}'><h2>{$row['cname']}</h2></a>
+        <div class='course-title'>
+          <a href='course_view.php?cid={$row['cid']}'><h2>{$row['cname']}</h2></a>
+        </div>
+        <hr width='100%' color='#061A2D' style='border: 2px solid #061A2D;'>
         <p>Instructor: {$row['fname']} {$row['lname']}</p>
-        <button class='good-button' type='submit'>Join???</button>
-
         <form action='courses_unenrollConf.php' method='POST'>
-
           <input type='hidden' name='cid' value='{$row['cid']}'>
           <input type='hidden' name='cname' value='{$row['cname']}'>
-          <button class='bad-button' type='submit'>Unenroll</button>
+          <button class='red-button' type='submit'>Unenroll</button>
         </form>
       </div>";
     }
@@ -66,9 +69,9 @@
   else 
   {
     $enrolledResult .= "
-    <div class='error-message'>
+    <div class='red-message'>
       You are not currently enrolled in any courses.<br>
-      <div class='success-message'>
+      <div class='green-message'>
         Search for a course on the left to get started!
       </div>
     </div>";
@@ -79,39 +82,80 @@
 <html>
 <head>
   <title>InstaQuiz</title>
-  <link rel="stylesheet" href="../css/body.css">
-  <link rel="stylesheet" href="../css/courses_student.css">
-  
+  <link rel="stylesheet" href="../css/pages_twoColumns.css">
   <style>
-    a:link {
-      color: white;
-    }
-    a:visited {
-      color: white;
-    }
-    .success-message, .error-message
+    .search-container 
     {
-      text-align: center;
-      margin-bottom: 1em;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        column-gap: 0.2em;
+        padding: 0.2em;
+        background-color: #07223E;
+        border-radius: 15px;
+        border: 5px solid #061A2D;
     }
-    .right-form-bottom
+    .search-container input[type="text"] 
     {
-      grid-area: "d";
-      align-self: flex-start;
-      justify-self: stretch;
+        display: flex;
+        width: 100%;
+        font-size: 18px;
+        padding: 0.3em;
+        font-family: 'Courier New', Courier, monospace;
+        border-radius: 10px;
+    }
+    .search-container button
+    {
+        font-size: 24px;
+        padding: 0.3em;
+    }
+    .course-item
+    {
+        margin: 1em;
+        padding: 1em;
+        display: flex;
+        flex-direction: column;
+        row-gap: 0.5em;
+        justify-content: flex-start;
+        align-content: flex-start;
+        background-color: #05386B;
+        border-radius: 15px;
+        border: 5px solid #061A2D;
+        word-wrap: break-word;
+    }
+    .course-title
+    {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-items: flex-start;
-      align-content: center;
-      justify-content: flex-start;
-      padding: 1em;
+      justify-self: center;
+      align-self: center;
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .course-item button
+    {
+        font-size: 24px;
+    }
+    a 
+    {
+      color: white;
       background-color: #07223E;
-      border-radius: 15px;
+      cursor: pointer;
+      outline: none;
+      padding: 0.5em;
+      font-size: 28px;
+      font-family: 'Courier New', Courier, monospace;
+      font-weight: bold;
+      text-decoration: none;
+      border: #061A2D;
       border-style: solid;
-      border-color: #061A2D;
-      border-width: 5px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      border-radius: 15px;
+      transition: background-color 0.3s ease;
+    }
+    a:hover 
+    {
+      background-color: #F64C72;
     }
     h3
     {
@@ -126,37 +170,36 @@
   </style>
 </head>
 <body>
-    <?php include_once('../header.php'); ?>
-    <div class="container">
-        <div class="left-form-top">
-            <form method="get">
-                <div class="search-container">
-                    <input type="text" name="search" placeholder="Search for a course...">
-                    <button type="submit">Search</button>
-                </div>
-            </form>
-        </div>
-        <div class="right-form-top">
-            <h2>Enrolled Courses:</h2>
-        </div>
-        <div class='left-form-bottom'>
-          <h3>Search for courses by title, or instructor's name:<br>(Courses you are already enrolled in have been filtered out.)</h3>
-          <?php 
-            echo $searchResult; 
-          ?>
-        </div>
-        <div class='right-form-bottom'>
-          <h3>These are courses you are currently enrolled in:<br>Search for new courses to join on the left!</h3>
-          <?php 
-            if (isset($_SESSION['result_message'])) 
-            {
-                echo $_SESSION['result_message'];
-                unset($_SESSION['result_message']);
-            }
-            echo $enrolledResult; 
-          ?>
-        </div>
+  <?php include_once('../header.php'); ?>
+  <div class='container-page'>
+    <div class='container-left-header'>
+        <form method="get">
+            <div class="search-container">
+                <input type="text" name="search" placeholder=" Question prompt...">
+                <button class='pink-button' type="submit">Search</button>
+            </div>
+        </form>
     </div>
+    <div class='container-right-header'>
+        <h1>Enrolled Courses:</h1>
+    </div>
+    <div class='container-left-body'>
+        <h3>Search for courses by title, or instructor's name:<br>(Courses you are already enrolled in have been filtered out.)</h3>
+        <?php 
+        echo $searchResult; 
+        ?>
+    </div>
+    <div class='container-right-body'>
+    <h3>These are courses you are currently enrolled in:<br>Search for new courses to join on the left!</h3>
+        <?php 
+        if (isset($_SESSION['result_message'])) 
+        {
+            echo $_SESSION['result_message'];
+            unset($_SESSION['result_message']);
+        }
+        echo $enrolledResult; 
+        ?>
+    </div>
+  </div>
 </body>
 </html>
-

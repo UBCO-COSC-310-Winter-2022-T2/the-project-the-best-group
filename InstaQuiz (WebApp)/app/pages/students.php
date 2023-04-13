@@ -18,14 +18,12 @@
         while($row = $result->fetch_assoc()) 
         {
             $searchResult .= "
-            <div class='student-item'>
+            <div class='student-listed'>
                 <h1>{$row['fname']} {$row['lname']}</h1>
-                <hr width='100%' color='#061A2D' style='border: 2px solid #061A2D;'>
-                <h2>Student ID: {$row['id']}</h2>
-                <h2>Email Address: {$row['email']}</h2>
-                <div class='question-button'>
-                    <form action=''>
-                        <button class='green-button' type='submit'>??? View Details ???</button>
+                <div class='student-button'>
+                    <form action='students.php' method='POST'>
+                        <input type='hidden' name='id' value='{$row['id']}'>
+                        <button class='pink-button' type='submit'>View Details</button>
                     </form>
                 </div>    
             </div>";
@@ -35,6 +33,51 @@
     {
         $searchResult = '<div class="error-message">There are no available students.</div>';
     }
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') 
+    {
+        $sid = $_POST['id'];
+        $sql = "SELECT A.id, A.fname, A.lname, A.email
+                FROM accounts A
+                JOIN enrollment E ON A.id = E.sid
+                WHERE E.cid = $cid AND A.id = $sid";
+        $result = mysqli_query($conn, $sql);
+
+        if ($result->num_rows > 0) 
+        {
+            while($row = $result->fetch_assoc()) 
+            {
+                $editResult .= "
+                <div class='big-button'>
+                    <a href='students.php'>- Clear Student</a> 
+                </div>
+                <div class='student-item'>
+                    <h1>{$row['fname']} {$row['lname']}</h1>
+                    <hr width='100%' color='#061A2D' style='border: 2px solid #061A2D;'>
+                    <h2>PERMISSION:</h2><h3>Student</h3>
+                    <h2>STUDENT ID:</h2><h3>{$row['id']}</h3>
+                    <h2>EMAIL ADRESS:</h2><h3>{$row['email']}</h3>
+                    <div class='student-button'>
+                        <form action='student_removeConf.php' method='POST'>
+                            <input type='hidden' name='cid' value='$cid'>
+                            <input type='hidden' name='sid' value='$sid'>
+                            <input type='hidden' name='fname' value='{$row['fname']}'>
+                            <input type='hidden' name='lname' value='{$row['lname']}'>
+                            <button class='red-button' type='submit'>Remove Student</button>
+                        </form>
+                    </div>     
+                </div>";
+            }
+        } 
+        else 
+        {
+            $editResult = "<div class='red-message'>Error gathering student details. Please try again:</div>";
+        }
+    } 
+    else
+    {
+        $editResult = "<h2>Student details will appear here when you press edit:</h2>";
+    }
 ?>
 
 <!DOCTYPE html>
@@ -42,8 +85,16 @@
     <head>
         <title>InstaQuiz</title>
         <link rel="stylesheet" href="../css/pages_twoColumns.css">
-        <link rel="stylesheet" href="../css/create.css">
         <style>
+            .big-button
+            {
+                display: flex;
+                flex-direction: column;
+                justify-self: center;
+                align-self: center;
+                font-size: 24px;
+                font-weight: bold;
+            }
             .search-container 
             {
                 display: flex;
@@ -59,6 +110,7 @@
             .search-container input[type="text"] 
             {
                 display: flex;
+                width: 100%;
                 font-size: 18px;
                 padding: 0.2em;
                 font-family: 'Courier New', Courier, monospace;
@@ -69,27 +121,81 @@
                 font-size: 24px;
                 padding: 0.3em;
             }
-            .student-item
+            .student-listed
             {
                 margin: 1em;
                 padding: 1em;
-                display: flex;
-                flex-direction: column;
-                row-gap: 0.5em;
-                justify-content: flex-start;
-                align-content: flex-start;
+                display: flex;  
+                flex-direction: row;
+                justify-content: space-between;
+                align-content: baseline;
                 background-color: #05386B;
                 border-radius: 15px;
                 border: 5px solid #061A2D;
                 word-wrap: break-word;
             }
+            .student-item
+            {
+                margin: 1em;
+                padding: 1em;
+                display: flex;  
+                flex-direction: column;
+                justify-content: flex-start;
+                row-gap: 1em;
+                align-content: center;
+                background-color: #05386B;
+                border-radius: 15px;
+                border: 5px solid #061A2D;
+                word-wrap: break-word;
+            }
+            .student-listed h1
+            {
+                margin: 0.5em;
+            }
+            .student-item h1
+            {
+                margin-top: 0.5em;
+            }
+            .student-item h2
+            {  
+                font-size: 18px;
+                text-decoration: underline;
+                margin: 0;
+            }
+            .student-item h3
+            {   
+                font-size: 18px;
+                text-decoration: none;
+                margin: 0;
+            }
+            .student-listed button
+            {
+                font-size: 24px;
+            }
             .student-item button
             {
                 font-size: 24px;
             }
-            .answer
+            a
             {
-                color: green;
+                background-color: #05386B;
+                font-size: 28px;
+                font-weight: bold;
+                font-family: 'Courier New', Courier, monospace;
+                text-align: center;
+                text-shadow: 0px 3px 3px rgba(0, 0, 0, 0.6);
+                text-decoration: none;
+                color: #CCCCCC;
+                padding: 0.5em;
+                border-radius: 15px;
+                border-style: solid;
+                border-color: #061A2D;
+                border-width: 5px;
+                transition: background-color 0.3s ease;
+            }
+            a:hover 
+            {
+                background-color: red;
             }
         </style>
     </head>
@@ -111,7 +217,18 @@
                 <?php echo $searchResult ?>
             </div>
             <div class='container-right-body'>
-                <h2>Select a student to see their details below:</h2>
+                <?php 
+                    if (isset($_SESSION['result_message'])) 
+                    {
+                        echo $_SESSION['result_message'];
+                        unset($_SESSION['result_message']);
+                    } 
+                    echo $editResult; 
+                ?>
+                <div class='container-create-row'>
+                    <br>
+                    <button class='red-button' onclick="window.location.href='../courses.php'">Back</button>
+                </div>
             </div>
         </div>
     </body>

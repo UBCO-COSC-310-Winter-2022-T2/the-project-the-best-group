@@ -16,26 +16,27 @@
           while($row = $result->fetch_assoc()) 
           {
             $editResult .= "
-            <a href='../courses.php'>- Clear Course</a> 
+            <div class='big-button'>
+              <a href='../courses.php'>- Clear Course</a> 
+            </div>
             <div class='course-item'>
-              <h2>{$row['cname']}</h2>
+              <div class='course-title'>
+                {$row['cname']}
+              </div>
+              <hr width='100%' color='#061A2D' style='border: 2px solid #061A2D;'>
               <p>Instructor: {$row['fname']} {$row['lname']}</p>
-              <form action=''>
-                  <button>??? Start Class ???</button>
-              </form>
-              <br>
               <form action='questions.php'>
-                  <button>Questions</button>
+                  <button class='pink-button'>Questions</button>
               </form>
               <form action='students.php'>
-                  <button>Students</button>
+                  <button class='pink-button'>Students</button>
               </form>
             </div>";
           }
         } 
         else 
         {
-            $editResult = "<div class='success-message'>Error gathering course details, course may no longer exist.</div>";
+            $editResult = "<div class='red-message'>Error gathering course details, course may no longer exist.</div>";
         }
     } 
     else
@@ -56,20 +57,23 @@
     {
       $enrolledResult .= "
       <div class='course-item'>
-        <h2>{$row['cname']}</h2>
+        <div class='course-title'>
+          {$row['cname']}
+        </div>
+        <hr width='100%' color='#061A2D' style='border: 2px solid #061A2D;'>
         <p>Instructor: {$row['fname']} {$row['lname']}</p>
-        <form action='courses_instructor.php' method='POST'>
-          <input type='hidden' name='cid' value='{$row['cid']}'>
-          <button class='good-button' type='submit'>View Options</button>
-        </form>
         <form action='../scripts/start_class.php' method='POST'>
           <input type='hidden' name='cid' value='{$row['cid']}'>
-          <button class='good-button' >Start Class</button>
+          <button class='green-button' >Start Class</button>
+        </form>
+        <form action='courses_instructor.php' method='POST'>
+          <input type='hidden' name='cid' value='{$row['cid']}'>
+          <button class='pink-button' type='submit'>View Options</button>
         </form>
         <form action='courses_deleteConf.php' method='POST'>
           <input type='hidden' name='cid' value='{$row['cid']}'>
           <input type='hidden' name='cname' value='{$row['cname']}'>
-          <button class='bad-button' type='submit'>Delete Course</button>
+          <button class='red-button' type='submit'>Delete Course</button>
         </form>
       </div>";
     }
@@ -77,9 +81,9 @@
   else 
   {
     $enrolledResult .= "
-    <div class='error-message'>
+    <div class='red-message'>
       Oh no! You have not created any courses yet!<br>
-      <div class='success-message'>
+      <div class='green-message'>
         Click the 'Create Course' button below to get started!
       </div>
     </div>";
@@ -90,9 +94,44 @@
 <html>
 <head>
   <title>InstaQuiz</title>
-  <link rel="stylesheet" href="../css/body.css">
-  <link rel="stylesheet" href="../css/courses_student.css">
+  <link rel="stylesheet" href="../css/pages_twoColumns.css">
   <style>
+    .big-button
+    {
+      display: flex;
+      flex-direction: column;
+      justify-self: center;
+      align-self: center;
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .course-item
+    {
+        margin: 1em;
+        padding: 1em;
+        display: flex;
+        flex-direction: column;
+        row-gap: 0.5em;
+        justify-content: flex-start;
+        align-content: flex-start;
+        background-color: #05386B;
+        border-radius: 15px;
+        border: 5px solid #061A2D;
+        word-wrap: break-word;
+    }
+    .course-title
+    {
+      display: flex;
+      flex-direction: column;
+      justify-self: center;
+      align-self: center;
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .course-item button
+    {
+        font-size: 24px;
+    }
     a
     {
       background-color: #05386B;
@@ -142,21 +181,21 @@
 </head>
 <body>
   <?php include_once('../header.php'); ?>
-    <div class="container">
-        <div class="left-form-top">
-            <h2>Your Courses:</h2>
+    <div class="container-page">
+        <div class="container-left-header">
+            <h1>Your Courses:</h1>
         </div>
-        <div class="right-form-top">
-            <h2>Edit Course:</h2>
+        <div class="container-right-header">
+            <h1>Edit Course:</h1>
         </div>
-        <div class='left-form-bottom'>
+        <div class='container-left-body'>
           <form action='courses_create.php' method='POST'>
             <input type='hidden' name='cid' value='{$row['cid']}'>
             <button class='new-course-button' type='submit'>+ New Course</button>
           </form>
           <?php echo $enrolledResult; ?>
         </div>
-        <div class='right-form-bottom'>
+        <div class='container-right-body'>
             <?php 
                 if (isset($_SESSION['result_message'])) 
                 {
