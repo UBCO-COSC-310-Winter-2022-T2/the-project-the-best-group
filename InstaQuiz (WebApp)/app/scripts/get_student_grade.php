@@ -1,16 +1,14 @@
 <?php
 
-    //$sid and $cid must be set before including this script on a page ***
+    //$sid and $cid must be set before including this script on a page
     if (!isset($sid) || !isset($cid)) {
         exit();
     }
 
     require_once('config.php');
 
-    // echo "<script>alert('SID: ".$sid." CID: ".$cid."');</script>";
-
     // get total number of questions asked in course
-    $sql = "SELECT qid FROM questions WHERE cid=".$cid;
+    $sql = "SELECT qid FROM questions WHERE was_asked = 1 AND cid=".$cid;
     $result_questions = mysqli_query($conn, $sql);
     $num_questions = $result_questions -> num_rows;
 
@@ -22,7 +20,7 @@
     $num_correct = $result_answers -> num_rows;
 
     mysqli_free_result($result_answers);
-    mysqli_close($conn);
 
-    $grade = round($num_correct / $num_questions * 100, 0);
+    $grade = [$num_questions - $num_correct, $num_correct];
+
 ?>
