@@ -22,6 +22,15 @@
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
     if ($row['live'] == 1) {
+
+        // update attendance if not already taken
+        if (!$_SESSION['attendance_taken'] = $cid) {
+            $sid = $_SESSION['user_id'];
+            $sql_attendance = "UPDATE enrollment SET student_attendance = student_attendance + 1 WHERE cid = ".$cid." AND sid = ".$sid;
+            mysqli_query($conn, $sql_attendance);
+            $_SESSION['attendance_taken'] = $cid;
+        }
+
         mysqli_close($conn);
         header('Location: ../session.php?cid='.$cid);
         exit();
