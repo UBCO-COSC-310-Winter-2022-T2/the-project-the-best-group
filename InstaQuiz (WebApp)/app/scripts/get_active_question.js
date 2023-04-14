@@ -51,7 +51,6 @@ function createChart() {
 
 function getChart(values) {
 
-    alert(values);
     refresh_chart = false;
     var labels = ['A', 'B', 'C', 'D'];
 
