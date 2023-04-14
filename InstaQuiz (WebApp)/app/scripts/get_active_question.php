@@ -1,12 +1,12 @@
 <?php
 
     session_start();
-    if (!isset($_SESSION['user_id']) || !isset($_GET['id']))
+    if (!isset($_SESSION['user_id']) || !isset($_GET['cid']))
         exit();
 
     require_once('config.php');
 
-    $cid = $_GET['id'];
+    $cid = $_GET['cid'];
     $sql = "SELECT qid, prompt, a, b, c, d, answer FROM questions WHERE live=1 AND cid=".$cid;
     $result = mysqli_query($conn, $sql);
 
