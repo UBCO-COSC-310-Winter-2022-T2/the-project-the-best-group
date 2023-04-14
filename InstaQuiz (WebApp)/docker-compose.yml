@@ -1,25 +1,27 @@
 version: "3.9"
+name: instaquizwebapp
 services:
-  app:
-    container_name: instaquiz-application
+  webserver:
     build:
       context: .
       dockerfile: ./Dockerfile
-    volumes:
-      - './app:/app'
-  webserver:
-    image: php:7.4-apache
+      target: webserver
     container_name: instaquiz-webserver
     volumes:
       - './app:/var/www/html'
+      - './composer:/usr/local/bin/composer:ro' # mount composer binary from composer service
     ports:
       - 80:80
       - 443:443 # for future ssl traffic
   db:
-    image: mysql:latest
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      target: db
     container_name: instaquiz-database
     restart: always
     environment:
+      - HOSTNAME = db
       - MYSQL_DATABASE=instaquiz
       - MYSQL_USER=admin
       - MYSQL_PASSWORD=310adminpw 
@@ -35,3 +37,10 @@ services:
     environment:
       - PMA_HOST=db
       - PMA_PORT=3306
+  composer:
+    image: composer:latest
+    container_name: instaquiz-composer
+    volumes:
+      - './app:/app'
+      - './composer:/tmp'
+    working_dir: /app

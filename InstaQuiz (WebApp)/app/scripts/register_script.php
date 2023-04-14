@@ -12,18 +12,17 @@
         $lname = $_POST['lname'];
         $email = $_POST['email'];
         $password = $_POST['password'];
-        $hash = password_hash($password, PASSWORD_DEFAULT);
+        $hash_password = password_hash($password, PASSWORD_DEFAULT);
 
         // Insert user's information into the account table
-        $sql = "INSERT INTO accounts (permission, fname, lname, email, password) VALUES ({$permission}, '{$fname}', '{$lname}', '{$email}', '{$hash}');
-                SELECT rtoken FROM accounts WHERE fname = '$fname' AND lname = '$lname' AND email = '$email' AND password = '$hash'";
-        $result = mysqli_multi_query($conn, $sql);
+        $sql_1 = "INSERT INTO accounts (permission, fname, lname, email, password) VALUES ({$permission}, '{$fname}', '{$lname}', '{$email}', '{$hash_password}');";
+        $result = mysqli_query($conn, $sql_1);
 
         if ($result) 
         {
             //store rtoken
-            mysqli_next_result($conn);
-            $second_result = mysqli_use_result($conn);
+            $sql_2 = "SELECT rtoken FROM accounts WHERE fname = '$fname' AND lname = '$lname' AND email = '$email' AND password = '$hash_password';";
+            $second_result = mysqli_query($conn,$sql_2);
 
             // Display a success message if user was added to the account table
             $_SESSION['result_message_0'] = '<div class="success-message">Account created successfully.</div>';
@@ -31,7 +30,18 @@
             {
                 $row = mysqli_fetch_assoc($second_result);
                 $rtoken = $row["rtoken"];
-                $_SESSION['result_message_1'] = "<h3>Here is your Recovery Token!</h3><h3>Keep it written down in case you forget your password:</h3><h3>$rtoken</h3>";
+                $hash_rtoken = password_hash($rtoken, PASSWORD_DEFAULT);
+                $sql_3 = "UPDATE accounts SET rtoken = '$hash_rtoken' WHERE email = '$email'";
+                $third_result = mysqli_query($conn,$sql_3);
+                if($third_result)
+                {
+                    $_SESSION['result_message_1'] = "<h3>Here is your Recovery Token!</h3><h3>Keep it written down in case you forget your password:</h3><h3>$rtoken</h3>";
+                }
+                else
+                {
+                    $_SESSION['result_message_1'] = '<div class="error-message">Sorry, error occurred while hashing your recovery token.</div>';
+                }
+
             }
             else
             {
