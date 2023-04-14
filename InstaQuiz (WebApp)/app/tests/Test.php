@@ -1,22 +1,28 @@
 <?php 
 
-class CoursesCreateTest extends PHPUnit\Framework\TestCase
+class Test extends PHPUnit\Framework\TestCase
 {
-  
-  public function testCreateCourse()
+  public function testRegister()
   {
-    require_once realpath(dirname(__FILE__) . '/../../../InstaQuiz (WebApp)/app/pages/courses_create.php');
+    # including the required mysql connection
+    $conn = mysqli_connect('db', 'admin', '310adminpw', 'instaquiz');
 
-        // simulate a form submission with a course name
-        $_POST['cid'] = 'Test Course';
+    # deleting any preexisting users under these credentials before running
+    $sql_1 = "DELETE FROM accounts WHERE email='testregister@mail.com'";
+    mysqli_query($conn,$sql_1);
 
-        // set the request method to POST
-        $_SERVER["REQUEST_METHOD"] = "POST";
+    # stock user information for a new account
+    $test_first_name = "Test";
+    $test_last_name = "Register";
+    $test_email = "testregister@mail.com";
+    $test_password = "testregister";
 
-        // set the user id session variable
-        $_SESSION['user_id'] = 1;
+    # query the database the same way as the register page
+    $sql_2 = "INSERT INTO accounts (permission, fname, lname, email, password) VALUES (1, '{$test_first_name}', '{$test_last_name}', '{$test_email}', '{$test_password}');";
+    $result = mysqli_query($conn, $sql_2);
 
-        // check if the course name was properly submitted
-        $this->assertEquals('Test Course', $_POST['cid']);
-    }
+    mysqli_close($conn);
+
+    $this->assertEquals(true, $result);
+  }
 }
