@@ -94,7 +94,7 @@
         <canvas id='result-bar-chart'></canvas>
     </div>
     <div id='end-container'>
-        // leave class button
+        <?php echo "<button onclick=\"window.location.replace('course_view.php?cid=".$cid."');\">Leave Class</button>"; ?>
     </div>
 </body>
 </html>
