@@ -16,10 +16,16 @@
     require_once('config.php');
     unset($_SESSION['result_message']);
 
+    // set course not live
     $cid = $_POST['cid'];
     $sql = "UPDATE courses SET live = 0 WHERE cid = ".$cid;
 
     if (mysqli_query($conn, $sql))  {
+
+        // set any open questions not live
+        $sql_q = "UPDATE questions SET live = 0 WHERE cid = ".$cid;
+        mysqli_query($conn, $sql_q);
+
         mysqli_close($conn);
         header('Location: ../courses.php');
         exit();
