@@ -14,23 +14,27 @@
 
     require_once('config.php');
 
-    $sql = "SELECT A.qid, Q.prompt, A.answer, count(A.qid) AS answer_counts FROM answers A INNER JOIN questions Q ON A.qid = Q.qid WHERE live=2 AND cid=".$cid." GROUP BY A.qid, A.answer, Q.prompt ORDER BY A.answer ASC";
-    $result = mysqli_query($conn, $sql);
-
-    if ($result->num_rows == 0)  
-        exit();
-
+    // get counts for each answer
     $answer_counts = [];
     $answer_count_student = '';
-    while ($row = mysqli_fetch_assoc($result)) {
-        $answer_counts[] = $row['answer_counts'];
-        $answer_count_student .= $row['answer_counts'];
-        $question_prompt = $row['prompt'];
+    foreach (['A', 'B', 'C', 'D'] as $ans) {
+        $sql = "SELECT A.qid FROM answers A INNER JOIN questions Q ON A.qid = Q.qid WHERE A.answer ='".$ans."' AND live=2 AND cid=".$cid;
+        $result = mysqli_query($conn, $sql);
+        $answer_counts[] = $result->num_rows; // for use in instructor graph
+        $answer_count_student .= $result->num_rows; // for use in student graph
+        mysqli_free_result($result);
     }
+    
+    // get question prompt
+    $sql_prompt = "SELECT prompt FROM questions WHERE live = 2 AND cid = ".$cid;
+    $result_prompt = mysqli_query($conn, $sql_prompt);
+    $row = mysqli_fetch_assoc($result_prompt);
+    $question_prompt = $row['prompt'];
 
-    mysqli_free_result($result);
+    mysqli_free_result($result_prompt);
     mysqli_close($conn);
 
+    // return for student graph
     if ($_SESSION['user_permission'] == 0)
         echo $answer_count_student;
 
