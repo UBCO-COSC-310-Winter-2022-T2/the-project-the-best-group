@@ -16,10 +16,16 @@
     require_once('config.php');
     unset($_SESSION['result_message']);
 
+    // set course as live
     $cid = $_POST['cid'];
     $sql = "UPDATE courses SET live = 1 WHERE cid = ".$cid;
 
     if (mysqli_query($conn, $sql))  {
+
+        // update sessions held count
+        $sql_count = "UPDATE courses SET sessions_held = sessions_held + 1 WHERE cid = ".$cid;
+        mysqli_query($conn, $sql_count);
+
         mysqli_close($conn);
         header('Location: ../session.php?cid='.$cid);
         exit();
