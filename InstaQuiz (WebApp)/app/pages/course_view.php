@@ -56,10 +56,13 @@
             <h1>Grade:</h1>
         </div>
         <div class='container-left-body'>
-            <h2>Pie chart here</h2>
+            <?php include "../scripts/student_attendance_chart.php";?>
         </div>
         <div class='container-right-body'>
-            <?php include "../scripts/student_grade_chart.php";?>
+            <?php 
+                include "../scripts/student_grade_chart.php";
+                mysqli_close($conn);
+            ?>
         </div>
     </div>
 </body>
