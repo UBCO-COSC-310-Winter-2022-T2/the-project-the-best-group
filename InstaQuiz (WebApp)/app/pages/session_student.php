@@ -13,9 +13,9 @@
 <html>
 <head>
     <title>InstaQuiz</title>
-    <link rel="icon" type="image/png" href="../images/instaquiz_favicon.png">
     <link rel="stylesheet" href="../css/body.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <script src='../scripts/get_active_question.js'></script>
     <style>
         #question-container {
@@ -54,6 +54,18 @@
         .question-item button {
             margin: 1em;
         }
+        .chart-container {
+            width: 400px;
+            height: 200px;
+            background-color: #07223E;
+            border-radius: 15px;
+            border: 5px solid #061A2D;
+            margin-top: 2em;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 1em 1em 5em 1em;
+            text-align: center;
+        }
         #end-container {
             margin-top: 2em;
             margin-left: auto;
@@ -69,12 +81,17 @@
             margin-left: auto;
             margin-right: auto;
         }
+
     </style>
 </head>
 <body>
     <?php include_once('../header.php'); ?>
     <div id='question-container'>
-    
+        
+    </div>
+    <div class='chart-container'>
+        <h3>Previous Question Results:</h3>
+        <canvas id='result-bar-chart'></canvas>
     </div>
     <div id='end-container'>
         // leave class button
