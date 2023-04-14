@@ -16,10 +16,14 @@
     require_once('config.php');
     unset($_SESSION['result_message']);
 
-    $qid = $_POST['qid'];
-    $sql = "UPDATE questions SET live = 0 WHERE qid = ".$qid;
+    // set any questions set to chart (2) to not active (0)
+    $sql = "UPDATE questions SET live = 0 WHERE live=2";
+    mysqli_query($conn, $sql);
 
-    if (!mysqli_query($conn, $sql))  
+    // set closed question to chart (2)
+    $qid = $_POST['qid'];
+    $sql_chart = "UPDATE questions SET live = 2 WHERE qid = ".$qid;
+    if (!mysqli_query($conn, $sql_chart))  
         $_SESSION['result_message'] = "<div class='error-message'>Error closing question.</div>";
 
     mysqli_close($conn);
