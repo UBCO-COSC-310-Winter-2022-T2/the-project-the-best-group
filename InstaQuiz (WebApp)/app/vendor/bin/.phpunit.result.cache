@@ -1,1 +1,1 @@
-{"version":1,"defects":{"Test::testRegister":4},"times":{"Test::testRegister":0.144}}
+{"version":1,"defects":{"Test::testRegister":4,"Test::testLogin":4,"Test::testCreateCourse":3},"times":{"Test::testRegister":0.132,"Test::testLogin":0.01,"Test::testLogout":0,"Test::testCreateCourse":0.015}}
