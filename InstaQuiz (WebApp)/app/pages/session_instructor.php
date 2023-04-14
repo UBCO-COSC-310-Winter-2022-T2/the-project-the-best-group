@@ -127,7 +127,7 @@ if ($result->num_rows > 0) {
             ?>
         </div>
         <div class='container-right-body'>
-            <?php include "../scripts/question_chart.php"; ?>
+            <?php include "../scripts/question_chart_instructor.php"; ?>
         </div>
 
     </div>
