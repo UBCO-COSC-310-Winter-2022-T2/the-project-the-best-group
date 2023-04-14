@@ -68,11 +68,11 @@ header a:hover
 }
 .title 
 {
+    justify-self: center;
+    align-self: center;
     text-align: center;
     text-decoration: underline #CCCCCC 2px;
-    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.6);
     font-size: 18px;
     font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
-    margin-left: 2.75%;
 }

@@ -25,7 +25,6 @@
         else 
         {
             // Display an error message if user's credentials are incorrect
-
             $_SESSION['result-message'] = '<div class="error-message">Invalid email or password.</div><br>';
             header("Location: ../pages/login.php");
 

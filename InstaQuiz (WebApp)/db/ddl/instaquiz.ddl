@@ -1,187 +1,292 @@
-/*-----------------------INSTAQUIZ DATABASE STARTER CODE-----------------------------------*/
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: db:3306
+-- Generation Time: Apr 14, 2023 at 04:26 AM
+-- Server version: 8.0.32
+-- PHP Version: 8.1.17
 
--- added starter values for each table so we won't need to manually register or add courses
--- when we want to demonstate the system, can add more if we want for final demo video
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
 
-USE instaquiz; -- our database
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
-/*------------------------------ ACCOUNTS -------------------------------------------------*/
+--
+-- Database: `instaquiz`
+--
 
-CREATE TABLE accounts (
-    id INT AUTO_INCREMENT,
-    permission BIT(1) NOT NULL, -- 0 = student, 1 = instructor
-    fname VARCHAR(255) NOT NULL,
-    lname VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL,
-    rtoken VARCHAR(255), -- random 36 char token (for forgot password recovery)
-    PRIMARY KEY (id)
-);
+-- --------------------------------------------------------
 
--- creates trigger so that everytime there is a new account created it will be assigned a random rtoken
+--
+-- Table structure for table `accounts`
+--
+
+CREATE TABLE `accounts` (
+  `id` int NOT NULL,
+  `permission` bit(1) NOT NULL,
+  `fname` varchar(255) NOT NULL,
+  `lname` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `rtoken` varchar(36) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `accounts`
+--
+
+INSERT INTO `accounts` (`id`, `permission`, `fname`, `lname`, `email`, `password`, `rtoken`) VALUES
+(1, b'0', 'John', 'Doe', 'johndoe@mail.com', 'johnpw', '790c996e-d707-11ed-ae3a-0242ac130002'),
+(2, b'1', 'Jane', 'Doe', 'janedoe@mail.com', 'janepw', '790dd059-d707-11ed-ae3a-0242ac130002'),
+(3, b'0', 'Henry', 'Smith', 'hsmith@mail.com', 'henrypw', '790f3f80-d707-11ed-ae3a-0242ac130002'),
+(4, b'1', 'Harold', 'Smith', 'haroldsmith@mail.com', 'haroldpw', '79107db2-d707-11ed-ae3a-0242ac130002'),
+(5, b'0', 'Greg', 'Green', 'greggreen@mail.com', 'gregpw', '7911c7bf-d707-11ed-ae3a-0242ac130002'),
+(6, b'1', 'Al', 'Anderson', 'alanderson@mail.com', 'alpw', '7913acb1-d707-11ed-ae3a-0242ac130002');
+
+--
+-- Triggers `accounts`
+--
 DELIMITER $$
-CREATE TRIGGER set_rtoken_default
-BEFORE INSERT ON accounts
-FOR EACH ROW
-BEGIN
+CREATE TRIGGER `set_rtoken_default` BEFORE INSERT ON `accounts` FOR EACH ROW BEGIN
     SET NEW.rtoken = UUID();
-END$$
+END
+$$
 DELIMITER ;
 
--- John Doe is a student (id auto set to 1)
-INSERT INTO accounts (permission, fname, lname, email, password) 
-VALUES (0, 'John', 'Doe', 'johndoe@mail.com', 'johnpw');
+-- --------------------------------------------------------
 
--- Jane Doe is a instructor (id auto set to 2)
-INSERT INTO accounts (permission, fname, lname, email, password) 
-VALUES (1, 'Jane', 'Doe', 'janedoe@mail.com', 'janepw');
+--
+-- Table structure for table `answers`
+--
 
--- Henry Smith is a student (id auto set to 3)
-INSERT INTO accounts (permission, fname, lname, email, password) 
-VALUES (0, 'Henry', 'Smith', 'hsmith@mail.com', 'henrypw');
+CREATE TABLE `answers` (
+  `sid` int NOT NULL,
+  `qid` int NOT NULL,
+  `answer` varchar(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Harold Smith is an instructor (id auto set to 4)
-INSERT INTO accounts (permission, fname, lname, email, password) 
-VALUES (1, 'Harold', 'Smith', 'haroldsmith@mail.com', 'haroldpw');
+-- --------------------------------------------------------
 
--- Greg Green is an student (id auto set to 5)
-INSERT INTO accounts (permission, fname, lname, email, password) 
-VALUES (0, 'Greg', 'Green', 'greggreen@mail.com', 'gregpw');
+--
+-- Table structure for table `courses`
+--
 
--- Al Anderson is an instructor (id auto set to 6)
-INSERT INTO accounts (permission, fname, lname, email, password) 
-VALUES (1, 'Al', 'Anderson', 'alanderson@mail.com', 'alpw');
+CREATE TABLE `courses` (
+  `cid` int NOT NULL,
+  `cname` varchar(255) NOT NULL,
+  `Iid` int NOT NULL,
+  `sessions_held` int DEFAULT (0),
+  `live` bit(1) DEFAULT (0)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-/*------------------------------ COURSES -------------------------------------------------*/
+--
+-- Dumping data for table `courses`
+--
 
-CREATE TABLE courses (
-    cid INT AUTO_INCREMENT,
-    cname VARCHAR(255) NOT NULL,
-    Iid INT NOT NULL, -- id of instructor
-    sessions_held INT DEFAULT (0), -- will be incremented everytime a live session happens
-    live BIT DEFAULT (0), -- 0 = false, course not active, 1 = true, course is active
-    PRIMARY KEY (cid)
-);
+INSERT INTO `courses` (`cid`, `cname`, `Iid`, `sessions_held`, `live`) VALUES
+(1, 'Computer Human Interaction', 6, 1, b'0'),
+(2, 'Machine Architecture', 4, 1, b'0'),
+(3, 'Data Structures', 2, 1, b'0'),
+(4, 'Intro To Database Systems', 4, 1, b'0'),
+(5, 'Software Engineering', 2, 2, b'0');
 
--- course (id auto set to 1) is "Computer Human Interaction", it is taught by instructor Al Anderson (account id 6)
-INSERT INTO courses (cname, Iid, sessions_held)
-VALUES ('Computer Human Interaction', 6, 1);
+-- --------------------------------------------------------
 
--- course (id auto set to 2) is "Machine Architecture", it is taught by instructor Harold Smith (account id 4)
-INSERT INTO courses (cname, Iid, sessions_held)
-VALUES ('Machine Architecture', 4, 1);
+--
+-- Table structure for table `enrollment`
+--
 
--- course (id auto set to 3) is "Data Structures", it is taught by instructor Jane Doe (account id 2)
-INSERT INTO courses (cname, Iid, sessions_held)
-VALUES ('Data Structures', 2, 1);
+CREATE TABLE `enrollment` (
+  `cid` int NOT NULL,
+  `sid` int NOT NULL,
+  `student_attendance` int DEFAULT (0),
+  `sessions_held` int DEFAULT (0)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- course (id auto set to 4) is "Intro To Database Systems", it is taught by instructor Harold Smith (account id 4)
-INSERT INTO courses (cname, Iid, sessions_held)
-VALUES ('Intro To Database Systems', 4, 1);
+--
+-- Dumping data for table `enrollment`
+--
 
--- course (id auto set to 5) is "Software Engineering", it is taught by instructor Jane Doe (account id 2)
-INSERT INTO courses (cname, Iid, sessions_held)
-VALUES ('Software Engineering', 2, 2);
+INSERT INTO `enrollment` (`cid`, `sid`, `student_attendance`, `sessions_held`) VALUES
+(1, 1, 1, 1),
+(2, 1, 1, 1),
+(2, 3, 1, 1),
+(3, 5, 1, 1),
+(4, 3, 1, 1),
+(4, 5, 1, 1),
+(5, 5, 2, 2);
 
-/*------------------------------ QUESTIONS -------------------------------------------------*/
+-- --------------------------------------------------------
 
-CREATE TABLE questions (
-  qid INT AUTO_INCREMENT,
-  cid INT NOT NULL,
-  prompt VARCHAR(255),
-  a VARCHAR(255),
-  b VARCHAR(255),
-  c VARCHAR(255),
-  d VARCHAR(255),
-  answer CHAR(1),
-  FOREIGN KEY (cid) REFERENCES courses(cid) ON DELETE CASCADE,
-  PRIMARY KEY (qid)
-);
+--
+-- Table structure for table `questions`
+--
 
--- starter code questions are just for example, not actually relavent to the course topics
+CREATE TABLE `questions` (
+  `qid` int NOT NULL,
+  `cid` int NOT NULL,
+  `prompt` varchar(255) DEFAULT NULL,
+  `a` varchar(255) DEFAULT NULL,
+  `b` varchar(255) DEFAULT NULL,
+  `c` varchar(255) DEFAULT NULL,
+  `d` varchar(255) DEFAULT NULL,
+  `answer` char(1) DEFAULT NULL,
+  `live` tinyint(1) DEFAULT '0',
+  `was_asked` bit(1) NOT NULL DEFAULT b'0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- 4 questions in course 1
-INSERT INTO questions (cid, prompt, a, b, c, d, answer)
-VALUES 
-(1, 'Which of the following is a problem with low-level programming', 'takes too long', 'user expectations can be too high', 'they are too small to see', 'none of these answers', 'D'),
-(1, 'Which of these is the best description of a conceptual model', 'a very tall model', 'a high level description of how a systems organization/operation', 'a fully functional model', 'none of these answers', 'B'),
-(1, 'Which of the following is the name of a common physical input device', 'cat', 'dog', 'mouse', 'rabbit', 'C'),
-(1, 'What does UI stand for in computer science', 'User Interface', 'Usable Item', 'Unsafe Internet', 'Uncommon Identifier', 'A');
+--
+-- Dumping data for table `questions`
+--
 
--- 2 questions in course 2
-INSERT INTO questions (cid, prompt, a, b, c, d, answer)
-VALUES 
-(2, 'Which common symbol represents a register in MIPS code', '#', '@', '&', '$', 'D'),
-(2, 'What does CPU stand for in computer science', 'Central Processing Unit', 'Cat Pull Under', 'Center Pile Unit', 'Central Password User', 'A');
+INSERT INTO `questions` (`qid`, `cid`, `prompt`, `a`, `b`, `c`, `d`, `answer`, `live`, `was_asked`) VALUES
+(1, 1, 'Which of the following is a problem with low-level programming', 'takes too long', 'user expectations can be too high', 'they are too small to see', 'none of these answers', 'D', 0, b'0'),
+(2, 1, 'Which of these is the best description of a conceptual model', 'a very tall model', 'a high level description of how a systems organization/operation', 'a fully functional model', 'none of these answers', 'B', 0, b'0'),
+(3, 1, 'Which of the following is the name of a common physical input device', 'cat', 'dog', 'mouse', 'rabbit', 'C', 0, b'0'),
+(4, 1, 'What does UI stand for in computer science', 'User Interface', 'Usable Item', 'Unsafe Internet', 'Uncommon Identifier', 'A', 0, b'0'),
+(5, 2, 'Which common symbol represents a register in MIPS code', '#', '@', '&', '$', 'D', 0, b'0'),
+(6, 2, 'What does CPU stand for in computer science', 'Central Processing Unit', 'Cat Pull Under', 'Center Pile Unit', 'Central Password User', 'A', 0, b'0'),
+(7, 3, 'Which of the following is a common data structure', 'HashPath', 'HillTop', 'HashMap', 'HelpTable', 'C', 0, b'0'),
+(8, 3, 'Which of the following is NOT a common data structure', 'Array', 'ArrayList', 'Skip List', 'Arrow List', 'D', 0, b'0'),
+(9, 3, 'Select the invalid time complexity', 'O(1)', 'O(n)', 'O(-2)', 'O(logn)', 'C', 0, b'0'),
+(10, 4, 'Which of these is a common database', 'MongoDB', 'MangoDB', 'MondoDB', 'OrangeDB', 'A', 0, b'0'),
+(11, 4, 'What does DBMS stand for', 'Database Management System', 'Database More Secure', 'Data Before Making System', 'Dont Build More Stacks', 'A', 0, b'0'),
+(12, 4, 'Which of the following is not a DBMS', 'Google', 'MySQL', 'IBM DB2', 'Mircosoft Acess', 'A', 0, b'0'),
+(13, 5, 'Which of the following is not a programming language', 'Python', 'Java', 'HTML', 'CSS', 'C', 0, b'0'),
+(14, 5, 'Which of the following is not a version control system', 'Git', 'Subversion', 'Mercurial', 'MySQL', 'D', 0, b'0'),
+(15, 5, 'Which of the following is not an operating system', 'Windows', 'Linux', 'macOS', 'Oracle', 'D', 0, b'0'),
+(16, 5, 'Which of the following is not a software development methodology', 'Agile', 'Waterfall', 'Crumb', 'Scrum', 'C', 0, b'0');
 
--- 4 questions in course 3
-INSERT INTO questions (cid, prompt, a, b, c, d, answer)
-VALUES 
-(3, 'Which of the following is a common data structure', 'HashPath', 'HillTop', 'HashMap', 'HelpTable', 'C'),
-(3, 'Which of the following is NOT a common data structure', 'Array', 'ArrayList', 'Skip List', 'Arrow List', 'D'),
-(3, 'Select the invalid time complexity', 'O(1)', 'O(n)', 'O(-2)', 'O(logn)', 'C');
+-- --------------------------------------------------------
 
--- 4 questions in course 4
-INSERT INTO questions (cid, prompt, a, b, c, d, answer)
-VALUES 
-(4, 'Which of these is a common database', 'MongoDB', 'MangoDB', 'MondoDB', 'OrangeDB', 'A'),
-(4, 'What does DBMS stand for', 'Database Management System', 'Database More Secure', 'Data Before Making System', 'Dont Build More Stacks', 'A'),
-(4, 'Which of the following is not a DBMS', 'Google', 'MySQL', 'IBM DB2', 'Mircosoft Acess', 'A');
+--
+-- Table structure for table `scores`
+--
 
--- 4 questions in course 5
-INSERT INTO questions (cid, prompt, a, b, c, d, answer)
-VALUES
-(5, 'Which of the following is not a programming language', 'Python', 'Java', 'HTML', 'CSS', 'C'),
-(5, 'Which of the following is not a version control system', 'Git', 'Subversion', 'Mercurial', 'MySQL', 'D'),
-(5, 'Which of the following is not an operating system', 'Windows', 'Linux', 'macOS', 'Oracle', 'D'),
-(5, 'Which of the following is not a software development methodology', 'Agile', 'Waterfall', 'Crumb', 'Scrum', 'C');
+CREATE TABLE `scores` (
+  `scoreid` int NOT NULL,
+  `sid` int DEFAULT NULL,
+  `cid` int DEFAULT NULL,
+  `totalCorrect` int DEFAULT NULL,
+  `totalAsked` int DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-/*------------------------------------ ENROLLMENT -------------------------------------------*/
+--
+-- Dumping data for table `scores`
+--
 
-CREATE TABLE enrollment (
-  cid INT NOT NULL,
-  sid INT NOT NULL,
-  student_attendance INT DEFAULT (0),
-  sessions_held INT DEFAULT (0),
-  CONSTRAINT unique_entry UNIQUE (cid, sid),
-  FOREIGN KEY (cid) REFERENCES courses(cid) ON DELETE CASCADE,
-  FOREIGN KEY (sid) REFERENCES accounts(id) ON DELETE CASCADE
-);
+INSERT INTO `scores` (`scoreid`, `sid`, `cid`, `totalCorrect`, `totalAsked`) VALUES
+(1, 1, 1, 2, 4),
+(2, 1, 2, 1, 2),
+(3, 5, 3, 3, 3),
+(4, 5, 4, 3, 3),
+(5, 5, 5, 4, 4),
+(6, 3, 4, 3, 3),
+(7, 3, 2, 1, 2);
 
--- student 1 (John Doe) is enrolled in course 1 and 2, he has attended 1/1 sessions in both
-INSERT INTO enrollment (sid, cid, student_attendance, sessions_held)
-VALUES (1,1,1,1), (1,2,1,1);
+--
+-- Indexes for dumped tables
+--
 
--- student 3 (Henry Smith) is enrolled in course 2 and 4, he has attended 1/1 sessions in both
-INSERT INTO enrollment (sid, cid, student_attendance, sessions_held)
-VALUES (3,2,1,1), (3,4,1,1);
+--
+-- Indexes for table `accounts`
+--
+ALTER TABLE `accounts`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
 
--- student 5 (Greg Green) is enrolled in course 3 4 and 5, he has attended 1/1 sessions in course 3 and 4 and 2/2 sessions in course 5
-INSERT INTO enrollment (sid, cid, student_attendance, sessions_held)
-VALUES (5,3,1,1), (5,4,1,1), (5,5,2,2);
+--
+-- Indexes for table `answers`
+--
+ALTER TABLE `answers`
+  ADD PRIMARY KEY (`sid`,`qid`);
 
-/*-------------------------- SCORES -----------------------------------------------*/
+--
+-- Indexes for table `courses`
+--
+ALTER TABLE `courses`
+  ADD PRIMARY KEY (`cid`);
 
-CREATE TABLE scores (
-  scoreid INT AUTO_INCREMENT, -- unique identifier for score entries so that we can delete rows and edit this table
-  sid INT,
-  cid INT,
-  totalCorrect INT, -- need a method to incremented everytime a student answers a question correctly (use sid)
-  totalAsked INT, -- need a method to increment everytime a course posts a question (use cid)
-  FOREIGN KEY (cid) REFERENCES courses(cid) ON DELETE CASCADE,
-  FOREIGN KEY (sid) REFERENCES accounts(id) ON DELETE CASCADE,
-  PRIMARY KEY (scoreid)
-);
+--
+-- Indexes for table `enrollment`
+--
+ALTER TABLE `enrollment`
+  ADD UNIQUE KEY `unique_entry` (`cid`,`sid`),
+  ADD KEY `sid` (`sid`);
 
--- John Doe has answered 2 questions correct out of 4 in course 1 and is 1 for 2 in course 2
-INSERT INTO scores (sid, cid, totalCorrect, totalAsked)
-VALUES (1, 1, 2, 4), (1, 2, 1, 2);
+--
+-- Indexes for table `questions`
+--
+ALTER TABLE `questions`
+  ADD PRIMARY KEY (`qid`),
+  ADD KEY `cid` (`cid`);
 
--- Greg Green has answered all 3 questions correct for course 3 and 4 and all 4 correct for course 5
-INSERT INTO scores (sid, cid, totalCorrect, totalAsked)
-VALUES (5, 3, 3, 3), (5, 4, 3, 3), (5, 5, 4, 4);
+--
+-- Indexes for table `scores`
+--
+ALTER TABLE `scores`
+  ADD PRIMARY KEY (`scoreid`),
+  ADD KEY `cid` (`cid`),
+  ADD KEY `sid` (`sid`);
 
--- Henry Smith has answered all 3 questions correct in course 4 and 1 out of 2 correct in course 2.
-INSERT INTO scores (sid, cid, totalCorrect, totalAsked)
-VALUES (3, 4, 3, 3), (3, 2, 1, 2);
+--
+-- AUTO_INCREMENT for dumped tables
+--
 
+--
+-- AUTO_INCREMENT for table `accounts`
+--
+ALTER TABLE `accounts`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `courses`
+--
+ALTER TABLE `courses`
+  MODIFY `cid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `questions`
+--
+ALTER TABLE `questions`
+  MODIFY `qid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT for table `scores`
+--
+ALTER TABLE `scores`
+  MODIFY `scoreid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `enrollment`
+--
+ALTER TABLE `enrollment`
+  ADD CONSTRAINT `enrollment_ibfk_1` FOREIGN KEY (`cid`) REFERENCES `courses` (`cid`) ON DELETE CASCADE,
+  ADD CONSTRAINT `enrollment_ibfk_2` FOREIGN KEY (`sid`) REFERENCES `accounts` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `questions`
+--
+ALTER TABLE `questions`
+  ADD CONSTRAINT `questions_ibfk_1` FOREIGN KEY (`cid`) REFERENCES `courses` (`cid`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `scores`
+--
+ALTER TABLE `scores`
+  ADD CONSTRAINT `scores_ibfk_1` FOREIGN KEY (`cid`) REFERENCES `courses` (`cid`) ON DELETE CASCADE,
+  ADD CONSTRAINT `scores_ibfk_2` FOREIGN KEY (`sid`) REFERENCES `accounts` (`id`) ON DELETE CASCADE;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

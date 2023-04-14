@@ -1,12 +1,13 @@
 <?php
     session_start();
-    $pageTitle = "Unenroll Course Confirmation";
-    $userId = (int)$_SESSION['user_id'];
+    $pageTitle = "Instructor Courses: Remove Student Confirmation";
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") 
     {
-        $cid = (int)$_POST['cid'];
-        $cname = $_POST['cname'];
+        $cid = $_POST['cid'];
+        $sid = $_POST['sid'];
+        $fname = $_POST['fname'];
+        $lname = $_POST['lname'];
     }
 ?>
 
@@ -86,17 +87,14 @@
     <div class='container'>
         <div class='container-form'>
             <div class='container-form-row'>
-
-                <h1>Unenroll From:</h1>
-
-                <h2><?php echo $cname."?" ?></h2>
+                <h1>Remove Student <h2><?php echo $fname." ".$lname."?" ?></h2></h1>
             </div>
             <form action='../scripts/student_unenroll.php' method='POST'>
                 <input type='hidden' name='cid' value='<?= $cid ?>'>
-                <input type='hidden' name='sid' value='<?= $userId ?>'>
-                <button class='bad-button' type='submit'>I am totally sure that I want to unenroll from this course.</button>
+                <input type='hidden' name='sid' value='<?= $sid ?>'>
+                <button class='bad-button' type='submit'>I want to remove this student from my course.</button>
             </form>
-            <button onclick="window.location.href = '../courses.php';" class='good-button'>I have changed my mind, take me back!</button>
+            <button onclick="window.location.href = 'students.php';" class='good-button'>I have changed my mind, take me back!</button>
         </div>
     </div>
 </body>

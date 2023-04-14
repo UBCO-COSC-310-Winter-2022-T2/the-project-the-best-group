@@ -101,22 +101,15 @@
 }
 .course-item
 {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 50px 40px 1fr;
-    grid-gap: 5px;
-    align-items: center;
-    justify-items: center;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    width: 66%;
-    padding: 5px;
-    font-size: 18px;
-    font-weight: bold;
-    color: #CCCCCC;
+    margin: 1em;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.5em;
+    justify-content: flex-start;
+    align-content: center;
     background-color: #05386B;
-    border-style: solid;
-    border-color: #061A2D;
-    border-width: 5px;
     border-radius: 15px;
+    border: 5px solid #061A2D;
+    word-wrap: break-word;
 }
