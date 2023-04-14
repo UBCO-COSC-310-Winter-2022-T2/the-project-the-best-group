@@ -66,6 +66,7 @@
           <input type='hidden' name='cid' value='{$row['cid']}'>
           <button class='green-button' >Start Class</button>
         </form>
+        <hr width='100%' color='#061A2D' style='border: 2px solid #061A2D;'>
         <form action='courses_instructor.php' method='POST'>
           <input type='hidden' name='cid' value='{$row['cid']}'>
           <button class='pink-button' type='submit'>View Options</button>
