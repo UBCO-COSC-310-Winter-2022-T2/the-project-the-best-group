@@ -14,7 +14,6 @@
             </div>
             <nav>
                 <a href="../scripts/logout.php">Logout</a>
-                <a href="../pages/database.php">Database</a>
             </nav>
         </header>
     </body>
