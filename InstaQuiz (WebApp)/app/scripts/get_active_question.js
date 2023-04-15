@@ -7,8 +7,8 @@ $(document).ready(function() {
 
     getActiveQuestion();
     createChart();
-    var interval1 = setInterval(getActiveQuestion, 2000);  //refresh every 5 seconds 
-    var interval2 = setInterval(createChart, 2000);  //refresh every 5 seconds 
+    var interval1 = setInterval(getActiveQuestion, 5000);  //refresh every 5 seconds 
+    var interval2 = setInterval(createChart, 5000);  //refresh every 5 seconds 
 
 });
 
