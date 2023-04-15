@@ -26,7 +26,7 @@ Our team built a web-based system that enables instructors to engage with studen
 | 7. Users can enroll in any course module that they are not currently enrolled in. | C |
 | 8. Instructors and students can unenroll from a course they are currently enrolled in. | C |
 | 9. Instructors can start a live course session in any courses they have created. | C |
-| 10. If an instructor has any ongoing live sessions, they can end them whenever, as long as no polling windows are active. | C |
+| 10. If an instructor has any ongoing live sessions, they can end them whenever, as long as no polling windows are active. | M |
 | 11. Users can join a live course session, provided that the instructor has started it already. | C |
 | 12. Instructors can create a storage bank of custom questions with corresponding multiple choice answer sets. | C |
 | 13. Instructors can start a polling window during a live session as long as no other polls are already in progress. | M |
