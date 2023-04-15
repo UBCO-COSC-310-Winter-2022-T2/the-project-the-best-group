@@ -7,13 +7,12 @@ on:
 jobs:
 
   build:
-
     runs-on: ubuntu-latest
+    env:
+      working-directory: './InstaQuiz (WebApp)'
 
     steps:
     - uses: actions/checkout@v3
-    - name: cd into InstaQuiz(WebApp)
-      run: cd 'InstaQuiz (WebApp)'
     - name: Build the Docker images
       run: docker-compose build
     - name: Compose Docker Containers
