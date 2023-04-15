@@ -30,6 +30,7 @@
             margin: 1.5em;
             border: 5px solid #061A2D;
             border-radius: 15px;
+            width: 33%;
         }
         .course-create
         {
@@ -46,6 +47,7 @@
             border-radius: 15px;
             border: 5px solid #061A2D;
             word-wrap: break-word;
+            width: 85%;
         }
         .course-create button
         {

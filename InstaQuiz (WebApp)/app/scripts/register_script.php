@@ -33,6 +33,7 @@
                 $hash_rtoken = password_hash($rtoken, PASSWORD_DEFAULT);
                 $sql_3 = "UPDATE accounts SET rtoken = '$hash_rtoken' WHERE email = '$email'";
                 $third_result = mysqli_query($conn,$sql_3);
+
                 if($third_result)
                 {
                     $_SESSION['result_message_1'] = "<h3>Here is your Recovery Token!</h3><h3>Keep it written down in case you forget your password:</h3><h3>$rtoken</h3>";

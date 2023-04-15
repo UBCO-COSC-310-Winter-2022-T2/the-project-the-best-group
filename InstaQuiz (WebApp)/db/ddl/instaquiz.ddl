@@ -33,7 +33,7 @@ CREATE TABLE `accounts` (
   `lname` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `rtoken` varchar(36) DEFAULT NULL
+  `rtoken` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --

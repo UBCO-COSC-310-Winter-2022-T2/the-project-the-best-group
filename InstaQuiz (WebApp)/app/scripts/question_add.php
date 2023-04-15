@@ -17,14 +17,14 @@
         $sql = "INSERT INTO questions (cid, prompt, a, b, c, d, answer) VALUES ('$cid', '$prompt', '$a', '$b', '$c', '$d', '$answer')";
         if (mysqli_query($conn, $sql)) 
         {
-            $_SESSION['result_message'] = "<div class='success-message'>Question added successfully! Add another:</div>";
+            $_SESSION['result_message'] = "<div class='green-message'>Question added successfully! Add another:</div>";
             mysqli_close($conn);
             header('Location: ../pages/questions.php');
             exit();
         } 
         else 
         {
-            $_SESSION['result_message'] = "<div class='error-message'>Error adding question. Try again:</div>";
+            $_SESSION['result_message'] = "<div class='red-message'>Error adding question. Try again:</div>";
             mysqli_close($conn);
             header('Location: ../pages/questions.php');
             exit();

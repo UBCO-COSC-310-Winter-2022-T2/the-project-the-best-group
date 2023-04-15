@@ -44,11 +44,18 @@
                 <h2 class='$colorB'>B: {$row['b']}</h2>
                 <h2 class='$colorC'>C: {$row['c']}</h2>
                 <h2 class='$colorD'>D: {$row['d']}</h2>
+                <hr width='100%' color='#061A2D' style='border: 2px solid #061A2D;'>
                 <div class='question-button'>
                     <form action='question_edit.php' method='POST'>
                         <input type='hidden' name='cid' value='{$row['cid']}'>
                         <input type='hidden' name='qid' value='{$row['qid']}'>
                         <button class='green-button' type='submit'>Edit Question</button>
+                    </form>
+                    <form action='question_deleteConf.php' method='POST'>
+                        <input type='hidden' name='cid' value='{$row['cid']}'>
+                        <input type='hidden' name='qid' value='{$row['qid']}'>
+                        <input type='hidden' name='prompt' value='{$row['prompt']}'>
+                        <button class='red-button' type='submit'>Delete Question</button>
                     </form>
                 </div>    
             </div>";
@@ -111,6 +118,7 @@
             }
             .question-item button
             {
+                margin-top: 0.5em;
                 font-size: 24px;
             }
             .answer

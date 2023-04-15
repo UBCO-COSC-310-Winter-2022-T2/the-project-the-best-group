@@ -13,7 +13,7 @@
 
         if (mysqli_stmt_execute($stmt)) 
         {
-            $_SESSION['result_message'] = "<div class='success-message'>Successfully deleted your course!</div>";
+            $_SESSION['result_message'] = "<div class='green-message'>Successfully deleted your course!</div>";
             mysqli_stmt_close($stmt);
             mysqli_close($conn);
             header('Location: ../courses.php');
@@ -21,7 +21,7 @@
         } 
         else 
         {
-            $_SESSION['result_message'] = "<div class='error-message'>Error deleting your course. Please try again:</div>";
+            $_SESSION['result_message'] = "<div class='red-message'>Error deleting your course. Please try again:</div>";
             mysqli_stmt_close($stmt);
             mysqli_close($conn);
             header('Location: ../courses.php');

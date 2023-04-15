@@ -27,6 +27,7 @@
       </div>
         <hr width='100%' color='#061A2D' style='border: 2px solid #061A2D;'>
         <p>Instructor: {$row['fname']} {$row['lname']}</p>
+        <hr width='100%' color='#061A2D' style='border: 2px solid #061A2D;'>
         <form action='../scripts/student_enroll.php' method='POST'>
           <input type='hidden' name='cid' value='{$row['cid']}'>
           <button class='green-button' type='submit'>Enroll</button>
@@ -58,6 +59,7 @@
         </div>
         <hr width='100%' color='#061A2D' style='border: 2px solid #061A2D;'>
         <p>Instructor: {$row['fname']} {$row['lname']}</p>
+        <hr width='100%' color='#061A2D' style='border: 2px solid #061A2D;'>
         <form action='courses_unenrollConf.php' method='POST'>
           <input type='hidden' name='cid' value='{$row['cid']}'>
           <input type='hidden' name='cname' value='{$row['cname']}'>
@@ -192,15 +194,15 @@
         ?>
     </div>
     <div class='container-right-body'>
-    <h3>These are courses you are currently enrolled in:<br>Search for new courses to join on the left!</h3>
-        <?php 
+      <?php 
         if (isset($_SESSION['result_message'])) 
         {
             echo $_SESSION['result_message'];
             unset($_SESSION['result_message']);
-        }
-        echo $enrolledResult; 
-        ?>
+        } 
+      ?>
+      <h3>These are courses you are currently enrolled in:<br>Search for new courses to join on the left!<br>(Click course title to visit course page.)</h3>
+      <?php echo $enrolledResult; ?>
     </div>
   </div>
 </body>
