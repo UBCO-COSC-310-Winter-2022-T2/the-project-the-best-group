@@ -12,13 +12,15 @@
         $password = $_POST['password'];
 
         // Retrieve user's information from the account table
-        $sql = "SELECT id, permission, password FROM accounts WHERE email = '$email'";
+        $sql = "SELECT id, permission, fname, lname, password FROM accounts WHERE email = '$email'";
         $result = mysqli_query($conn, $sql);
         $row = mysqli_fetch_assoc($result);
 
         if (mysqli_num_rows($result) == 1 && password_verify($password, $row['password'])) {
             $_SESSION['user_id'] = $row['id'];
             $_SESSION['user_permission'] = $row['permission'];
+            $_SESSION['user_first_name'] = $row['fname'];
+            $_SESSION['user_last_name'] = $row['lname'];
             header("Location: ../index.php");
             exit;
         } 

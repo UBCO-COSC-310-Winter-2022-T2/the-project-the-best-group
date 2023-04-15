@@ -1,3 +1,8 @@
+<?php 
+    $fname = $_SESSION['user_first_name'];
+    $lname = $_SESSION['user_last_name'];
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,6 +17,7 @@
                     echo $pageTitle;
                 ?>
             </div>
+            <div class='user'><?php echo $fname." ".$lname ?></div>
             <nav>
                 <a href="../scripts/logout.php">Logout</a>
             </nav>

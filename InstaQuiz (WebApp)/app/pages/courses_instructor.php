@@ -25,6 +25,7 @@
               </div>
               <hr width='100%' color='#061A2D' style='border: 2px solid #061A2D;'>
               <p>Instructor: {$row['fname']} {$row['lname']}</p>
+              <hr width='100%' color='#061A2D' style='border: 2px solid #061A2D;'>
               <form action='questions.php'>
                   <button class='pink-button'>Questions</button>
               </form>

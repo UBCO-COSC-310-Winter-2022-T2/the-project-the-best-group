@@ -1,7 +1,6 @@
 <?php
     session_start();
     $pageTitle = "Register";
-    echo $_SESSION['result_message_0'];
     unset($_SESSION['result_message_0']);
 ?>
 <!DOCTYPE html>
@@ -80,6 +79,7 @@
                 <button onclick="window.location.href = '../index.php';">Home</button>
             </form>
             <?php
+                echo $_SESSION['result_message_0'];
                 echo $_SESSION['result_message_1'];
                 unset($_SESSION['result_message_1']);
             ?>

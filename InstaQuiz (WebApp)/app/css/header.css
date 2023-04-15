@@ -22,9 +22,11 @@ header
     border-width: 5px;
     border-radius: 15px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    position: relative;
 }
 header a 
 {
+    align-self: center;
     font-family: 'Courier New', Courier, monospace;
     background-color: transparent;
     text-decoration: none;
@@ -68,10 +70,16 @@ header a:hover
 }
 .title 
 {
-    justify-self: center;
-    align-self: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.user 
+{
+    position: absolute;
+    right: 7em;
     text-align: center;
-    text-decoration: underline #CCCCCC 2px;
+    text-decoration: none;
     font-size: 18px;
     font-family: 'Courier New', Courier, monospace;
     font-weight: bold;

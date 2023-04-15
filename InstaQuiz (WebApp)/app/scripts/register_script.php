@@ -24,8 +24,7 @@
             $sql_2 = "SELECT rtoken FROM accounts WHERE fname = '$fname' AND lname = '$lname' AND email = '$email' AND password = '$hash_password';";
             $second_result = mysqli_query($conn,$sql_2);
 
-            // Display a success message if user was added to the account table
-            $_SESSION['result_message_0'] = '<div class="success-message">Account created successfully.</div>';
+            $_SESSION['result_message_0'] = '<div class="success-message">Account created successfully!</div>';
             if ($second_result) 
             {
                 $row = mysqli_fetch_assoc($second_result);

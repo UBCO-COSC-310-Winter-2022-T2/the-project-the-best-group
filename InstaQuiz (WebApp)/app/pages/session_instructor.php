@@ -14,29 +14,54 @@ include "../scripts/config.php";
 $sql = "SELECT qid, prompt, a, b, c, d, answer, live FROM questions WHERE cid = ".$cid;
 $result = mysqli_query($conn, $sql);
 
-if ($result->num_rows > 0) {
-    while($row = $result->fetch_assoc())  {
-        if ($row['live'] == 1) { 
+if ($result->num_rows > 0) 
+{
+    while($row = $result->fetch_assoc())  
+    {
+        $colorA = '';
+        $colorB = '';
+        $colorC = '';
+        $colorD = '';
+        switch ($row['answer']) 
+        {
+            case 'A':
+                $colorA = 'answer';
+                break;
+            case 'B':
+                $colorB = 'answer';
+                break;
+            case 'C':
+                $colorC = 'answer';
+                break;
+            case 'D':
+                $colorD = 'answer';
+                break;
+        }
+
+        if ($row['live'] == 1) 
+        { 
             $questionResult .= "
             <div class='question-item question-active'>
                 <h2>{$row['prompt']}</h2>
-                <p>A) {$row['a']}</p>
-                <p>B) {$row['b']}</p>
-                <p>C) {$row['c']}</p>
-                <p>D) {$row['d']}</p>
+                <h2 class='$colorA'>A: {$row['a']}</h2>
+                <h2 class='$colorB'>B: {$row['b']}</h2>
+                <h2 class='$colorC'>C: {$row['c']}</h2>
+                <h2 class='$colorD'>D: {$row['d']}</h2>
                 <form action='../scripts/end_question.php' method='POST'>
                     <input type='hidden' name='qid' value='{$row['qid']}'>
                     <button class='bad-button' type='submit'>End Question</button>
                 </form>
             </div>";
-        } else {
+        } 
+        else 
+        {
             $questionResult .= "
             <div class='question-item'>
                 <h2>{$row['prompt']}</h2>
-                <p>A) {$row['a']}</p>
-                <p>B) {$row['b']}</p>
-                <p>C) {$row['c']}</p>
-                <p>D) {$row['d']}</p>
+                <h2 class='$colorA'>A: {$row['a']}</h2>
+                <h2 class='$colorB'>B: {$row['b']}</h2>
+                <h2 class='$colorC'>C: {$row['c']}</h2>
+                <h2 class='$colorD'>D: {$row['d']}</h2>
                 <form action='../scripts/ask_question.php' method='POST'>
                     <input type='hidden' name='qid' value='{$row['qid']}'>
                     <button class='good-button' type='submit'>Ask Question</button>
@@ -103,6 +128,10 @@ if ($result->num_rows > 0) {
             display: block;
             margin-left: auto;
             margin-right: auto;
+        }
+        .answer
+        {
+            color: green;
         }
     </style>
 </head>
