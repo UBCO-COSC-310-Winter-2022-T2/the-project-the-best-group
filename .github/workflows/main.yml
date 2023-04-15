@@ -18,7 +18,7 @@ jobs:
     - name: update
       run: sudo apt-get update
     - name: update docker-compose
-      run: sudo apt-get install docker-compose-plugin
+      run: sudo apt-get install docker-compose
     - name: Build the Docker images
       run: docker-compose build
     - name: Compose Docker Containers
