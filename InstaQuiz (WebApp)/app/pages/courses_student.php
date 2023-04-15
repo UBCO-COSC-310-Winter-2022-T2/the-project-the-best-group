@@ -11,8 +11,7 @@
           FROM courses C 
           INNER JOIN accounts A ON C.Iid = A.id 
           LEFT JOIN enrollment E ON C.cid = E.cid AND E.sid = '$userId'
-          WHERE (C.cname LIKE '%$search%' OR CONCAT(A.fname, ' ', A.lname) LIKE '%$search%')
-          AND E.sid IS NULL";
+          WHERE (C.cname LIKE '%$search%' OR CONCAT(A.fname, ' ', A.lname) LIKE '%$search%')";
 
   $result = mysqli_query($conn, $sql);
 

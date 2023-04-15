@@ -9,7 +9,6 @@ services:
     container_name: instaquiz-webserver
     volumes:
       - './app:/var/www/html'
-      - './composer:/usr/local/bin/composer:ro' # mount composer binary from composer service
     ports:
       - 80:80
       - 443:443 # for future ssl traffic
@@ -19,7 +18,6 @@ services:
       dockerfile: ./Dockerfile
       target: db
     container_name: instaquiz-database
-    restart: always
     environment:
       - HOSTNAME = db
       - MYSQL_DATABASE=instaquiz
@@ -31,16 +29,8 @@ services:
   phpmyadmin:
     image: phpmyadmin:latest
     container_name: instaquiz_phpmyadmin
-    #restart: always
     ports:
       - 8080:80
     environment:
       - PMA_HOST=db
       - PMA_PORT=3306
-  composer:
-    image: composer:latest
-    container_name: instaquiz-composer
-    volumes:
-      - './app:/app'
-      - './composer:/tmp'
-    working_dir: /app
