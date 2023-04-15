@@ -111,7 +111,7 @@ Our project is fully docker ready and tested. Our code includes a docker-compose
 
 ### 1. How did your project management work for the team?  What was the hardest thing and what would you do the same/differently the next time you plan to complete a project like this?
 
-As a team we feel we did a great job managing this project, however, there were definitely some challenges. The hardest thing was probably estimating the time it would take for each task. As a majority of the project work was new to us, we found some things took much longer than expected. Getting the live session to support multiple users from different machines and having our docker-compose file auto import our sql ddl were a few examples of this. In future, we would spend slightly more time researching all components before giving a clear framework of what our system would look like.
+As a team we feel we did a great job managing this project, however, there were definitely some challenges. The hardest thing was probably estimating the time it would take for each task, especially since our group had very little web development experience. As a majority of the project work was new to us, we found some things took much longer than expected. Getting the live session to support multiple users from different machines and having our docker-compose file auto import our sql ddl were a few examples of this. In future, we would spend slightly more time researching all components before giving a clear framework of what our system would look like.
 <br>
 
 ### 2. Do you feel that your initial requirements were sufficiently detailed for this project?  Which requirements did you miss or overlook?
