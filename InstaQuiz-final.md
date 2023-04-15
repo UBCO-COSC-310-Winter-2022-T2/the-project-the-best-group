@@ -9,7 +9,7 @@ The Best Group: (Gus Goerzen, Tanner Dyck, Sten Korver, Patrick Ma, Kiyoon Kim)
 
 ### 1. What did your team build? Is it feature complete and running? 
 
-Our team built a web-based system that enables instructors to engage students in real-time, interactive quizzes during lectures. It is feature complete and running. Instructors have the ability to create course modules, which serve as virtual meeting spaces for their students. Instructors are able to display custom questions to their students, and receive their responses in real time. Students can easily search for and join these courses online. The system operates on a live webpage, reinforced by a secure login system. Students have access to their individual performance metrics (attendance, grades), while instructors have metrics for their entire class.
+Our team built a web-based system that enables instructors to engage with students through interactive quizzes. It is feature complete and running. Instructors have the ability to create course modules, which serve as virtual meeting spaces for their class. Instructors are also able to display custom questions to their students, either created live or pulled from a bank of premade questions, and receive their students responses in real time. Students can easily search for courses by course or instructor name and can enroll themselves in these courses online. They are also able to unenroll from courses. For each course a student is enrolled in, they can see if a session is live and if it is the student can join and answer live questions. Students have access to their individual performance metrics (attendance, grades), while instructors can see metrics for their entire class. The whole system operates on a live webpage, reinforced by a secure login system that implememts hashing algorithms and features a forgot password system using a random recovery token that is auto-generated for every new account as it is registered.
 <br>
 
 ### 2. How many of your initial requirements that your team set out to deliver did you actually deliver (a checklist/table would help to summarize)?  Were you able to deliver everything or are there things missing?  Did your initial requirements sufficiently capture the details needed for the project?
@@ -58,7 +58,7 @@ Our team built a web-based system that enables instructors to engage students in
 | 2. Web service must be able to handle large amounts of traffic. As an international education tool, thousands of academics may be on the site at one time. Live sessions must be able to support over 300 connected clients at a time. | C |
 <br>
 
-MODIFICATION NOTES: Some of the intital requirements were modififed as the system was developed, however, this was expected. User requirements #13 was modified to allow for multiple polls to be open at one time. User requirements #14 was modified to allow for instructors to declare the correct answer during the creation of the question rather than during the closing of a poll. User requirement #16 was our only miss as we did not end up implementing a live poll summary. Besides this minor subtraction and a few modifications, modifications we see as improvements, our team was able to deliver everything that was outlined in the initial requirements. Our requirements sufficiently captured all of the necessary details and, as a result, the system is feature complete and operating as expected. 
+MODIFICATION NOTES: A few of the intital requirements were modififed as the system was developed, however, this was expected as we took an agile approach to software development. User requirement #13 was modified to allow for multiple polls to be open at one time. User requirement #14 was modified to allow for instructors to declare the correct answer during the creation of the question rather than during the closing of a poll. User requirement #16 was our only miss as we did not end up implementing a live poll summary. Besides this minor subtraction and a few modifications, modifications we see as improvements, our team was able to deliver everything that was outlined in the initial requirements. Our requirements sufficiently captured all of the necessary details and the result is a feature complete system that operates as expected. 
 <br>
 
 ### 3. What is the architecture of the system?  What are the key components?   What design patterns did you use in the implementation?  This needs to be sufficiently detailed so that the reader will have an understanding of what was built and what components were used/created.  You will need to reflect on what you planned to build vs what you built.
@@ -75,13 +75,13 @@ The InstaQuiz system uses a client-server architecture for easy management and s
 - Database: A database is used to store relevant information for user accounts, courses, questions, and scores, which is accessed by the server-side application. Hashing functions are in place where necessary, to acheive security for sensitive data, and the overal schema is streamline to ensure minimal storage is used.
 <br>
 
-Upon reflection, we built pretty much exactly what we planned to. The interactions are as expected, every function and feature is working smoothly, and the appearance and aesthetics are consistent and attractive. We feel InstaQuiz is a comphrensive and easy to use iclicker clone system.
+Upon reflection, we built almost exactly what we planned to. The interactions are as expected, every function and feature is working smoothly, and the appearance and aesthetics are consistent and attractive. We feel InstaQuiz is a comphrensive and easy-to-use iclicker clone system and that was our vision for this project.
 <br>
 
 ### 4. What degree and level of re-use was the team able to achieve and why? 
-Many components were reused across both student and instructor accounts as they have similar requirements. Database connections, authentication processes, and form validation functions. We also reused plenty of HTML code for front end things like headers, fonts, colors, etc. We were able to acheive a high level of re-use by standardizing our sites processes as much as possible.
-<br>
-
+Many components were reused across both student and instructor accounts as they have similar requirements. Database connections, authentication processes, and form validation functions, to name a few. We also reused plenty of HTML code for front end things like headers, fonts, colors, Throughtout our development process, we kept our basic templates in a folder made available to all so that consistent software devbelopment was easy. We were able to achieve this high level of re-use by standardizing our sites processes as much as possible, frequently sharing our latest work with the rest of our team, and communicating constantly.
+<br
+    
 ### 5. How many tasks are left in the backlog?: 
 There is only 1 task left in the backlog (implement live poll summary feature for user requirement #16). 
 <br>
@@ -97,12 +97,12 @@ Throughout this project, we utilized test driven development strategies to plan 
 
 ### 2. How did your branching workflow work for the team?  Were you successful in properly reviewing the code before merging as a team?
 
-The branching workflow worked great for our team. Every large component of the system was completed in a seperate branch e.g. PHP files, live sessions, CICD, and testing. As a team we always worked on a couple different branches at a time and had everyone everyone verify the code before any merges.
+The branching workflow worked great for our team. Every large component of the system was completed in a seperate branch e.g. PHP files, live sessions, CICD, and testing. As a team we always worked on a couple different branches at a time and had verification everyitme code was ready to be merged. 
 <br>
 
 ### 3. How would your project be deployed?  Is it docker ready and tested?  Provide a brief description of the level of dockerization you have implemented and what would be required to deploy.
 
--Our project is fully docker ready and tested. Our code includes a docker-compose.yml file that builds containers for our database, auto imports our sql ddl, and sets up hosting ports for the website on the local machine. All that is required to deploy is a computer that has internet access, docker desktop installed, and a IDE to run the docker-compose up -d (we recommend VS Code as that is what we used throughout this project).
+Our project is fully docker ready and tested. Our code includes a docker-compose.yml file that builds containers for our database, auto imports our sql ddl, and sets up ports to host the website on the local machine. All that is required to deploy InstaQuiz is a computer with internet access, docker desktop installed, and a IDE to run the docker-compose up -d (we recommend VS Code as that is what we used throughout this project).
 <br>
 
 
