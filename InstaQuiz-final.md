@@ -2,7 +2,7 @@
 
 The Best Group: (Gus Goerzen, Tanner Dyck, Sten Korver, Patrick Ma, Kiyoon Kim)
 
-**Video Walkthrough: (insert link here)**
+**Video Walkthrough: https://youtu.be/ntIknkWL1vU **
 
 
 # General Development:
