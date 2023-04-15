@@ -15,6 +15,10 @@ jobs:
         working-directory: ${{ env.working-directory }}
     steps:
     - uses: actions/checkout@v3
+    - name: update
+      run: sudo apt-get update
+    - name: update docker-compose
+      run: sudo apt-get install docker-compose-plugin
     - name: Build the Docker images
       run: docker-compose build
     - name: Compose Docker Containers
