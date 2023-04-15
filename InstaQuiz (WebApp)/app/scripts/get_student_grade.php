@@ -15,12 +15,12 @@
     mysqli_free_result($result_questions);
 
     // get total number of correct answers for student in course
-    $sql = "SELECT A.qid FROM answers A INNER JOIN questions Q ON A.qid = Q.qid AND A.answer = Q.answer WHERE Q.cid = ".$cid." AND A.sid=".$sid;
+    $sql = "SELECT A.qid FROM answers A INNER JOIN questions Q ON A.qid = Q.qid AND A.answer = Q.answer WHERE Q.cid = $cid AND A.sid=$sid";
     $result_answers = mysqli_query($conn, $sql);
     $num_correct = $result_answers -> num_rows;
 
     mysqli_free_result($result_answers);
 
-    $grade = [$num_questions - $num_correct, $num_correct];
+    $grade = [$num_correct, $num_questions];
 
 ?>

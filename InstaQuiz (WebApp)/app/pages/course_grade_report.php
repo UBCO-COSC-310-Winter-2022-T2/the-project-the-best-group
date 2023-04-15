@@ -37,11 +37,11 @@
         
 
         // get attendance
-        include_once "../scripts/get_student_attendance.php";
+        include "../scripts/get_student_attendance.php";
         $attendances[] = $attendance;
 
         //get grade
-        include_once "../scripts/get_student_grade.php";
+        include "../scripts/get_student_grade.php";
         $grades[] = $grade;
 
         mysqli_free_result($result);
