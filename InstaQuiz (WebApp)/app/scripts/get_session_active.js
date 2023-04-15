@@ -2,7 +2,7 @@
 $(document).ready(function() {
 
     getSessionActive();
-    var interval = setInterval(getSessionActive, 5000);  //refresh every 5 seconds
+    var interval = setInterval(getSessionActive, 3000);  //refresh every 3 seconds
 
 });
 
