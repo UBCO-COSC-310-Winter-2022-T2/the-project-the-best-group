@@ -6,9 +6,11 @@ if (!isset($_SESSION['user_id']) || !isset($_POST['qid']))
     exit();
 
 $qid = $_POST['qid'];
-if (!isset($_POST['question'.$qid]))
-    exit();
 $answer = $_POST['question'.$qid];
+if ($answer == '') {
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
+    exit();
+}
 
 // check if question active
 require_once('config.php');

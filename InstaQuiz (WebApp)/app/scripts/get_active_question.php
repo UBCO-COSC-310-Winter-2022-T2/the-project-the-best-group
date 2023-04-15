@@ -6,14 +6,28 @@
 
     require_once('config.php');
 
+    // get active question(s)
+    $sid = $_SESSION['user_id'];
     $cid = $_GET['cid'];
     $sql = "SELECT qid, prompt, a, b, c, d, answer FROM questions WHERE live=1 AND cid=".$cid;
     $result = mysqli_query($conn, $sql);
 
     if ($result->num_rows == 0) 
         exit('<p>Welcome to class! Currently there are no active polls<p>');
-    
+
     while($row = $result->fetch_assoc()) {
+        
+        // get current answer
+        $qid = $row['qid'];
+        $sql_answer = 'SELECT answer FROM answers WHERE qid = '.$qid.' AND sid = '.$sid;
+        $result_answer = mysqli_query($conn, $sql_answer);
+
+        $cur_answer = '';
+        if ($result_answer->num_rows == 1) {
+            $result_row = mysqli_fetch_assoc($result_answer);
+            $cur_answer = "<p style='text-align: center;'><b>Current answer: ".$result_row['answer']."</b></p>";
+        } 
+        
         $output .= "
             <div class='question-item'>
                 <form action='../scripts/answer_question.php' method='POST'>
@@ -24,7 +38,8 @@
                     <p><input type='radio' name='question{$row['qid']}' value='D' ><label>D) {$row['d']}</label></p>
                     <input type='hidden' name='qid' value='{$row['qid']}'>
                     <button class='good-button' type='submit'>Submit Answer</button>
-                </form>
+                </form>".
+                $cur_answer."
             </div>";
     }
     mysqli_free_result($result);
