@@ -33,7 +33,7 @@ Our team built a web-based system that enables instructors to engage with studen
 | 14. Instructors can end their live polling window and declare the correct answer to the question. | M |
 | 15. Users can answer a question by clicking on the corresponding answer listed beneath the question text. A user can change their answer during the polling window. | C |
 | 16. Instructors can choose to display a summary of the question, (correct answer, how many votes each answer got, how many total responses, etc.) or to keep it hidden from the class. Instructors will be able to see this summary regardless after they end a polling window. | I |
-| 17. For each course they are enrolled in, students will be able to see their current score, attendance record, and response history throughout previously attended live sessions. | C |
+| 17. For each course they are enrolled in, students will be able to see their current score, attendance record, and response history throughout previously attended live sessions. | M |
 | 18. For each course they have created, instructors will have access to their student’s grades, attendance records, and response history. | C |
 | &nbsp; |
 | **Interface:** |
@@ -42,23 +42,23 @@ Our team built a web-based system that enables instructors to engage with studen
 | 3. During a polling window, the question statistics are displayed and updated in real-time. (How many students have answered/ not answered) | C |
 | &nbsp; |
 | **Functional:** |
-| 1. InstaQuiz will keep record of all the courses that have been created by instructors and store data about them such as their title, name of instructor, and course code made up of the faculty abbreviations and course number (ex COSC 310). | C | 
+| 1. InstaQuiz will keep record of all the courses that have been created by instructors and store data about them such as their title, name of instructor, and course code made up of the faculty abbreviations and course number (ex COSC 310). | M | 
 | 2. InstaQuiz will allow the creation of student and instructor accounts using email/password combinations. | C |
 | 3. InstaQuiz will allow student accounts to search for courses by course title and enroll in the courses they search for and select. The system will also display a menu of the courses that a student has enrolled in and offer the ability to edit the courses they are currently enrolled in. | C |
 | 4. InstaQuiz will allow the creation of a new live session to all instructors. Students who have enrolled in a course can join the session provided their instructor has started an InsatQuiz session (i.e. class is live). | C |
 | 5. For instructor accounts, InstaQuiz will support the creation of custom questions with multiple choice answers and the ability to poll the class with the questions that were created. | C |
 | 6. While the poll is live, the system will allow students to choose and change their answer an unlimited amount of times. IQ will also display the number of students that have submitted an answer. | C |
-| 7. The system will allow instructors to end the poll at any time and select a correct multiple choice option which will be displayed on screen to the entire class. The system will then display to the students whether they answered correctly or not. | C |
+| 7. The system will allow instructors to end the poll at any time and select a correct multiple choice option which will be displayed on screen to the entire class. The system will then display to the students whether they answered correctly or not. | M |
 | 8. The system will allow instructors to view the history on how students have answered their questions and the specific distribution of answers. The distribution of answers for a question will also be displayed at the end of each poll for all users to see. | C |
 | 9. The system will also store and allow students to access the number of questions they have answered right for a particular course. The total questions asked for the course will also be shown so the student will see a comprehensive score, something like 16/21. | C |
-| 10. InstaQuiz will store a comprehensive history for a course which will show all past polls and questions with the corresponding correct answers. | C |
+| 10. InstaQuiz will store a comprehensive history for a course which will show all past polls and questions with the corresponding correct answers. | I |
 | &nbsp; | 
 | **Non-Functional:** |
 | 1. Web service must update in real-time, users are given varying time windows to submit responses. We must minimize response times to and from the main client. | C |
 | 2. Web service must be able to handle large amounts of traffic. As an international education tool, thousands of academics may be on the site at one time. Live sessions must be able to support over 300 connected clients at a time. | C |
 <br>
 
-MODIFICATION NOTES: A few of the intital requirements were modififed as the system was developed, however, this was expected as we took an agile approach to software development. User requirement #13 was modified to allow for multiple polls to be open at one time. User requirement #14 was modified to allow for instructors to declare the correct answer during the creation of the question rather than during the closing of a poll. User requirement #16 was our only miss as we did not end up implementing a live poll summary. Besides this minor subtraction and a few modifications, modifications we see as improvements, our team was able to deliver everything that was outlined in the initial requirements. Our requirements sufficiently captured all of the necessary details and the result is a feature complete system that operates as expected. 
+MODIFICATION NOTES: A few of the intital requirements were modififed as the system was developed, however, this was expected as we took an agile approach to software development. User requirement #13 was modified to allow for multiple polls to be open at one time. User requirement #14 was modified to allow for instructors to declare the correct answer during the creation of the question rather than during the closing of a poll. User requirement #16 and function requirement #10 was our only miss as we did not end up implementing a live poll summary or include a history as comprehensive as originally planned. Besides these minor subtractions and a few modifications, most of which we see as improvements, our team was able to deliver everything that was outlined in the initial requirements. Our requirements sufficiently captured all of the necessary details and the result is a feature complete system that operates as expected. 
 <br>
 
 ### 3. What is the architecture of the system?  What are the key components?   What design patterns did you use in the implementation?  This needs to be sufficiently detailed so that the reader will have an understanding of what was built and what components were used/created.  You will need to reflect on what you planned to build vs what you built.
