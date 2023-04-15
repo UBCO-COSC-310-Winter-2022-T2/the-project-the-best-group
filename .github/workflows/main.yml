@@ -34,7 +34,7 @@ jobs:
     - name: install latest docker-compose 3
       run: sudo chmod +x /usr/local/bin/docker-compose
     - name: make alias for docker-compose command
-      run: alias docker-compose='TMPDIR=/var/tmp/ docker-compose'
+      run: sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
     - name: Build the Docker images
       run: docker-compose build
     - name: Compose Docker Containers
