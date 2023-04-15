@@ -79,11 +79,11 @@ Upon reflection, we built almost exactly what we planned to. The interactions ar
 <br>
 
 ### 4. What degree and level of reuse was the team able to achieve and why? 
-Many components were reused across both student and instructor accounts as they have similar requirements. Database connections, authentication processes, and form validation functions, to name a few. We also reused plenty of HTML code for front end things like headers, fonts, colors, Throughout our development process, we kept our basic templates in a folder made available to all so that consistent software development was easy. We were able to achieve this high level of re-use by standardizing our site's processes as much as possible, frequently sharing our latest work with the rest of our team, and communicating constantly.
-<br
+Many components were reused across both student and instructor accounts as they have similar requirements. Database connections, authentication processes, form validation and data retrieval functions, to name a few. We also reused plenty of HTML and CSS code for front end things like headers, fonts, colors. Throughout our development process, we kept our basic templates in a folder made available to all so that consistent software development was easy. We were able to achieve this high level of re-use by standardizing our site's processes as much as possible, frequently sharing our latest work with the rest of our team, and communicating constantly.
+<br>
     
 ### 5. How many tasks are left in the backlog?: 
-There is only 1 task left in the backlog (implement live poll summary feature for user requirement #16). 
+There are 2 tasks left in the backlog (implement live poll summary feature for user requirement #16 and a more comprehensive course history functional requirement #10). 
 <br>
 
 
