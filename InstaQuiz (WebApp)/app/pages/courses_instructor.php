@@ -71,6 +71,10 @@
           <input type='hidden' name='cid' value='{$row['cid']}'>
           <button class='pink-button' type='submit'>View Options</button>
         </form>
+        <form action='course_grade_report.php' method='GET'>
+          <input type='hidden' name='cid' value='{$row['cid']}'>
+          <button type='submit' class='pink-button'>Grades Report</button>
+        </form>
         <form action='courses_deleteConf.php' method='POST'>
           <input type='hidden' name='cid' value='{$row['cid']}'>
           <input type='hidden' name='cname' value='{$row['cname']}'>
